@@ -15,5 +15,6 @@ Add yourself as a contributor to this project as a Markdown link that links your
 
 - [Matthew Foley](https://github.com/mtfoley) 🤖
 - [DJ Taylor](https://github.com/djtaylor8) 😺
+- [Volha Hancharova](https://github.com/daredtech) 🦊
 
 ## Code of Conduct Contacts
