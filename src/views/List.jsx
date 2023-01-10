@@ -7,7 +7,7 @@ export function List({ data }) {
 				Hello from the <code>/list</code> page!
 			</p>
 			<ul>
-				{/* work goes here* */}
+				{/* new commment rb */}
 				{/**
 				 * TODO: write some JavaScript that renders the `data` array
 				 * using the `ListItem` component that's imported at the top
