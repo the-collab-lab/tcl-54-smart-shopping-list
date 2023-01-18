@@ -15,6 +15,7 @@ export function AddItem({ listId }) {
 			daysUntilNextPurchase,
 		};
 		addItem(listId, itemData);
+		alert(`${itemData.itemName} was added to your list`);
 	};
 
 	//Get user input and set itemName
@@ -25,11 +26,11 @@ export function AddItem({ listId }) {
 	// get radio selection and set daysUntilNextPurchase
 	const handlePurchaseDate = (event) => {
 		let date = null;
-		if (event.target.name === 'soon') {
+		if (event.target.value === 'soon') {
 			date = 7;
-		} else if (event.target.name === 'kind-of-soon') {
+		} else if (event.target.value === 'kind-of-soon') {
 			date = 14;
-		} else if (event.target.name === 'not-soon') {
+		} else if (event.target.value === 'not-soon') {
 			date = 30;
 		}
 		setDaysUntilNextPurchase(date);
@@ -43,8 +44,9 @@ export function AddItem({ listId }) {
 			<div>
 				<input
 					type="radio"
+					value="soon"
 					id="soon"
-					name="soon"
+					name="radio-btn"
 					onChange={handlePurchaseDate}
 				/>
 				<label htmlFor="soon">Soon</label>
@@ -52,8 +54,9 @@ export function AddItem({ listId }) {
 			<div>
 				<input
 					type="radio"
+					value="kind-of-soon"
 					id="kind-of-soon"
-					name="kind-of-soon"
+					name="radio-btn"
 					onChange={handlePurchaseDate}
 				/>
 				<label htmlFor="kind-of-soon">Kind Of Soon</label>
@@ -62,7 +65,8 @@ export function AddItem({ listId }) {
 				<input
 					type="radio"
 					id="not-soon"
-					name="not-soon"
+					value="not-soon"
+					name="radio-btn"
 					onChange={handlePurchaseDate}
 				/>
 				<label htmlFor="not-soon">Not Soon</label>
