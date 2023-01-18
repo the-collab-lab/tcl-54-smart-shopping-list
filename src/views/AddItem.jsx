@@ -2,45 +2,37 @@ import { addItem } from '../api/firebase';
 import { useState } from 'react';
 
 export function AddItem({ listId }) {
-	const [itemData, setItemData] = useState({
-		itemName: '',
-		daysUntilNextPurchase: null,
-	});
-	/*
-	itemData = {
-		itemName:
-		daysUntilNextPurchase:
-	}
-	*/
+	//Separated itemName and daysUntilNextPurchase inside of state
+	const [itemName, setItemName] = useState('');
 
+	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(null);
+
+	// stored values inside itemData and sent over to database
 	const onFormSubmit = (event) => {
 		event.preventDefault();
+		const itemData = {
+			itemName,
+			daysUntilNextPurchase,
+		};
 		addItem(listId, itemData);
-		console.log(itemData);
 	};
 
+	//Get user input and set itemName
 	const handleItemName = (event) => {
-		setItemData({
-			itemName: event.target.value,
-		});
-		console.log(event.target.value);
+		setItemName(event.target.value);
 	};
 
+	// get radio selection and set daysUntilNextPurchase
 	const handlePurchaseDate = (event) => {
 		let date = null;
 		if (event.target.name === 'soon') {
 			date = 7;
-			console.log('clicked soon');
 		} else if (event.target.name === 'kind-of-soon') {
 			date = 14;
-			console.log('clicked kind of soon');
 		} else if (event.target.name === 'not-soon') {
 			date = 30;
-			console.log('clicked not soon');
 		}
-		setItemData({
-			daysUntilNextPurchase: date,
-		});
+		setDaysUntilNextPurchase(date);
 	};
 
 	return (
@@ -79,12 +71,3 @@ export function AddItem({ listId }) {
 		</form>
 	);
 }
-// pseudo code
-// add radio buttons that correspond to soon, kind of soon, not soon
-// Add form that allows user to add item name
-// soon = 7 days
-// kind of soon = 14
-// not soon = 30
-
-// add label for each input (radio button)
-// submit button
