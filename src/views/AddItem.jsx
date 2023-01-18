@@ -30,13 +30,13 @@ export function AddItem({ listId }) {
 		let date = null;
 		if (event.target.name === 'soon') {
 			date = 7;
-			console.log('clicked 7');
+			console.log('clicked soon');
 		} else if (event.target.name === 'kind-of-soon') {
 			date = 14;
-			console.log('clicked 14');
+			console.log('clicked kind of soon');
 		} else if (event.target.name === 'not-soon') {
 			date = 30;
-			console.log('clicked 30');
+			console.log('clicked not soon');
 		}
 		setItemData({
 			daysUntilNextPurchase: date,
@@ -47,6 +47,7 @@ export function AddItem({ listId }) {
 		<form onSubmit={onFormSubmit}>
 			<div>Item name:</div>
 			<input type="text" name="item" onChange={handleItemName} />
+			<div>How soon will you buy this again?</div>
 			<div>
 				<input
 					type="radio"
@@ -69,7 +70,7 @@ export function AddItem({ listId }) {
 				<input
 					type="radio"
 					id="not-soon"
-					name="soon"
+					name="not-soon"
 					onChange={handlePurchaseDate}
 				/>
 				<label htmlFor="not-soon">Not Soon</label>
@@ -78,6 +79,7 @@ export function AddItem({ listId }) {
 		</form>
 	);
 }
+// pseudo code
 // add radio buttons that correspond to soon, kind of soon, not soon
 // Add form that allows user to add item name
 // soon = 7 days
