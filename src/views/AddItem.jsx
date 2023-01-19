@@ -2,28 +2,33 @@ import { addItem } from '../api/firebase';
 import { useState } from 'react';
 
 export function AddItem({ listId }) {
-	//Separated itemName and daysUntilNextPurchase inside of state
+	// declare itemName and daysUntilNextPurchase into separate state variables
 	const [itemName, setItemName] = useState('');
 
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(null);
 
-	// stored values inside itemData and sent over to database
+	// Store values inside itemData and sent over to database
+	// otherwise log an error if request fails
 	const onFormSubmit = (event) => {
 		event.preventDefault();
 		const itemData = {
 			itemName,
 			daysUntilNextPurchase,
 		};
-		addItem(listId, itemData);
-		alert(`${itemData.itemName} was added to your list`);
+		try {
+			addItem(listId, itemData);
+			alert(`${itemData.itemName} was added to your list`);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
-	//Get user input and set itemName
+	// Get user input and set itemName
 	const handleItemName = (event) => {
 		setItemName(event.target.value);
 	};
 
-	// get radio selection and set daysUntilNextPurchase
+	// Get radio selection and set daysUntilNextPurchase
 	const handlePurchaseDate = (event) => {
 		let date = null;
 		if (event.target.value === 'soon') {
