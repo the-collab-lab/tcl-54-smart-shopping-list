@@ -43,8 +43,10 @@ export function AddItem({ listId }) {
 
 	return (
 		<form onSubmit={onFormSubmit}>
-			<div>Item name:</div>
-			<input type="text" name="item" onChange={handleItemName} />
+			<div>
+				<label htmlFor="item">Item Name:</label>
+			</div>
+			<input type="text" id="item" name="item" onChange={handleItemName} />
 			<div>How soon will you buy this again?</div>
 			<div>
 				<input
