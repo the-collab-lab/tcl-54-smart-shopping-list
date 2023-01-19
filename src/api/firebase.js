@@ -1,4 +1,4 @@
-import { collection, onSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot, addDoc } from 'firebase/firestore';
 import { db } from './config';
 import { getFutureDate } from '../utils';
 
@@ -82,4 +82,7 @@ export async function deleteItem() {
 	 */
 }
 
-export async function createNewList() {}
+/** This function uses a new list token to create and save an empty new collection to Firestore.*/
+export async function createNewList(newListToken) {
+	await addDoc(collection(db, newListToken), {});
+}
