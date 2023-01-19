@@ -1,6 +1,6 @@
 import './Home.css';
 import { generateToken } from '@the-collab-lab/shopping-list-utils';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createNewList } from '../api/firebase';
 
