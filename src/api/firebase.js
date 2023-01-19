@@ -81,3 +81,5 @@ export async function deleteItem() {
 	 * this function must accept!
 	 */
 }
+
+export async function createNewList() {}

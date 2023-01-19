@@ -6,70 +6,27 @@ import { useNavigate } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../api/config';
 
+/** Home component that redirects a user to the List view if there is already a list created. If the user doesn't already have a list, a user is able to create one and be redirected to the List view. */
+
 export function Home({ listToken, setListToken }) {
 	const navigate = useNavigate();
-	const [newToken, setNewToken] = useState('');
 
 	useEffect(() => {
 		if (listToken) {
-			console.log(listToken);
 			navigate('/list');
-			addDoc(collection(db, listToken), {
-				id: Date.now(),
-			});
+			// addDoc(collection(db, newToken), {});
 		}
 	});
 
-	// function newTokenCreateAndSave() {
-	// 	const result = setListToken(generateToken());
-	// 	console.log(result);
-	// addDoc(collection(db, listToken), {
-	// 		id: Date.now(),
-	// });
-	// 	navigate('/list');
-	// }
-
-	// const newTokenCreateAndSave = async () => {
+	// function createNewToken() {
 	// 	setListToken(generateToken());
-
-	// 	addDoc(collection(db, listToken), {
-	// 		id: Date.now(),
-	// 	});
-
-	// 	(navigate('/list'));
-	// };
-
-	function createNewToken() {
-		setListToken(generateToken());
-		// navigate('/list');
-	}
-
-	// function saveNewToken() {
-	// 	console.log(listToken);
-	// 			addDoc(collection(db, listToken), {
-	// 			id: Date.now(),
-	// 	});
 	// }
 
-	// function newTokenCreateAndSave() {
-	// 	createNewToken();
-	// 	saveNewToken();
-	// }
-
-	//ad test
-	// const newTokenCreateAndSave = async () => {
-	// 	await setNewToken(generateToken());
-	// 	console.log(newToken);
-
-	// 	setListToken(newToken);
-	// 	console.log(listToken)
-
-	// 	addDoc(collection(db, newToken), {
-	// 		id: Date.now(),
-	// 	});
-
-	// 	(navigate('/list'));
-	// };
+	const createNewToken = async () => {
+		const newToken = generateToken();
+		setListToken(newToken);
+		await addDoc(collection(db, newToken), {});
+	};
 
 	return (
 		<div className="Home">
