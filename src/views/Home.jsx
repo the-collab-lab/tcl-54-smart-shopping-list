@@ -7,19 +7,24 @@ import { createNewList } from '../api/firebase';
 /** Home component that redirects a user to the List view if there is already a list created.
  * If the user doesn't already have a list, a user can create one to be saved to Firestore and be redirected to the List view. */
 
-export function Home({ listToken, setListToken }) {
+export function Home({ setListToken }) {
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		if (listToken) {
+	const checkStorage = (key) => {
+		const storedToken = localStorage.getItem(key);
+		if (storedToken) {
 			navigate('/list');
 		}
+	};
+
+	useEffect(() => {
+		checkStorage('tcl-shopping-list-token');
 	}, []);
 
 	const createNewToken = async () => {
 		const newToken = generateToken();
 		setListToken(newToken);
-		createNewList(newToken);
+		await createNewList(newToken);
 		navigate('/list');
 	};
 
