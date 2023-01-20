@@ -2,7 +2,8 @@ import { addItem } from '../api/firebase';
 import { useState } from 'react';
 
 export function AddItem({ listId }) {
-	// declare itemName and daysUntilNextPurchase into separate state variables
+	// declare itemName, daysUntilNextPurchase, and radioSelect
+	// into separate state variables
 	const [itemName, setItemName] = useState('');
 
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(null);
