@@ -1,12 +1,18 @@
 import { addItem } from '../api/firebase';
 import { useState } from 'react';
 
+/**
+ * Allows user to add an item to their shopping list,
+ * set the next estimated purchase date,
+ * and store that to db
+ */
+
 export function AddItem({ listId }) {
 	// declare itemName, daysUntilNextPurchase, and radioSelect
 	// into separate state variables
 	const [itemName, setItemName] = useState('');
 
-	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7); // this was previously null
+	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 
 	const [radioSelect, setRadioSelect] = useState('soon');
 
@@ -26,29 +32,14 @@ export function AddItem({ listId }) {
 		}
 	};
 
-	// Get user input and set itemName
-	const handleItemName = (event) => {
-		setItemName(event.target.value);
-	};
-
 	// Get radio selection and set daysUntilNextPurchase
 	const handlePurchaseDate = (event) => {
-		// let date = null;
-		// if (event.target.value === 'soon') {
-		// 	date = 7;
-		// } else if (event.target.value === 'kind-of-soon') {
-		// 	date = 14;
-		// } else if (event.target.value === 'not-soon') {
-		// 	date = 30;
-		// }
-
 		const whenToPurchase = {
 			soon: 7,
 			'kind-of-soon': 14,
 			'not-soon': 30,
 		};
 		const date = whenToPurchase[event.target.value];
-		console.log('event.target.value -->', event.target.value);
 		setDaysUntilNextPurchase(date);
 		setRadioSelect(event.target.value);
 	};
@@ -62,8 +53,8 @@ export function AddItem({ listId }) {
 				type="text"
 				id="item"
 				name="item"
-				onChange={handleItemName}
-				required="true"
+				onChange={(event) => setItemName(event.target.value)}
+				required={true}
 			/>
 			<div id="purchase-date-label">How soon will you buy this again?</div>
 			<fieldset>
