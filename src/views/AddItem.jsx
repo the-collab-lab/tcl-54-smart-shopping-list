@@ -7,6 +7,8 @@ export function AddItem({ listId }) {
 
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(null);
 
+	const [radioSelect, setRadioSelect] = useState('soon');
+
 	// Store values inside itemData and sent over to database
 	// otherwise log an error if request fails
 	const onFormSubmit = (event) => {
@@ -39,6 +41,7 @@ export function AddItem({ listId }) {
 			date = 30;
 		}
 		setDaysUntilNextPurchase(date);
+		setRadioSelect(event.target.value);
 	};
 
 	return (
@@ -51,7 +54,7 @@ export function AddItem({ listId }) {
 			<fieldset>
 				<div>
 					<input
-						checked
+						checked={radioSelect === 'soon'}
 						type="radio"
 						value="soon"
 						id="soon"
@@ -62,6 +65,7 @@ export function AddItem({ listId }) {
 				</div>
 				<div>
 					<input
+						checked={radioSelect === 'kind-of-soon'}
 						type="radio"
 						value="kind-of-soon"
 						id="kind-of-soon"
@@ -72,6 +76,7 @@ export function AddItem({ listId }) {
 				</div>
 				<div>
 					<input
+						checked={radioSelect === 'not-soon'}
 						type="radio"
 						id="not-soon"
 						value="not-soon"
