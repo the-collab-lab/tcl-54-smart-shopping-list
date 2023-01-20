@@ -6,7 +6,7 @@ export function AddItem({ listId }) {
 	// into separate state variables
 	const [itemName, setItemName] = useState('');
 
-	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(null);
+	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7); // this was previously null
 
 	const [radioSelect, setRadioSelect] = useState('soon');
 
@@ -33,14 +33,22 @@ export function AddItem({ listId }) {
 
 	// Get radio selection and set daysUntilNextPurchase
 	const handlePurchaseDate = (event) => {
-		let date = null;
-		if (event.target.value === 'soon') {
-			date = 7;
-		} else if (event.target.value === 'kind-of-soon') {
-			date = 14;
-		} else if (event.target.value === 'not-soon') {
-			date = 30;
-		}
+		// let date = null;
+		// if (event.target.value === 'soon') {
+		// 	date = 7;
+		// } else if (event.target.value === 'kind-of-soon') {
+		// 	date = 14;
+		// } else if (event.target.value === 'not-soon') {
+		// 	date = 30;
+		// }
+
+		const whenToPurchase = {
+			soon: 7,
+			'kind-of-soon': 14,
+			'not-soon': 30,
+		};
+		const date = whenToPurchase[event.target.value];
+		console.log('event.target.value -->', event.target.value);
 		setDaysUntilNextPurchase(date);
 		setRadioSelect(event.target.value);
 	};
