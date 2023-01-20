@@ -58,7 +58,13 @@ export function AddItem({ listId }) {
 			<div>
 				<label htmlFor="item">Item Name:</label>
 			</div>
-			<input type="text" id="item" name="item" onChange={handleItemName} />
+			<input
+				type="text"
+				id="item"
+				name="item"
+				onChange={handleItemName}
+				required="true"
+			/>
 			<div>How soon will you buy this again?</div>
 			<fieldset>
 				<div>
