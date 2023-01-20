@@ -65,11 +65,12 @@ export function AddItem({ listId }) {
 				onChange={handleItemName}
 				required="true"
 			/>
-			<div>How soon will you buy this again?</div>
+			<div id="purchase-date-label">How soon will you buy this again?</div>
 			<fieldset>
 				<div>
 					<input
 						checked={radioSelect === 'soon'}
+						aria-labelledby="purchase-date-label"
 						type="radio"
 						value="soon"
 						id="soon"
