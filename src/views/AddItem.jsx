@@ -48,36 +48,39 @@ export function AddItem({ listId }) {
 			</div>
 			<input type="text" id="item" name="item" onChange={handleItemName} />
 			<div>How soon will you buy this again?</div>
-			<div>
-				<input
-					type="radio"
-					value="soon"
-					id="soon"
-					name="radio-btn"
-					onChange={handlePurchaseDate}
-				/>
-				<label htmlFor="soon">Soon</label>
-			</div>
-			<div>
-				<input
-					type="radio"
-					value="kind-of-soon"
-					id="kind-of-soon"
-					name="radio-btn"
-					onChange={handlePurchaseDate}
-				/>
-				<label htmlFor="kind-of-soon">Kind Of Soon</label>
-			</div>
-			<div>
-				<input
-					type="radio"
-					id="not-soon"
-					value="not-soon"
-					name="radio-btn"
-					onChange={handlePurchaseDate}
-				/>
-				<label htmlFor="not-soon">Not Soon</label>
-			</div>
+			<fieldset>
+				<div>
+					<input
+						checked
+						type="radio"
+						value="soon"
+						id="soon"
+						name="radio-btn"
+						onChange={handlePurchaseDate}
+					/>
+					<label htmlFor="soon">Soon</label>
+				</div>
+				<div>
+					<input
+						type="radio"
+						value="kind-of-soon"
+						id="kind-of-soon"
+						name="radio-btn"
+						onChange={handlePurchaseDate}
+					/>
+					<label htmlFor="kind-of-soon">Kind Of Soon</label>
+				</div>
+				<div>
+					<input
+						type="radio"
+						id="not-soon"
+						value="not-soon"
+						name="radio-btn"
+						onChange={handlePurchaseDate}
+					/>
+					<label htmlFor="not-soon">Not Soon</label>
+				</div>
+			</fieldset>
 			<button type="submit">Add Item</button>
 		</form>
 	);
