@@ -79,3 +79,8 @@ export async function deleteItem() {
 	 * this function must accept!
 	 */
 }
+
+/** This function uses a new list token to create and save an empty new collection to Firestore.*/
+export async function createNewList(newListToken) {
+	await addDoc(collection(db, newListToken), {});
+}
