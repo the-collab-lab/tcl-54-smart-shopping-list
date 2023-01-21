@@ -25,7 +25,6 @@ export function AddItem({ listId }) {
 		try {
 			addItem(listId, itemData);
 			setItemName('');
-			setDaysUntilNextPurchase(7);
 			alert(`${itemData.itemName} was added to your list`);
 		} catch (error) {
 			console.log(error);
