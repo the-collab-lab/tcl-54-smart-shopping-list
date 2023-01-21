@@ -7,7 +7,7 @@ import { useState } from 'react';
  * and store that to db
  */
 
-export function AddItem({ listId }) {
+export function AddItem({ listToken }) {
 	// declare itemName, daysUntilNextPurchase, and radioSelect
 	// into separate state variables
 	const [itemName, setItemName] = useState('');
@@ -23,7 +23,7 @@ export function AddItem({ listId }) {
 			daysUntilNextPurchase,
 		};
 		try {
-			addItem(listId, itemData);
+			addItem(listToken, itemData);
 			setItemName('');
 			alert(`${itemData.itemName} was added to your list`);
 		} catch (error) {
