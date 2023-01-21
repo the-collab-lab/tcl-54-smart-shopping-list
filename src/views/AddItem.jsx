@@ -14,8 +14,6 @@ export function AddItem({ listId }) {
 
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 
-	const [radioSelect, setRadioSelect] = useState('soon');
-
 	// Store values inside itemData and sent over to database
 	// otherwise log an error if request fails
 	const onFormSubmit = (event) => {
@@ -41,7 +39,6 @@ export function AddItem({ listId }) {
 		};
 		const date = whenToPurchase[event.target.value];
 		setDaysUntilNextPurchase(date);
-		setRadioSelect(event.target.value);
 	};
 
 	return (
@@ -60,7 +57,7 @@ export function AddItem({ listId }) {
 			<fieldset>
 				<div>
 					<input
-						checked={radioSelect === 'soon'}
+						defaultChecked
 						aria-labelledby="purchase-date-label"
 						type="radio"
 						value="soon"
@@ -72,7 +69,6 @@ export function AddItem({ listId }) {
 				</div>
 				<div>
 					<input
-						checked={radioSelect === 'kind-of-soon'}
 						type="radio"
 						value="kind-of-soon"
 						id="kind-of-soon"
@@ -83,7 +79,6 @@ export function AddItem({ listId }) {
 				</div>
 				<div>
 					<input
-						checked={radioSelect === 'not-soon'}
 						type="radio"
 						id="not-soon"
 						value="not-soon"
