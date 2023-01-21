@@ -24,6 +24,8 @@ export function AddItem({ listId }) {
 		};
 		try {
 			addItem(listId, itemData);
+			setItemName('');
+			setDaysUntilNextPurchase(7);
 			alert(`${itemData.itemName} was added to your list`);
 		} catch (error) {
 			console.log(error);
@@ -50,6 +52,7 @@ export function AddItem({ listId }) {
 				type="text"
 				id="item"
 				name="item"
+				value={itemName}
 				onChange={(event) => setItemName(event.target.value)}
 				required={true}
 			/>
