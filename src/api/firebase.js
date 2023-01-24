@@ -84,3 +84,17 @@ export async function deleteItem() {
 export async function createNewList(newListToken) {
 	await addDoc(collection(db, newListToken), {});
 }
+
+/** Logic practice on simplifying custom streamListItems function*/
+export async function joinExistingList(joinToken) {
+	streamListItems(joinToken, (snapshot) => {
+		const nextData = getItemData(snapshot);
+		console.log(nextData);
+		if (nextData[0]) {
+			console.log('shopping list exists');
+			return true;
+		} else {
+			return false;
+		}
+	});
+}
