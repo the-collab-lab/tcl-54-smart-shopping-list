@@ -9,7 +9,12 @@ export function List({ data }) {
 	const handleInput = (event) => {
 		const value = event.target.value;
 		setFilterInput(value);
-		setFilteredList(data.filter((item) => item.name.includes(value)));
+		setFilteredList(
+			data.filter((item) => {
+				const name = item.name.toLowerCase();
+				return name.includes(value);
+			}),
+		);
 	};
 
 	return (
@@ -23,7 +28,7 @@ export function List({ data }) {
 				<br />
 				<input
 					id="list-filter"
-					type="text"
+					type="search"
 					placeholder="Start typing here..."
 					onChange={handleInput}
 				/>
