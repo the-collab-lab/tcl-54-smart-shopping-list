@@ -6,6 +6,7 @@ export function List({ data }) {
 	const [filteredList, setFilteredList] = useState(null);
 	const [filterInput, setFilterInput] = useState(null);
 
+	/* Use handler to change the state of filterInput  and convert all items to lowercase to facilitate a more thorough search */
 	const handleInput = (event) => {
 		const value = event.target.value;
 		setFilterInput(value);
@@ -33,7 +34,7 @@ export function List({ data }) {
 					onChange={handleInput}
 				/>
 			</form>
-
+			{/* Uses data or state of filteredList depending on state of filterInput */}
 			<ul>
 				{!filterInput
 					? data.map((item) => {
