@@ -4,21 +4,23 @@ import { generateToken } from '@the-collab-lab/shopping-list-utils';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createNewList } from '../api/firebase';
-//ad test
-import { getItemData, streamListItems } from '../api';
 import { queryForCollection } from '../api/firebase';
 
 /** Home component that redirects a user to the List view if there is already a list created.
- * If the user doesn't already have a list, a user can create one to be saved to Firestore and be redirected to the List view. */
+ * If the user doesn't already have a list, a user can create a list or join one to be saved to Firestore and be redirected to the List view. */
 
 export function Home({ setListToken }) {
-	//
+	//Declare useState variable for user shared token input
 	const [joinToken, setJoinToken] = useState('');
 
-	// Declaring navigate for view redirection and listCreateError for error handling.
+	// Declare navigate for view redirection
 	const navigate = useNavigate();
+
+	// Declare error notifying functions using react-hot-toast.
 	const listCreateError = () => toast.error('Error creating new shopping list');
 	const listJoinError = () => toast.error('This shopping list does not exist');
+	const blankError = () =>
+		toast.error('Error: Shopping list token cannot be blank');
 
 	//Checks for shopping list token in local storage and redirects to list view if it exists.
 	const checkStorage = (key) => {
@@ -61,25 +63,8 @@ export function Home({ setListToken }) {
 				}
 			})
 			.catch((error) => {
-				console.error(error);
+				blankError();
 			});
-
-		//to do: reset input to null
-
-		//Check if collection shopping list token exists
-		// streamListItems(joinToken, (snapshot) => {
-		// 	const shoppingListItems = getItemData(snapshot);
-		// 	// console.log(snapshot);
-		// 	// console.log(shoppingListItems);
-		// 	if (shoppingListItems[0]) {
-		// 		console.log('shopping list exists');
-		// 		setListToken(joinToken);
-		// 		navigate('/list');
-		// 	} else {
-		// 		console.log('shopping list does not exist');
-		// 		listJoinError();
-		// 	}
-		// });
 	};
 
 	return (

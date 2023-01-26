@@ -91,29 +91,16 @@ export async function createNewList(newListToken) {
 	await addDoc(collection(db, newListToken), {});
 }
 
-/** Logic practice on simplifying custom streamListItems function*/
-// export async function joinExistingList(joinToken) {
-// 	streamListItems(joinToken, (snapshot) => {
-// 		const nextData = getItemData(snapshot);
-// 		console.log(nextData);
-// 		if (nextData[0]) {
-// 			console.log('shopping list exists');
-// 			return true;
-// 		} else {
-// 			return false;
-// 		}
-// 	});
-// }
-
+/** This function queries the database for an existing shopping list collection */
 export async function queryForCollection(listId) {
+	// Create a reference to the shopping list collection
 	const listCollectionRef = collection(db, listId);
+
+	// Create a query against the shopping list collection
 	const q = query(listCollectionRef);
 
+	//Using getDocs() function to retrive query results
 	const querySnapshot = await getDocs(q);
 
-	if (querySnapshot.size > 0) {
-		return true;
-	} else {
-		return false;
-	}
+	return querySnapshot.empty ? false : true;
 }
