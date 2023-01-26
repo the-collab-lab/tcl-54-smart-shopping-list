@@ -8,7 +8,7 @@ export function List({ data }) {
 
 	/* Use handler to change the state of filterInput  and convert all items to lowercase to facilitate a more thorough search */
 	const handleInput = (event) => {
-		const value = event.target.value;
+		const value = event.target.value.toLowerCase();
 		setFilterInput(value);
 		setFilteredList(
 			data.filter((item) => {
