@@ -3,8 +3,8 @@ import { useState } from 'react';
 
 /** List component that displays items in a user's shopping cart  */
 export function List({ data }) {
-	const [filteredList, setFilteredList] = useState(null);
-	const [filterInput, setFilterInput] = useState(null);
+	const [filteredList, setFilteredList] = useState([]);
+	const [filterInput, setFilterInput] = useState('');
 
 	/* Use handler to change the state of filterInput  and convert all items to lowercase to facilitate a more thorough search */
 	const handleInput = (event) => {
@@ -12,8 +12,7 @@ export function List({ data }) {
 		setFilterInput(value);
 		setFilteredList(
 			data.filter((item) => {
-				const name = item.name.toLowerCase();
-				return name.includes(value);
+				return item.name && item.name.toLowerCase().includes(value);
 			}),
 		);
 	};
