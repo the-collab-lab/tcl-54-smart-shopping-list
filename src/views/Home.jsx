@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { createNewList } from '../api/firebase';
 //ad test
 import { getItemData, streamListItems } from '../api';
+import { queryForCollection } from '../api/firebase';
 
 /** Home component that redirects a user to the List view if there is already a list created.
  * If the user doesn't already have a list, a user can create one to be saved to Firestore and be redirected to the List view. */
@@ -48,24 +49,37 @@ export function Home({ setListToken }) {
 	// Join existing shopping list
 	const joinExistingToken = async (e) => {
 		e.preventDefault();
-		console.log('token:', joinToken);
+
+		queryForCollection(joinToken)
+			.then((exists) => {
+				if (exists) {
+					setListToken(joinToken);
+					navigate('/list');
+				} else {
+					setJoinToken('');
+					listJoinError();
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 
 		//to do: reset input to null
 
 		//Check if collection shopping list token exists
-		streamListItems(joinToken, (snapshot) => {
-			const shoppingListItems = getItemData(snapshot);
-			console.log(snapshot);
-			console.log(shoppingListItems);
-			if (shoppingListItems[0]) {
-				console.log('shopping list exists');
-				setListToken(joinToken);
-				navigate('/list');
-			} else {
-				console.log('shopping list does not exists');
-				listJoinError();
-			}
-		});
+		// streamListItems(joinToken, (snapshot) => {
+		// 	const shoppingListItems = getItemData(snapshot);
+		// 	// console.log(snapshot);
+		// 	// console.log(shoppingListItems);
+		// 	if (shoppingListItems[0]) {
+		// 		console.log('shopping list exists');
+		// 		setListToken(joinToken);
+		// 		navigate('/list');
+		// 	} else {
+		// 		console.log('shopping list does not exist');
+		// 		listJoinError();
+		// 	}
+		// });
 	};
 
 	return (
@@ -81,8 +95,9 @@ export function Home({ setListToken }) {
 				<div>
 					<input
 						type="text"
-						name="token"
+						name="join-token"
 						id="join-token"
+						value={joinToken}
 						placeholder="three word token"
 						onChange={(e) => setJoinToken(e.target.value)}
 					/>

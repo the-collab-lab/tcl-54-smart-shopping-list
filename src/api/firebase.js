@@ -1,4 +1,10 @@
-import { collection, onSnapshot, addDoc } from 'firebase/firestore';
+import {
+	collection,
+	onSnapshot,
+	addDoc,
+	getDocs,
+	query,
+} from 'firebase/firestore';
 import { db } from './config';
 import { getFutureDate } from '../utils';
 
@@ -86,15 +92,28 @@ export async function createNewList(newListToken) {
 }
 
 /** Logic practice on simplifying custom streamListItems function*/
-export async function joinExistingList(joinToken) {
-	streamListItems(joinToken, (snapshot) => {
-		const nextData = getItemData(snapshot);
-		console.log(nextData);
-		if (nextData[0]) {
-			console.log('shopping list exists');
-			return true;
-		} else {
-			return false;
-		}
-	});
+// export async function joinExistingList(joinToken) {
+// 	streamListItems(joinToken, (snapshot) => {
+// 		const nextData = getItemData(snapshot);
+// 		console.log(nextData);
+// 		if (nextData[0]) {
+// 			console.log('shopping list exists');
+// 			return true;
+// 		} else {
+// 			return false;
+// 		}
+// 	});
+// }
+
+export async function queryForCollection(listId) {
+	const listCollectionRef = collection(db, listId);
+	const q = query(listCollectionRef);
+
+	const querySnapshot = await getDocs(q);
+
+	if (querySnapshot.size > 0) {
+		return true;
+	} else {
+		return false;
+	}
 }
