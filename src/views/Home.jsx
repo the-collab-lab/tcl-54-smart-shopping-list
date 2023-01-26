@@ -75,6 +75,7 @@ export function Home({ setListToken }) {
 			</p>
 			<button onClick={createNewToken}>Create a new list</button>
 			<p>- or -</p>
+			<p>Join an existing shopping list by entering a three word token.</p>
 			<form id="join-shopping-list-form" onSubmit={joinExistingToken}>
 				<label htmlFor="join-token">Share Token</label>
 				<div>
