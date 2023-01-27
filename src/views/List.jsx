@@ -17,6 +17,11 @@ export function List({ data }) {
 		);
 	};
 
+	const handleClick = (e) => {
+		e.preventDefault();
+		setFilterInput('');
+	};
+
 	return (
 		<>
 			<p>
@@ -26,12 +31,16 @@ export function List({ data }) {
 			<form>
 				<label htmlFor="list-filter">Filter items</label>
 				<br />
-				<input
-					id="list-filter"
-					type="search"
-					placeholder="Start typing here..."
-					onChange={handleInput}
-				/>
+				<div>
+					<input
+						id="list-filter"
+						type="text"
+						placeholder="Start typing here..."
+						value={filterInput}
+						onChange={handleInput}
+					/>
+					{filterInput && <button onClick={handleClick}>X</button>}
+				</div>
 			</form>
 			{/* Uses data or state of filteredList depending on state of filterInput */}
 			<ul>
