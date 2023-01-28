@@ -87,9 +87,7 @@ export function Home({ setListToken }) {
 					/>
 				</div>
 				<div>
-					<button type="submit" id="submit">
-						Join an existing list
-					</button>
+					<button type="submit">Join an existing list</button>
 				</div>
 			</form>
 			<Toaster />
