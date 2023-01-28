@@ -91,7 +91,11 @@ export async function createNewList(newListToken) {
 	await addDoc(collection(db, newListToken), {});
 }
 
-/** This function queries the database for an existing shopping list collection */
+/** This function queries the database for an existing shopping list collection.
+ * It does this by checking the `empty` property of the query results (`querySnapshot`).
+ * The function returns false if `querySnapshot` is empty,
+ * otherwise it returns true.
+ */
 export async function queryForCollection(listId) {
 	// Create a reference to the shopping list collection
 	const listCollectionRef = collection(db, listId);
@@ -99,8 +103,10 @@ export async function queryForCollection(listId) {
 	// Create a query against the shopping list collection
 	const q = query(listCollectionRef);
 
-	//Using getDocs() function to retrive query results
+	// Using getDocs() function to retrive query results
 	const querySnapshot = await getDocs(q);
+	console.log('querySnapshot:', querySnapshot);
 
+	// Returns false (collection is non-existent) or true (collection exists)
 	return querySnapshot.empty ? false : true;
 }
