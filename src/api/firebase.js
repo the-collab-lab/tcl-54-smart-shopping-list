@@ -96,7 +96,7 @@ export async function createNewList(newListToken) {
  * The function returns false if `querySnapshot` is empty,
  * otherwise it returns true.
  */
-export async function queryForCollection(listId) {
+export async function listExists(listId) {
 	// Create a reference to the shopping list collection
 	const listCollectionRef = collection(db, listId);
 
