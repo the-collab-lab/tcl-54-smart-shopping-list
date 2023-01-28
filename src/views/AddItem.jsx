@@ -1,5 +1,6 @@
 import { addItem } from '../api/firebase';
 import { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
 /**
  * Allows user to add an item to their shopping list,
@@ -11,8 +12,16 @@ export function AddItem({ listToken }) {
 	// declare itemName, daysUntilNextPurchase, and radioSelect
 	// into separate state variables
 	const [itemName, setItemName] = useState('');
-
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
+
+	// react-hot-toast utilized for notifications
+	// Notify when adding item is unsuccessful:
+	const notifyFailedRequest = () => toast.error('Failed to add item');
+
+	// Notify when adding item is successful:
+	const notifyItemAdded = (itemName) => {
+		toast.success(`${itemName} was added to your list`);
+	};
 
 	// Store values inside itemData and sent over to database
 	// otherwise log an error if request fails
@@ -25,9 +34,9 @@ export function AddItem({ listToken }) {
 		try {
 			addItem(listToken, itemData);
 			setItemName('');
-			alert(`${itemData.itemName} was added to your list`);
+			notifyItemAdded(itemData.itemName);
 		} catch (error) {
-			console.log(error);
+			notifyFailedRequest();
 		}
 	};
 
@@ -43,54 +52,57 @@ export function AddItem({ listToken }) {
 	};
 
 	return (
-		<form onSubmit={onFormSubmit}>
-			<div>
-				<label htmlFor="item">Item Name:</label>
-			</div>
-			<input
-				type="text"
-				id="item"
-				name="item"
-				value={itemName}
-				onChange={(event) => setItemName(event.target.value)}
-				required={true}
-			/>
-			<div id="purchase-date-label">How soon will you buy this again?</div>
-			<fieldset>
+		<>
+			<form onSubmit={onFormSubmit}>
 				<div>
-					<input
-						defaultChecked
-						aria-labelledby="purchase-date-label"
-						type="radio"
-						value="soon"
-						id="soon"
-						name="radio-btn"
-						onChange={handlePurchaseDate}
-					/>
-					<label htmlFor="soon">Soon</label>
+					<label htmlFor="item">Item Name:</label>
 				</div>
-				<div>
-					<input
-						type="radio"
-						value="kind-of-soon"
-						id="kind-of-soon"
-						name="radio-btn"
-						onChange={handlePurchaseDate}
-					/>
-					<label htmlFor="kind-of-soon">Kind Of Soon</label>
-				</div>
-				<div>
-					<input
-						type="radio"
-						id="not-soon"
-						value="not-soon"
-						name="radio-btn"
-						onChange={handlePurchaseDate}
-					/>
-					<label htmlFor="not-soon">Not Soon</label>
-				</div>
-			</fieldset>
-			<button type="submit">Add Item</button>
-		</form>
+				<input
+					type="text"
+					id="item"
+					name="item"
+					value={itemName}
+					onChange={(event) => setItemName(event.target.value)}
+					required={true}
+				/>
+				<div id="purchase-date-label">How soon will you buy this again?</div>
+				<fieldset>
+					<div>
+						<input
+							defaultChecked
+							aria-labelledby="purchase-date-label"
+							type="radio"
+							value="soon"
+							id="soon"
+							name="radio-btn"
+							onChange={handlePurchaseDate}
+						/>
+						<label htmlFor="soon">Soon</label>
+					</div>
+					<div>
+						<input
+							type="radio"
+							value="kind-of-soon"
+							id="kind-of-soon"
+							name="radio-btn"
+							onChange={handlePurchaseDate}
+						/>
+						<label htmlFor="kind-of-soon">Kind Of Soon</label>
+					</div>
+					<div>
+						<input
+							type="radio"
+							id="not-soon"
+							value="not-soon"
+							name="radio-btn"
+							onChange={handlePurchaseDate}
+						/>
+						<label htmlFor="not-soon">Not Soon</label>
+					</div>
+				</fieldset>
+				<button type="submit">Add Item</button>
+			</form>
+			<Toaster />
+		</>
 	);
 }
