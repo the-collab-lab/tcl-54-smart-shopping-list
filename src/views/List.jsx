@@ -22,6 +22,16 @@ export function List({ data }) {
 		setFilterInput('');
 	};
 
+	const renderList = () => {
+		return !filterInput
+			? data.map((item) => {
+					return <ListItem key={item.id} name={item.name} />;
+			  })
+			: filteredList.map((item) => {
+					return <ListItem key={item.id} name={item.name} />;
+			  });
+	};
+
 	return (
 		<>
 			<p>
@@ -43,15 +53,7 @@ export function List({ data }) {
 				</div>
 			</form>
 			{/* Uses data or state of filteredList depending on state of filterInput */}
-			<ul>
-				{!filterInput
-					? data.map((item) => {
-							return <ListItem key={item.id} name={item.name} />;
-					  })
-					: filteredList.map((item) => {
-							return <ListItem key={item.id} name={item.name} />;
-					  })}
-			</ul>
+			<ul>{renderList()}</ul>
 		</>
 	);
 }
