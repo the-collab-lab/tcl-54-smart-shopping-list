@@ -1,4 +1,10 @@
-import { collection, onSnapshot, addDoc } from 'firebase/firestore';
+import {
+	collection,
+	onSnapshot,
+	addDoc,
+	getDocs,
+	query,
+} from 'firebase/firestore';
 import { db } from './config';
 import { getFutureDate } from '../utils';
 
@@ -83,4 +89,23 @@ export async function deleteItem() {
 /** This function uses a new list token to create and save an empty new collection to Firestore.*/
 export async function createNewList(newListToken) {
 	await addDoc(collection(db, newListToken), {});
+}
+
+/** This function queries the database for an existing shopping list collection.
+ * It does this by checking the `empty` property of the query results (`querySnapshot`).
+ * The function returns false if `querySnapshot` is empty,
+ * otherwise it returns true.
+ */
+export async function listExists(listId) {
+	// Create a reference to the shopping list collection
+	const listCollectionRef = collection(db, listId);
+
+	// Create a query against the shopping list collection
+	const q = query(listCollectionRef);
+
+	// Using getDocs() function to retrive query results
+	const querySnapshot = await getDocs(q);
+
+	// Returns false (collection is non-existent) or true (collection exists)
+	return querySnapshot.empty ? false : true;
 }

@@ -1,17 +1,29 @@
 import './Home.css';
 import toast, { Toaster } from 'react-hot-toast';
 import { generateToken } from '@the-collab-lab/shopping-list-utils';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createNewList } from '../api/firebase';
+import { createNewList, listExists } from '../api/firebase';
 
 /** Home component that redirects a user to the List view if there is already a list created.
- * If the user doesn't already have a list, a user can create one to be saved to Firestore and be redirected to the List view. */
+ * If the user doesn't already have a list, a user can create a list or join one to be saved to Firestore and be redirected to the List view. */
 
 export function Home({ setListToken }) {
-	// Declaring navigate for view redirection and errorNotify for error handling.
+	//Declare useState variable for user shared token input
+	const [joinToken, setJoinToken] = useState('');
+
+	// Declare navigate for view redirection
 	const navigate = useNavigate();
-	const errorNotify = () => toast.error('Error creating new shopping list ');
+
+	// Declare error notifying functions using react-hot-toast.
+	const listCreateError = () => toast.error('Error creating new shopping list');
+	const listJoinError = () => toast.error('This shopping list does not exist');
+	const blankListError = () =>
+		toast.error('Shopping list token cannot be blank');
+	const firebaseError = (error) =>
+		toast.error('Error: Unable to connect to the database', error);
+	const joinTokenSpacesError = () =>
+		toast.error('The share token spacing is incorrect');
 
 	//Checks for shopping list token in local storage and redirects to list view if it exists.
 	const checkStorage = (key) => {
@@ -35,8 +47,45 @@ export function Home({ setListToken }) {
 				navigate('/list');
 			})
 			.catch((error) => {
-				errorNotify();
+				listCreateError();
 			});
+	};
+
+	// Join existing shopping list
+	const joinExistingToken = async (e) => {
+		e.preventDefault();
+
+		//Checks if the share token input is blank
+		if (joinToken.trim() === '') {
+			blankListError();
+			//Checks if the share token word spacing is correct
+		} else if (
+			joinToken
+				.trim()
+				.split(' ')
+				.filter((part) => part !== '').length !== 3
+		) {
+			joinTokenSpacesError();
+			//If the share token words are correctly spaced the default option is to check if it exists in storage
+		} else {
+			// Then listExists is imported from firebase.js to query
+			//the database for an existing shopping list collection.
+			// The then() method is expecting a boolean, where if `exists`
+			// is true the share token was found and if false the token does not exist
+			listExists(joinToken)
+				.then((exists) => {
+					if (exists) {
+						setListToken(joinToken);
+						navigate('/list');
+					} else {
+						setJoinToken('');
+						listJoinError();
+					}
+				})
+				.catch((error) => {
+					firebaseError(error);
+				});
+		}
 	};
 
 	return (
@@ -45,6 +94,26 @@ export function Home({ setListToken }) {
 				Hello from the home (<code>/</code>) page!
 			</p>
 			<button onClick={createNewToken}>Create a new list</button>
+			<p>- or -</p>
+			<p>Join an existing shopping list by entering a three word token.</p>
+			<form id="join-shopping-list-form" onSubmit={joinExistingToken}>
+				<label htmlFor="join-token">Share Token</label>
+				<div>
+					<input
+						type="text"
+						name="join-token"
+						id="join-token"
+						value={joinToken}
+						placeholder="three word token"
+						onChange={(e) => setJoinToken(e.target.value)}
+					/>
+				</div>
+				<div>
+					<button type="submit" id="submit-share-token">
+						Join an existing list
+					</button>
+				</div>
+			</form>
 			<Toaster />
 		</div>
 	);
