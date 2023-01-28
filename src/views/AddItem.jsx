@@ -14,11 +14,15 @@ export function AddItem({ listToken }) {
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 
-	// react-hot-toast utilized for notifications
-	// Notify when adding item is unsuccessful:
+	// react-hot-toast notifications:
+
+	// Notify when adding item is unsuccessful
 	const notifyFailedRequest = () => toast.error('Failed to add item');
 
-	// Notify when adding item is successful:
+	// Notify when adding item but there's no list token
+	const notifyNoToken = () => toast.error('Please add a list token first');
+
+	// Notify when adding item is successful
 	const notifyItemAdded = (itemName) => {
 		toast.success(`${itemName} was added to your list`);
 	};
@@ -27,6 +31,13 @@ export function AddItem({ listToken }) {
 	// otherwise log an error if request fails
 	const onFormSubmit = (event) => {
 		event.preventDefault();
+
+		// if list token is not provided, notify user and exit function
+		if (!listToken) {
+			notifyNoToken();
+			return;
+		}
+
 		const itemData = {
 			itemName,
 			daysUntilNextPurchase,
