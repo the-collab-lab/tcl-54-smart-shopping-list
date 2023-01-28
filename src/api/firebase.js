@@ -105,7 +105,6 @@ export async function queryForCollection(listId) {
 
 	// Using getDocs() function to retrive query results
 	const querySnapshot = await getDocs(q);
-	console.log('querySnapshot:', querySnapshot);
 
 	// Returns false (collection is non-existent) or true (collection exists)
 	return querySnapshot.empty ? false : true;

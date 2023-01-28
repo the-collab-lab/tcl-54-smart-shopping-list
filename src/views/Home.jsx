@@ -3,8 +3,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { generateToken } from '@the-collab-lab/shopping-list-utils';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createNewList } from '../api/firebase';
-import { queryForCollection } from '../api/firebase';
+import { createNewList, queryForCollection } from '../api/firebase';
 
 /** Home component that redirects a user to the List view if there is already a list created.
  * If the user doesn't already have a list, a user can create a list or join one to be saved to Firestore and be redirected to the List view. */
