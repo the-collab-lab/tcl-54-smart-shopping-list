@@ -22,7 +22,13 @@ export function List({ data }) {
 		setFilterInput('');
 	};
 
-	return (
+	console.log(data.length);
+	return data.length == 1 ? (
+		<>
+			<p>Your shopping list is currently empty.</p>
+			<button>Add Item</button>
+		</>
+	) : (
 		<>
 			<p>
 				Hello from the <code>/list</code> page!
