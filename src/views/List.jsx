@@ -27,12 +27,12 @@ export function List({ data }) {
 	};
 
 	const handleAddItem = () => {
-		//navigate to add item view
+		/* navigate to add item view */
 		navigate('/add-item');
 	};
 
-	console.log(data.length);
 	return data.length == 1 ? (
+		/* If list is empty, this will display welcoming user prompt to add the first shopping list item */
 		<>
 			<p>
 				<strong>Add items to your shopping list</strong>
@@ -45,6 +45,7 @@ export function List({ data }) {
 			<button onClick={handleAddItem}>Add Item</button>
 		</>
 	) : (
+		/* If list is contains items, this will display list items and filtering feature */
 		<>
 			<p>
 				Hello from the <code>/list</code> page!
