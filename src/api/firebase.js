@@ -75,15 +75,19 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 
 export async function updateItem(listId, itemId, checked) {
 	const listItemRef = doc(db, listId, itemId);
+	// let dateLastPurchased = itemId.dateLastPurchased;
 	let dateLastPurchased = null;
+	let totalPurchases = increment(-1);
+	console.log('dateLastPurchased:', dateLastPurchased);
 
 	if (checked === true) {
 		dateLastPurchased = new Date();
+		totalPurchases = increment(1);
 	}
 
 	await updateDoc(listItemRef, {
 		dateLastPurchased,
-		totalPurchases: increment(1),
+		totalPurchases,
 	});
 	/**
 	 * TODO: Fill this out so that it uses the correct Firestore function

@@ -10,6 +10,8 @@ export function ListItem({ name, itemId }) {
 
 		if (check) {
 			updateItem(listId, itemId, check);
+		} else {
+			updateItem(listId, itemId, check);
 		}
 	}, [check, itemId]);
 
@@ -25,12 +27,9 @@ export function ListItem({ name, itemId }) {
 	// 	const listId = localStorage.getItem('tcl-shopping-list-token');
 	// 	if (e.target.checked) {
 	// 		setCheck(true);
-	// 		console.log('true');
-	// 		console.log('check:', check);
 	// 		updateItem(listId, itemId, check);
 	// 	} else {
 	// 		setCheck(false);
-	// 		console.log('false');
 	// 	}
 	// };
 
