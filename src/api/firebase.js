@@ -4,6 +4,9 @@ import {
 	addDoc,
 	getDocs,
 	query,
+	doc,
+	updateDoc,
+	increment,
 } from 'firebase/firestore';
 import { db } from './config';
 import { getFutureDate } from '../utils';
@@ -45,7 +48,7 @@ export function getItemData(snapshot) {
 		 * so we get it from the document reference.
 		 */
 		data.id = docRef.id;
-
+		console.log('data.id:', data.id);
 		return data;
 	});
 }
@@ -70,7 +73,15 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 	});
 }
 
-export async function updateItem() {
+export async function updateItem(listId, itemId) {
+	// updateDoc()
+	const listItemRef = doc(db, listId, itemId);
+	// let totalPurchases =
+
+	await updateDoc(listItemRef, {
+		dateLastPurchased: Date.now(),
+		totalPurchases: increment(1),
+	});
 	/**
 	 * TODO: Fill this out so that it uses the correct Firestore function
 	 * to update an existing item. You'll need to figure out what arguments
