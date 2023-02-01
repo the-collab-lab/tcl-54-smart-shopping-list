@@ -48,7 +48,7 @@ export function getItemData(snapshot) {
 		 * so we get it from the document reference.
 		 */
 		data.id = docRef.id;
-		console.log('data.id:', data.id);
+		// console.log('data.id:', data.id);
 		return data;
 	});
 }
@@ -73,13 +73,16 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 	});
 }
 
-export async function updateItem(listId, itemId) {
-	// updateDoc()
+export async function updateItem(listId, itemId, checked) {
 	const listItemRef = doc(db, listId, itemId);
-	// let totalPurchases =
+	let dateLastPurchased = null;
+
+	if (checked === true) {
+		dateLastPurchased = new Date();
+	}
 
 	await updateDoc(listItemRef, {
-		dateLastPurchased: Date.now(),
+		dateLastPurchased,
 		totalPurchases: increment(1),
 	});
 	/**

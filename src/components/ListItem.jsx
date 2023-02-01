@@ -1,20 +1,48 @@
 import './ListItem.css';
 import { updateItem } from '../api/firebase';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export function ListItem({ name, item }) {
-	// function using key
+export function ListItem({ name, itemId }) {
 	const [check, setCheck] = useState(false);
 
-	const handleCheck = (e) => {
+	useEffect(() => {
 		const listId = localStorage.getItem('tcl-shopping-list-token');
-		if (check === false) {
+
+		if (check) {
+			updateItem(listId, itemId, check);
+		}
+	}, [check, itemId]);
+
+	const handleCheck = (e) => {
+		if (e.target.checked) {
 			setCheck(true);
-			updateItem(listId, item);
 		} else {
 			setCheck(false);
 		}
 	};
+
+	// const handleCheck = (e) => {
+	// 	const listId = localStorage.getItem('tcl-shopping-list-token');
+	// 	if (e.target.checked) {
+	// 		setCheck(true);
+	// 		console.log('true');
+	// 		console.log('check:', check);
+	// 		updateItem(listId, itemId, check);
+	// 	} else {
+	// 		setCheck(false);
+	// 		console.log('false');
+	// 	}
+	// };
+
+	// const handleCheck = (e) => {
+	// 	const listId = localStorage.getItem('tcl-shopping-list-token');
+	// 	if (check === false) {
+	// 		setCheck(true);
+	// 		updateItem(listId, item);
+	// 	} else {
+	// 		setCheck(false);
+	// 	}
+	// };
 
 	return (
 		<li className="ListItem">

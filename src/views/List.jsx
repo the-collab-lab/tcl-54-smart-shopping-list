@@ -46,10 +46,14 @@ export function List({ data }) {
 			<ul>
 				{!filterInput
 					? data.map((item) => {
-							return <ListItem key={item.id} item={item.id} name={item.name} />;
+							return (
+								<ListItem key={item.id} itemId={item.id} name={item.name} />
+							);
 					  })
 					: filteredList.map((item) => {
-							return <ListItem key={item.id} item={item.id} name={item.name} />;
+							return (
+								<ListItem key={item.id} itemId={item.id} name={item.name} />
+							);
 					  })}
 			</ul>
 		</>
