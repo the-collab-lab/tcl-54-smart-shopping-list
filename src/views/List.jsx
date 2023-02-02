@@ -32,20 +32,16 @@ export function List({ data }) {
 	};
 
 	return data.length == 1 ? (
-		/* If list is empty, this will display welcoming user prompt to add the first shopping list item */
+		/* If list is empty, a welcoming user prompt is displayed to start adding items to the list */
 		<>
 			<p>
-				<strong>Add items to your shopping list</strong>
+				<strong>Add items to start your shopping list</strong>
 			</p>
-			<p>
-				Once you add items to your shopping list, your list will appear here.
-			</p>
-			<img src="img/shopping-cart-icon.png" />
-			<br />
-			<button onClick={handleAddItem}>Add Item</button>
+			<p>Once you add an item, your shopping list will appear here.</p>
+			<button onClick={handleAddItem}>Add items</button>
 		</>
 	) : (
-		/* If list is contains items, this will display list items and filtering feature */
+		/* If list contains items, the shopping list is displayed including the item filtering feature */
 		<>
 			<p>
 				Hello from the <code>/list</code> page!
