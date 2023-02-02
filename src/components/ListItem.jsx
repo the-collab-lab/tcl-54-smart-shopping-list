@@ -5,22 +5,32 @@ import { useState, useEffect } from 'react';
 export function ListItem({ name, itemId }) {
 	const [check, setCheck] = useState(false);
 
-	useEffect(() => {
+	// useEffect(() => {
+	// 	const listId = localStorage.getItem('tcl-shopping-list-token');
+
+	// 	if (check) {
+	// 		updateItem(listId, itemId, check);
+	// 	} else {
+	// 		updateItem(listId, itemId, check);
+	// 	}
+	// }, [check, itemId]);
+
+	const toggle = (value) => {
+		console.log('value:', value);
+		return !value;
+	};
+
+	const handleCheck = async (e) => {
 		const listId = localStorage.getItem('tcl-shopping-list-token');
-
-		if (check) {
-			updateItem(listId, itemId, check);
-		} else {
-			updateItem(listId, itemId, check);
-		}
-	}, [check, itemId]);
-
-	const handleCheck = (e) => {
+		const value = toggle(check);
 		if (e.target.checked) {
-			setCheck(true);
+			setCheck(value);
+			console.log('check:', check);
 		} else {
-			setCheck(false);
+			setCheck(value);
+			console.log('check:', check);
 		}
+		await updateItem(listId, itemId, check);
 	};
 
 	// const handleCheck = (e) => {
@@ -46,7 +56,12 @@ export function ListItem({ name, itemId }) {
 	return (
 		<li className="ListItem">
 			<label>
-				<input value={name} type="checkbox" onChange={handleCheck} />
+				<input
+					value={name}
+					type="checkbox"
+					onChange={handleCheck}
+					checked={check}
+				/>
 				{name}
 			</label>
 		</li>

@@ -78,18 +78,18 @@ export async function updateItem(listId, itemId, checked) {
 	const listItemRef = doc(db, listId, itemId);
 	const listItemSnap = await getDoc(listItemRef);
 	const currentTotalPurchases = listItemSnap.data().totalPurchases;
+	const currentTime = listItemSnap.data().dateLastPurchased;
 
 	let totalPurchases = currentTotalPurchases;
-
-	let dateLastPurchased = null;
-
-	console.log('dateLastPurchased:', dateLastPurchased);
+	let dateLastPurchased = currentTime;
+	let elapsedTime = (new Date() - currentTime) / (1000 * 60 * 60 * 24);
 
 	if (checked === true) {
 		dateLastPurchased = new Date();
 		totalPurchases = currentTotalPurchases + 1;
 	} else {
 		totalPurchases = currentTotalPurchases - 1;
+		dateLastPurchased = currentTime - elapsedTime;
 	}
 
 	await updateDoc(listItemRef, {
