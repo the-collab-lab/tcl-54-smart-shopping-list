@@ -15,6 +15,21 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 		hoursElapsed < 24 ? setCheck(true) : setCheck(false);
 	}, []);
 
+	const handleCheck = async (e) => {
+		const listId = localStorage.getItem('tcl-shopping-list-token');
+		if (e.target.checked) {
+			setCheck((prevCheck) => {
+				updateItem(listId, itemId, !prevCheck);
+				return !prevCheck;
+			});
+		} else {
+			setCheck((prevCheck) => {
+				updateItem(listId, itemId, !prevCheck);
+				return !prevCheck;
+			});
+		}
+	};
+
 	// useEffect(() => {
 	// 	const listId = localStorage.getItem('tcl-shopping-list-token');
 
@@ -43,16 +58,16 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 	// 	await updateItem(listId, itemId, check);
 	// };
 
-	const handleCheck = async (e) => {
-		const listId = localStorage.getItem('tcl-shopping-list-token');
-		setCheck(!check)
-			.then(() => {
-				updateItem(listId, itemId, check);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	};
+	// const handleCheck = async (e) => {
+	// 	const listId = localStorage.getItem('tcl-shopping-list-token');
+	// 	setCheck(!check)
+	// 		.then(() => {
+	// 			updateItem(listId, itemId, check);
+	// 		})
+	// 		.catch((error) => {
+	// 			console.log(error);
+	// 		});
+	// };
 
 	// const handleCheck = (e) => {
 	// 	const listId = localStorage.getItem('tcl-shopping-list-token');
