@@ -74,14 +74,19 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 	});
 }
 
+/**
+ * Update an item in the user's list in Firestore.
+ * @param {string} listId The id of the list that has the items we're updating.
+ * @param {string} itemID The id of the list item we're updating.
+ * @param {boolean} checked The check state from ListItem.jsx.
+ */
 export async function updateItem(listId, itemId, checked) {
 	const listItemRef = doc(db, listId, itemId);
 	const listItemSnap = await getDoc(listItemRef);
 	const currentTotalPurchases = listItemSnap.data().totalPurchases;
-	const purchasedTime = listItemSnap.data().dateLastPurchased;
+	let dateLastPurchased = listItemSnap.data().dateLastPurchased;
 
 	let totalPurchases = currentTotalPurchases;
-	let dateLastPurchased = purchasedTime;
 
 	if (checked === true) {
 		dateLastPurchased = new Date();
@@ -94,11 +99,6 @@ export async function updateItem(listId, itemId, checked) {
 		dateLastPurchased,
 		totalPurchases,
 	});
-	/**
-	 * TODO: Fill this out so that it uses the correct Firestore function
-	 * to update an existing item. You'll need to figure out what arguments
-	 * this function must accept!
-	 */
 }
 
 export async function deleteItem() {

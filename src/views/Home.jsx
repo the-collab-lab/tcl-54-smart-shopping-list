@@ -69,7 +69,7 @@ export function Home({ setListToken }) {
 			//If the share token words are correctly spaced the default option is to check if it exists in storage
 		} else {
 			// Then listExists is imported from firebase.js to query
-			//the database for an existing shopping list collection.
+			// the database for an existing shopping list collection.
 			// The then() method is expecting a boolean, where if `exists`
 			// is true the share token was found and if false the token does not exist
 			listExists(joinToken)

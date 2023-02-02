@@ -1,10 +1,14 @@
 import { ListItem } from '../components';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 /** List component that displays items in a user's shopping cart  */
 export function List({ data }) {
 	const [filteredList, setFilteredList] = useState([]);
 	const [filterInput, setFilterInput] = useState('');
+
+	/* Declare navigate for view redirection */
+	const navigate = useNavigate();
 
 	/* Use handler to change the state of filterInput  and convert all items to lowercase to facilitate a more thorough search */
 	const handleInput = (event) => {
@@ -22,7 +26,22 @@ export function List({ data }) {
 		setFilterInput('');
 	};
 
-	return (
+	const handleAddItem = () => {
+		/* navigate to add item view */
+		navigate('/add-item');
+	};
+
+	return data.length == 1 ? (
+		/* If list is empty, a welcoming user prompt is displayed to start adding items to the list */
+		<>
+			<p>
+				<strong>Add items to start your shopping list</strong>
+			</p>
+			<p>Once you add an item, your shopping list will appear here.</p>
+			<button onClick={handleAddItem}>Add items</button>
+		</>
+	) : (
+		/* If list contains items, the shopping list is displayed including the item filtering feature */
 		<>
 			<p>
 				Hello from the <code>/list</code> page!

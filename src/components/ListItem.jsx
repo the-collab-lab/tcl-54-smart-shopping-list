@@ -5,32 +5,20 @@ import { useState, useEffect } from 'react';
 export function ListItem({ name, itemId, dateLastPurchased }) {
 	const [check, setCheck] = useState(false);
 
+	/**
+	 * When List view is opened or refreshed,
+	 * this verifies how long since the item was
+	 * purchased and checks the box if the item
+	 * was purchased fewer than 24 hours ago.
+	 */
 	useEffect(() => {
 		const currentDate = new Date();
-
-		// Efforts to understand irregular timestamps (these console logs are only meaningful for the irregular formats)
-		// console.log("date last purchased in seconds: ", dateLastPurchased/1000000)
-		// console.log("date last purchased in minutes: ", dateLastPurchased/(1000000*60))
-		// console.log("date last purchased in hours: ", dateLastPurchased/(1000000*60*60))
-
-		// Likely not the final solution we want because it doesn't deal with the irregular formats, but it keeps the app from breaking.
-		let purchasedDate;
-		if (!dateLastPurchased || Number.isFinite(dateLastPurchased)) {
-			purchasedDate = null;
-		} else {
-			purchasedDate = dateLastPurchased.toDate();
-		}
-
+		let purchasedDate = dateLastPurchased
+			? dateLastPurchased.toDate()
+			: dateLastPurchased;
 		const timeElapsed = Math.abs(currentDate - purchasedDate);
 		const hoursElapsed = timeElapsed / (1000 * 60 * 60);
 		hoursElapsed < 24 ? setCheck(true) : setCheck(false);
-
-		// These work when timestamp is null or in the standard Firestore format
-		console.log('Item name: ', name);
-		console.log('Current date: ', currentDate);
-		console.log('Timestamp for last purchase: ', dateLastPurchased);
-		console.log('Standardized timestamp: ', purchasedDate);
-		console.log(`You bought ${name} ${hoursElapsed} hours ago.`);
 	}, []);
 
 	const handleCheck = async (e) => {
