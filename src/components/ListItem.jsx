@@ -89,17 +89,19 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 	// 	}
 	// };
 
-	return (
-		<li className="ListItem">
-			<label>
-				<input
-					value={name}
-					type="checkbox"
-					onChange={handleCheck}
-					checked={check}
-				/>
-				{name}
-			</label>
-		</li>
-	);
+	if (name) {
+		return (
+			<li className="ListItem">
+				<label>
+					<input
+						value={name}
+						type="checkbox"
+						onChange={handleCheck}
+						checked={check}
+					/>
+					{name}
+				</label>
+			</li>
+		);
+	}
 }
