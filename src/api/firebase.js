@@ -7,6 +7,7 @@ import {
 	doc,
 	updateDoc,
 	increment,
+	getDoc,
 } from 'firebase/firestore';
 import { db } from './config';
 import { getFutureDate } from '../utils';
@@ -75,14 +76,20 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 
 export async function updateItem(listId, itemId, checked) {
 	const listItemRef = doc(db, listId, itemId);
-	// let dateLastPurchased = itemId.dateLastPurchased;
+	const listItemSnap = await getDoc(listItemRef);
+	const currentTotalPurchases = listItemSnap.data().totalPurchases;
+
+	let totalPurchases = currentTotalPurchases;
+
 	let dateLastPurchased = null;
-	let totalPurchases = increment(-1);
+
 	console.log('dateLastPurchased:', dateLastPurchased);
 
 	if (checked === true) {
 		dateLastPurchased = new Date();
-		totalPurchases = increment(1);
+		totalPurchases = currentTotalPurchases + 1;
+	} else {
+		totalPurchases = currentTotalPurchases - 1;
 	}
 
 	await updateDoc(listItemRef, {
