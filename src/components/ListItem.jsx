@@ -2,8 +2,18 @@ import './ListItem.css';
 import { updateItem } from '../api/firebase';
 import { useState, useEffect } from 'react';
 
-export function ListItem({ name, itemId }) {
+export function ListItem({ name, itemId, dateLastPurchased }) {
 	const [check, setCheck] = useState(false);
+
+	useEffect(() => {
+		const currentDate = new Date();
+		const purchasedDate = dateLastPurchased
+			? dateLastPurchased.toDate()
+			: dateLastPurchased;
+		const timeElapsed = Math.abs(currentDate - purchasedDate);
+		const hoursElapsed = timeElapsed / (1000 * 60 * 60);
+		hoursElapsed < 24 ? setCheck(true) : setCheck(false);
+	}, []);
 
 	// useEffect(() => {
 	// 	const listId = localStorage.getItem('tcl-shopping-list-token');
@@ -13,12 +23,12 @@ export function ListItem({ name, itemId }) {
 	// 	} else {
 	// 		updateItem(listId, itemId, check);
 	// 	}
-	// }, [check, itemId]);
+	// }, [check, itemId]);()
 
-	const toggle = (value) => {
-		console.log('value:', value);
-		return !value;
-	};
+	// const toggle = (value) => {
+	// 	console.log('value:', value);
+	// 	return !value;
+	// };
 
 	// const handleCheck = async (e) => {
 	// 	const listId = localStorage.getItem('tcl-shopping-list-token');

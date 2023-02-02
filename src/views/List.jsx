@@ -47,12 +47,22 @@ export function List({ data }) {
 				{!filterInput
 					? data.map((item) => {
 							return (
-								<ListItem key={item.id} itemId={item.id} name={item.name} />
+								<ListItem
+									key={item.id}
+									itemId={item.id}
+									name={item.name}
+									dateLastPurchased={item.dateLastPurchased}
+								/>
 							);
 					  })
 					: filteredList.map((item) => {
 							return (
-								<ListItem key={item.id} itemId={item.id} name={item.name} />
+								<ListItem
+									key={item.id}
+									itemId={item.id}
+									name={item.name}
+									dateLastPurchased={item.dateLastPurchased}
+								/>
 							);
 					  })}
 			</ul>
