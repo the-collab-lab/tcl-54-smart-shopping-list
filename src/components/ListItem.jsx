@@ -15,7 +15,7 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 
 		// Likely not the final solution we want because it doesn't deal with the irregular formats, but it keeps the app from breaking.
 		let purchasedDate;
-		if (dateLastPurchased === null || Number.isFinite(dateLastPurchased)) {
+		if (!dateLastPurchased || Number.isFinite(dateLastPurchased)) {
 			purchasedDate = null;
 		} else {
 			purchasedDate = dateLastPurchased.toDate();
