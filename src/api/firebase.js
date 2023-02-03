@@ -83,22 +83,54 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 export async function updateItem(listId, itemId, checked) {
 	const listItemRef = doc(db, listId, itemId);
 	const listItemSnap = await getDoc(listItemRef);
-	const currentTotalPurchases = listItemSnap.data().totalPurchases;
-	let dateLastPurchased = listItemSnap.data().dateLastPurchased;
 
+	const currentTotalPurchases = listItemSnap.data().totalPurchases;
 	let totalPurchases = currentTotalPurchases;
 
+	// the idea here is to store the old value of the `dateLastPurchased` property
+	// to a temporary variable called `originalDateLastPurchased`.
+	// We want this value so that we can revert back to it if the user un-checks an item.
+	let originalDateLastPurchased = listItemSnap
+		.data()
+		.dateLastPurchased.toDate();
+
+	console.log(originalDateLastPurchased);
+	// console output: a string date
+	// Fri Feb 03 2023 03:16:50 GMT-0800 (Pacific Standard Time)
+
+	// this is default setting `dateLastPurchased` as the old value (see line 93)
+	let dateLastPurchased = originalDateLastPurchased;
+
+	// if `checked` is true, `dateLastPurchased` is set to a new date.
+	// total purchases is also incremented.
 	if (checked === true) {
 		dateLastPurchased = new Date();
 		totalPurchases = currentTotalPurchases + 1;
 	} else {
 		totalPurchases = currentTotalPurchases - 1;
+		// we decrement total purchases
+		// we don't need to update `dateLastPurchased` in here, since default is already declared on line 102
 	}
 
+	// updateDoc updates the document's respective properties
 	await updateDoc(listItemRef, {
 		dateLastPurchased,
 		totalPurchases,
 	});
+
+	/** Note to mentors & collabies!
+	 *
+	 * This entire function currently only updates `totalPurchases`.
+	 * `dateLastPurchased` doesn't revert back to the original date when un-checked like we want to.
+	 *
+	 * The issue seems to arise from `listItemSnap` (line 85),
+	 * which only gets the most updated value of `dateLastPurchased`.
+	 * Therefore, the use of `originalDateLastPurchased` on line 93 doesn't work. It's always going to
+	 * have the updated date, not the old date.
+	 *
+	 * also, you don't see it here, but we also tried to experiment with date-fns, a dates JS library (this is a great library, btw!)
+	 * The issue still comes back to the list snapshot, though.
+	 */
 }
 
 export async function deleteItem() {
