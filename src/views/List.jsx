@@ -22,7 +22,7 @@ export function List({ data }) {
 	/* This function will return a boolean value of whether the list
 	is empty or not */
 	const checkForEmptyList = () => {
-		//return true if list is empty and false if list contains items
+		/* return true if list is empty and false if list contains items */
 		const shoppingListArr = data.map((item) => item.name);
 		return shoppingListArr.includes(undefined) ? true : false;
 	};
