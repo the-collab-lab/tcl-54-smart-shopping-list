@@ -23,17 +23,10 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 
 	const handleCheck = async (e) => {
 		const listId = localStorage.getItem('tcl-shopping-list-token');
-		if (e.target.checked) {
-			setCheck((prevCheck) => {
-				updateItem(listId, itemId, !prevCheck);
-				return !prevCheck;
-			});
-		} else {
-			setCheck((prevCheck) => {
-				updateItem(listId, itemId, !prevCheck);
-				return !prevCheck;
-			});
-		}
+		setCheck((prevCheck) => {
+			updateItem(listId, itemId, !prevCheck);
+			return !prevCheck;
+		});
 	};
 
 	if (name) {

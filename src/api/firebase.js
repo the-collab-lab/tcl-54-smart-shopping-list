@@ -107,7 +107,9 @@ export async function updateItem(listId, itemId, checked) {
 		dateLastPurchased = new Date();
 		totalPurchases = currentTotalPurchases + 1;
 	} else {
-		totalPurchases = currentTotalPurchases - 1;
+		totalPurchases > 0
+			? (totalPurchases = currentTotalPurchases - 1)
+			: (totalPurchases = 0);
 	}
 
 	// updateDoc updates the document's respective properties
