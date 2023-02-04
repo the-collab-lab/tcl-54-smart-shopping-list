@@ -52,7 +52,6 @@ export function List({ data }) {
 	if (loading) {
 		return <div>Loading...</div>;
 	} else {
-		console.log(checkForEmptyList());
 		return checkForEmptyList() ? (
 			/* If list is returns true that it is empty, 
 			a welcoming user prompt is displayed to start adding items to the list */
