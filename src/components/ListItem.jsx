@@ -38,6 +38,7 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 						type="checkbox"
 						onChange={handleCheck}
 						checked={check}
+						disabled={check}
 					/>
 					{name}
 				</label>
