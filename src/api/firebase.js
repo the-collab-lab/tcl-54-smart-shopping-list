@@ -87,13 +87,11 @@ export async function updateItem(listId, itemId, checked) {
 	const listItemRef = doc(db, listId, itemId);
 	const listItemSnap = await getDoc(listItemRef);
 
-	const currentTotalPurchases = listItemSnap.data().totalPurchases;
-	let totalPurchases = currentTotalPurchases;
-	const currentDateLastPurchased = listItemSnap.data().dateLastPurchased;
-	let dateLastPurchased = currentDateLastPurchased;
+	let totalPurchases = listItemSnap.data().totalPurchases;
+	let dateLastPurchased = listItemSnap.data().dateLastPurchased;
 
 	dateLastPurchased = new Date();
-	totalPurchases = currentTotalPurchases + 1;
+	totalPurchases = totalPurchases + 1;
 
 	await updateDoc(listItemRef, {
 		dateLastPurchased,
