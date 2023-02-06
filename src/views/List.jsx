@@ -13,9 +13,10 @@ export function List({ data, loading }) {
 	/* This function will return a boolean value of whether the list
 	is empty or not */
 	const checkForEmptyList = () => {
-		/* return true if list is empty and false if list contains items */
-		const shoppingListArr = data.map((item) => item.name);
-		return shoppingListArr.includes(undefined) ? true : false;
+		/* return true if list is empty and false if the 
+		list contains items with the name property*/
+		const shoppingListArr = data.filter((item) => item.name);
+		return shoppingListArr.length === 0 ? true : false;
 	};
 
 	/* Use handler to change the state of filterInput 
