@@ -97,35 +97,6 @@ export async function updateItem(listId, itemId, checked) {
 		dateLastPurchased,
 		totalPurchases,
 	});
-
-	// // 2/5 Note from Sarah: this is the previous code we had--want to get the okay before deleting this
-	// // We want to store the original timestamp here
-	// // and revert back to it if needed
-	// let originalDateLastPurchased = listItemSnap.data().dateLastPurchased
-	// 	? listItemSnap.data().dateLastPurchased.toDate()
-	// 	: new Date();
-
-	// // this defaults `dateLastPurchased` as the original timestamp
-	// let dateLastPurchased = originalDateLastPurchased;
-
-	// // if `checked` is true, `dateLastPurchased` is set to a new date.
-	// // `totalPurchases` is incremented.
-	// // Otherwise, `dateLastPurchased` retains default value,
-	// // and `totalPurchases` is decremented.
-	// if (checked === true) {
-	// 	dateLastPurchased = new Date();
-	// 	totalPurchases = currentTotalPurchases + 1;
-	// } else {
-	// 	totalPurchases > 0
-	// 		? (totalPurchases = currentTotalPurchases - 1)
-	// 		: (totalPurchases = 0);
-	// }
-
-	// // updateDoc updates the document's respective properties
-	// await updateDoc(listItemRef, {
-	// 	dateLastPurchased,
-	// 	totalPurchases,
-	// });
 }
 
 export async function deleteItem() {
