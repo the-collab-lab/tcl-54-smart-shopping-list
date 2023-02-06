@@ -1,23 +1,14 @@
 import { ListItem } from '../components';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 /** List component that displays items in a user's shopping cart  */
-export function List({ data }) {
+export function List({ data, loading }) {
 	const [filteredList, setFilteredList] = useState([]);
 	const [filterInput, setFilterInput] = useState('');
-	const [loading, setLoading] = useState(true);
 
 	/* Declare navigate for view redirection */
 	const navigate = useNavigate();
-
-	/* the useEffect() hook ensures that a loading view is displayed for
-	one second while the correct return statement loads.*/
-	useEffect(() => {
-		setTimeout(() => {
-			setLoading(false);
-		}, 500);
-	}, []);
 
 	/* This function will return a boolean value of whether the list
 	is empty or not */
@@ -50,7 +41,7 @@ export function List({ data }) {
 	};
 
 	if (loading) {
-		return <div>Loading...</div>;
+		return;
 	} else {
 		return checkForEmptyList() ? (
 			/* If list is returns true that it is empty, 
