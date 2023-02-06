@@ -4,6 +4,10 @@ import {
 	addDoc,
 	getDocs,
 	query,
+	doc,
+	updateDoc,
+	increment,
+	getDoc,
 } from 'firebase/firestore';
 import { db } from './config';
 import { getFutureDate } from '../utils';
@@ -70,12 +74,25 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 	});
 }
 
-export async function updateItem() {
-	/**
-	 * TODO: Fill this out so that it uses the correct Firestore function
-	 * to update an existing item. You'll need to figure out what arguments
-	 * this function must accept!
-	 */
+/**
+ * Update an item in the user's list in Firestore.
+ * @param {string} listId The id of the list that has the items we're updating.
+ * @param {string} itemID The id of the list item we're updating.
+ * @param {boolean} checked The check state from ListItem.jsx.
+ *
+ * This function updates an item's properties when an interaction
+ * happens between the user and the item list
+ */
+export async function updateItem(listId, itemId, checked) {
+	const listItemRef = doc(db, listId, itemId);
+	const listItemSnap = await getDoc(listItemRef);
+
+	let totalPurchases = listItemSnap.data().totalPurchases;
+
+	await updateDoc(listItemRef, {
+		dateLastPurchased: new Date(),
+		totalPurchases: totalPurchases + 1,
+	});
 }
 
 export async function deleteItem() {

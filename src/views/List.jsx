@@ -46,7 +46,7 @@ export function List({ data, loading }) {
 		return;
 	} else {
 		return checkForEmptyList() ? (
-			/* If list is returns true that it is empty, 
+			/* If true that list is empty, 
 			a welcoming user prompt is displayed to start adding items to the list */
 			<>
 				<p>
@@ -56,8 +56,9 @@ export function List({ data, loading }) {
 				<button onClick={handleAddItem}>Add items</button>
 			</>
 		) : (
-			/* If list returns false meaning it contains items,
+			/* If false that list contains items,
 			 the shopping list is displayed including the item filtering feature */
+
 			<>
 				<p>
 					Hello from the <code>/list</code> page!
@@ -81,10 +82,24 @@ export function List({ data, loading }) {
 				<ul>
 					{!filterInput
 						? data.map((item) => {
-								return <ListItem key={item.id} name={item.name} />;
+								return (
+									<ListItem
+										key={item.id}
+										itemId={item.id}
+										name={item.name}
+										dateLastPurchased={item.dateLastPurchased}
+									/>
+								);
 						  })
 						: filteredList.map((item) => {
-								return <ListItem key={item.id} name={item.name} />;
+								return (
+									<ListItem
+										key={item.id}
+										itemId={item.id}
+										name={item.name}
+										dateLastPurchased={item.dateLastPurchased}
+									/>
+								);
 						  })}
 				</ul>
 			</>
