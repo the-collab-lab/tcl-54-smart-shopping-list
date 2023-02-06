@@ -49,7 +49,7 @@ export function getItemData(snapshot) {
 		 * so we get it from the document reference.
 		 */
 		data.id = docRef.id;
-		// console.log('data.id:', data.id);
+
 		return data;
 	});
 }
@@ -88,14 +88,10 @@ export async function updateItem(listId, itemId, checked) {
 	const listItemSnap = await getDoc(listItemRef);
 
 	let totalPurchases = listItemSnap.data().totalPurchases;
-	let dateLastPurchased = listItemSnap.data().dateLastPurchased;
-
-	dateLastPurchased = new Date();
-	totalPurchases = totalPurchases + 1;
 
 	await updateDoc(listItemRef, {
-		dateLastPurchased,
-		totalPurchases,
+		dateLastPurchased: new Date(),
+		totalPurchases: totalPurchases + 1,
 	});
 }
 

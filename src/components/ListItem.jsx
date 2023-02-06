@@ -19,7 +19,7 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 		const timeElapsed = Math.abs(currentDate - purchasedDate);
 		const hoursElapsed = timeElapsed / (1000 * 60 * 60);
 		hoursElapsed < 24 ? setCheck(true) : setCheck(false);
-	}, []);
+	}, [dateLastPurchased]);
 
 	const handleCheck = async (e) => {
 		const listId = localStorage.getItem('tcl-shopping-list-token');
