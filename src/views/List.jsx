@@ -10,11 +10,12 @@ export function List({ data, loading }) {
 	/* Declare navigate for view redirection */
 	const navigate = useNavigate();
 
-	/* This function will return a boolean value of whether the list
-	is empty or not */
+	/* This function will return:
+	- True if the list is empty
+	- False if the list has a length other than zero.*/
 	const checkForEmptyList = () => {
-		/* return true if list is empty and false if the 
-		list contains items with the name property*/
+		/*New collections created in Firestore automatically have one empty id.
+		For this reason, the data has to be filtered for items with the name property.*/
 		const shoppingListArr = data.filter((item) => item.name);
 		return shoppingListArr.length === 0 ? true : false;
 	};
