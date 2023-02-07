@@ -23,11 +23,14 @@ export function List({ data, loading }) {
 	/* Use handler to change the state of filterInput 
 	and convert all items to lowercase to facilitate a more thorough search */
 	const handleInput = (event) => {
-		const value = event.target.value.toLowerCase().trim();
+		const value = event.target.value;
 		setFilterInput(value);
 		setFilteredList(
 			data.filter((item) => {
-				return item.name && item.name.toLowerCase().includes(value);
+				return (
+					item.name &&
+					item.name.toLowerCase().includes(value.toLowerCase().trim())
+				);
 			}),
 		);
 	};
