@@ -8,7 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
  * and store that to db
  */
 
-export function AddItem({ listToken }) {
+export function AddItem({ listToken, data }) {
 	// declare itemName, daysUntilNextPurchase, and radioSelect
 	// into separate state variables
 	const [itemName, setItemName] = useState('');
@@ -29,8 +29,8 @@ export function AddItem({ listToken }) {
 
 	// Store values inside itemData and sent over to database
 	// otherwise log an error if request fails
-	const onFormSubmit = (event) => {
-		event.preventDefault();
+	const onFormSubmit = (e) => {
+		e.preventDefault();
 
 		// if list token is not provided, notify user and exit function
 		if (!listToken) {
@@ -42,6 +42,24 @@ export function AddItem({ listToken }) {
 			itemName,
 			daysUntilNextPurchase,
 		};
+
+		// const shoppingListArr = data.filter((item) => item.name);
+		// console.log('shopping list:', shoppingListArr);
+
+		// const updatedComments = commentsCopy.filter((c) => c.commentId !== id);
+
+		const nameMatchesArr = data
+			.slice(0, -1)
+			.filter((item) => item.name === itemName);
+		console.log('name:', nameMatchesArr);
+
+		// console.log('nameMatchesArr.name:', nameMatchesArr[0].name);
+
+		// if (nameMatchesArr[0].name === itemName) {
+		// 	console.log('item already exists');
+		// 	return;
+		// }
+
 		try {
 			addItem(listToken, itemData);
 			setItemName('');
@@ -73,7 +91,7 @@ export function AddItem({ listToken }) {
 					id="item"
 					name="item"
 					value={itemName}
-					onChange={(event) => setItemName(event.target.value)}
+					onChange={(e) => setItemName(e.target.value)}
 					required={true}
 				/>
 				<div id="purchase-date-label">How soon will you buy this again?</div>
