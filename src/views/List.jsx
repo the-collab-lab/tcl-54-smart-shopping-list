@@ -40,6 +40,30 @@ export function List({ data, loading }) {
 		setFilterInput('');
 	};
 
+	const renderList = () => {
+		return !filterInput
+			? data.map((item) => {
+					return (
+						<ListItem
+							key={item.id}
+							itemId={item.id}
+							name={item.name}
+							dateLastPurchased={item.dateLastPurchased}
+						/>
+					);
+			  })
+			: filteredList.map((item) => {
+					return (
+						<ListItem
+							key={item.id}
+							itemId={item.id}
+							name={item.name}
+							dateLastPurchased={item.dateLastPurchased}
+						/>
+					);
+			  });
+	};
+
 	/*Handles navigation to Add Item view */
 	const handleAddItem = () => {
 		navigate('/add-item');
@@ -82,29 +106,7 @@ export function List({ data, loading }) {
 					</div>
 				</form>
 				{/* Uses data or state of filteredList depending on state of filterInput */}
-				<ul>
-					{!filterInput
-						? data.map((item) => {
-								return (
-									<ListItem
-										key={item.id}
-										itemId={item.id}
-										name={item.name}
-										dateLastPurchased={item.dateLastPurchased}
-									/>
-								);
-						  })
-						: filteredList.map((item) => {
-								return (
-									<ListItem
-										key={item.id}
-										itemId={item.id}
-										name={item.name}
-										dateLastPurchased={item.dateLastPurchased}
-									/>
-								);
-						  })}
-				</ul>
+				<ul>{renderList()}</ul>
 			</>
 		);
 	}
