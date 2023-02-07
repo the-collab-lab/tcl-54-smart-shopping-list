@@ -41,12 +41,6 @@ export function AddItem({ listToken, data }) {
 			return;
 		}
 
-		// Updates the relevant data in db
-		const itemData = {
-			itemName,
-			daysUntilNextPurchase,
-		};
-
 		// We are looking for an array of items that matches the user input
 		// We use `toLowerCase` and `replaceAll` to account for edge cases,
 		// such as casing and extra spaces
@@ -64,6 +58,12 @@ export function AddItem({ listToken, data }) {
 			notifyInList();
 			return;
 		}
+
+		// Updates the relevant data in db
+		const itemData = {
+			itemName,
+			daysUntilNextPurchase,
+		};
 
 		// If the input has no match in db, the item is added, notifies the user,
 		// and sets input back to empty string.
