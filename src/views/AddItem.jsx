@@ -19,6 +19,7 @@ export function AddItem({ listToken, data }) {
 	// Notify when adding item is unsuccessful
 	const notifyFailedRequest = () => toast.error('Failed to add item');
 
+	// Notify if the item already exists in db
 	const notifyInList = () => toast.error('Already in your list');
 
 	// Notify when adding item but there's no list token
@@ -40,24 +41,33 @@ export function AddItem({ listToken, data }) {
 			return;
 		}
 
+		// Updates the relevant data in db
 		const itemData = {
 			itemName,
 			daysUntilNextPurchase,
 		};
 
+		// We are looking for an array of items that matches the user input
+		// We use `toLowerCase` and `replaceAll` to account for edge cases,
+		// such as casing and extra spaces
 		const nameMatchesArr = data.some((item) => {
 			return (
+				item.name &&
 				item.name.replaceAll(' ', '') ===
-				itemName.toLowerCase().replaceAll(' ', '')
+					itemName.toLowerCase().replaceAll(' ', '')
 			);
 		});
-		console.log('nameMatchesArr', nameMatchesArr);
 
+		// The user is notified if the input matches an item in db
+		// Item does not get added; exits the function
 		if (nameMatchesArr) {
 			notifyInList();
 			return;
 		}
 
+		// If the input has no match in db, the item is added, notifies the user,
+		// and sets input back to empty string.
+		// Errors are handled otherwise.
 		try {
 			addItem(listToken, itemData);
 			setItemName('');
