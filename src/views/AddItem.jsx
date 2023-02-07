@@ -19,6 +19,8 @@ export function AddItem({ listToken, data }) {
 	// Notify when adding item is unsuccessful
 	const notifyFailedRequest = () => toast.error('Failed to add item');
 
+	const notifyInList = () => toast.error('Already in your list');
+
 	// Notify when adding item but there's no list token
 	const notifyNoToken = () => toast.error('Please add a list token first');
 
@@ -43,22 +45,15 @@ export function AddItem({ listToken, data }) {
 			daysUntilNextPurchase,
 		};
 
-		// const shoppingListArr = data.filter((item) => item.name);
-		// console.log('shopping list:', shoppingListArr);
+		const nameMatchesArr = data.some((item) => {
+			return item.name === itemName;
+		});
+		console.log('nameMatchesArr', nameMatchesArr);
 
-		// const updatedComments = commentsCopy.filter((c) => c.commentId !== id);
-
-		const nameMatchesArr = data
-			.slice(0, -1)
-			.filter((item) => item.name === itemName);
-		console.log('name:', nameMatchesArr);
-
-		// console.log('nameMatchesArr.name:', nameMatchesArr[0].name);
-
-		// if (nameMatchesArr[0].name === itemName) {
-		// 	console.log('item already exists');
-		// 	return;
-		// }
+		if (nameMatchesArr) {
+			notifyInList();
+			return;
+		}
 
 		try {
 			addItem(listToken, itemData);
