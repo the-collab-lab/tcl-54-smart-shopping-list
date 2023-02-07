@@ -46,7 +46,10 @@ export function AddItem({ listToken, data }) {
 		};
 
 		const nameMatchesArr = data.some((item) => {
-			return item.name === itemName;
+			return (
+				item.name.replaceAll(' ', '') ===
+				itemName.toLowerCase().replaceAll(' ', '')
+			);
 		});
 		console.log('nameMatchesArr', nameMatchesArr);
 
