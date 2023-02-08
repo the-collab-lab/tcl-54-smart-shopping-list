@@ -9,6 +9,7 @@ import {
 	increment,
 	getDoc,
 } from 'firebase/firestore';
+import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 import { db } from './config';
 import { getFutureDate } from '../utils';
 
@@ -88,11 +89,25 @@ export async function updateItem(listId, itemId, checked) {
 	const listItemSnap = await getDoc(listItemRef);
 
 	let totalPurchases = listItemSnap.data().totalPurchases;
+	let dateLastPurchased = listItemSnap.data().dateLastPurchased;
 
 	await updateDoc(listItemRef, {
 		dateLastPurchased: new Date(),
 		totalPurchases: totalPurchases + 1,
 	});
+
+	//function for previous date estimate
+	// if dateLastPurchased is null, previous estimate is dateNextPurchased - dateCreated
+	// dateNextPurchased.getTime() ?
+	// if dateLastPurchased has a value, previous estimate is dateNextPurchase - dateLastPurchased
+
+	//function for days since last transaction
+
+	// function for total purchases
+
+	// ad test for calculateEstimate
+	// const nextDate = calculateEstimate(previousEstimate, daysSinceLastTransaction, totalPurchases);
+	// console.log(nextDate);
 }
 
 export async function deleteItem() {
