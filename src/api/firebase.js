@@ -6,12 +6,11 @@ import {
 	query,
 	doc,
 	updateDoc,
-	increment,
 	getDoc,
 } from 'firebase/firestore';
 import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 import { db } from './config';
-import { getFutureDate } from '../utils';
+import { getFutureDate, getDaysBetweenDates } from '../utils/dates';
 
 /**
  * Subscribe to changes on a specific list in the Firestore database (listId), and run a callback (handleSuccess) every time a change happens.
@@ -88,26 +87,58 @@ export async function updateItem(listId, itemId, checked) {
 	const listItemRef = doc(db, listId, itemId);
 	const listItemSnap = await getDoc(listItemRef);
 
+	// Retrieving values stored in firebase
 	let totalPurchases = listItemSnap.data().totalPurchases;
 	let dateLastPurchased = listItemSnap.data().dateLastPurchased;
+	let dateCreated = listItemSnap.data().dateCreated;
+	let dateNextPurchased = listItemSnap.data().dateNextPurchased;
 
+	// Function estimating previous purchase interval
+	// Because our lists have updated dateLastPurchased without updated dateNextPurchased,
+	// the time intervals won't be accurate, so we recommend using only:
+	const temporaryPreviousEstimate = getDaysBetweenDates(
+		dateNextPurchased,
+		dateCreated,
+	);
+
+	// *** ONCE DATABASE IS CLEANED UP ***
+	// But longer term, if we hadn't been updating dateLastPurchased, this should be the long term logic:
+	// const previousEstimate = dateLastPurchased
+	// ? getDaysBetweeenDates(dateNextPurchased, dateLastPurchased)
+	// : getDaysBetweenDates(dateNextPurchased, dateCreated)
+
+	// This declares the number of days since the last transaction based on dateLastPurchased being a null or existing value
+	const numDaysSinceLastTransaction = dateLastPurchased
+		? // If dateLastPurchased returns TRUE, we get number of days between *dateLastPurchased* and current date
+		  getDaysBetweenDates(new Date(), dateLastPurchased.toDate())
+		: // If dateLastPurchased returns FALSE, we get number of days between *dateCreated* and current date
+		  getDaysBetweenDates(new Date(), dateCreated.toDate());
+
+	// Declaring variables for number of days until the NEXT purchase and converting to milliseconds
+	const numDaysUntilNextPurchase = calculateEstimate(
+		temporaryPreviousEstimate,
+		numDaysSinceLastTransaction,
+		totalPurchases,
+	);
+	const millisecondsUntilNextPurchase =
+		numDaysUntilNextPurchase * (24 * 60 * 60 * 1000);
+	// This is the nextPurchaseDate adding the the current date with the estimated next purchase date
+	const nextPurchaseDate = new Date(
+		new Date().getTime() + millisecondsUntilNextPurchase,
+	);
+
+	// This function sends updated values to Firestore
 	await updateDoc(listItemRef, {
+		// Updates dateLastPurchased to the time when the user checks off an item
 		dateLastPurchased: new Date(),
+
+		// This is calucated using calculateEstimate and added to the current date,
+		// updating the next purchase date of an item
+		dateNextPurchased: nextPurchaseDate,
+
+		// Adds 1 to the total purchases of an item
 		totalPurchases: totalPurchases + 1,
 	});
-
-	//function for previous date estimate
-	// if dateLastPurchased is null, previous estimate is dateNextPurchased - dateCreated
-	// dateNextPurchased.getTime() ?
-	// if dateLastPurchased has a value, previous estimate is dateNextPurchase - dateLastPurchased
-
-	//function for days since last transaction
-
-	// function for total purchases
-
-	// ad test for calculateEstimate
-	// const nextDate = calculateEstimate(previousEstimate, daysSinceLastTransaction, totalPurchases);
-	// console.log(nextDate);
 }
 
 export async function deleteItem() {
