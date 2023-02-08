@@ -20,39 +20,14 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 			? dateLastPurchased.toDate()
 			: dateLastPurchased;
 
-		/* Finding elapsed time by finding the absolute value of currentDate substracted from purchaseDate
-		 The result of timeElapsed will is in miliseconds */
-		const timeElapsed = Math.abs(currentDate - purchasedDate);
-
-		/* hoursElapsed converts the miliseconds of timeElapsed into hours */
-		const hoursElapsed = timeElapsed / (1000 * 60 * 60);
-
-		/* The checked value here is passed as a property to `firebase.js` relaying if
-			the number of hours between the purchase date and the current time is less
-			than 24 hours */
-		hoursElapsed < 24 ? setCheck(true) : setCheck(false);
-
-		if (dateLastPurchased) {
-			console.log('item name: ', name);
-			console.log('Firestore format: ', dateLastPurchased);
-			console.log('using .toDate(): ', dateLastPurchased.toDate());
-			// console.log("using .getTime(): ", dateLastPurchased.getTime())
-			console.log(
-				'using .toDate() and .getTime(): ',
-				dateLastPurchased.toDate().getTime(),
-			);
-			console.log('timeElapsed: ', timeElapsed);
-			// console.log("time elapsed using .getTime: ", currentDate = dateLastPurchased.getTime())
-			console.log('currentDate: ', currentDate);
-			console.log('currentDate with .getTime(): ', currentDate.getTime());
-			console.log(
-				'time elapsed with .getTime: ',
-				currentDate.getTime() - dateLastPurchased.toDate().getTime(),
-			);
-		}
-
-		// test ad
-		// console.log(getDaysBetweenDates(purchasedDate, currentDate));
+		/* Imports this function from `dates.js` in utils folder and returns
+		the days of elapsedtime between two dates
+		Then, the checked value here is passed as a property to `firebase.js` relaying if
+		the number of hours between the purchase date and the current time is less than 1 day
+		*/
+		getDaysBetweenDates(currentDate, purchasedDate) < 1
+			? setCheck(true)
+			: setCheck(false);
 	}, [dateLastPurchased]);
 
 	const handleCheck = async (e) => {

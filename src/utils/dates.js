@@ -12,29 +12,11 @@ export function getFutureDate(offset) {
 }
 
 export function getDaysBetweenDates(date1, date2) {
-	// console.log("date 1: " + date1);
-	// console.log("date 2: " + date2);
+	/* Finding elapsed time by finding the absolute value of currentDate substracted from purchaseDate
+	The result of timeElapsed will is in miliseconds */
+	const timeElapsed = Math.abs(date1 - date2);
 
-	// console.log("date 1 to date: " + date1.toDate());
-	// console.log("date 2 to date: " + date2.toDate());
-
-	const numberDate1 = date1.getTime();
-	const numberDate2 = date2.getTime();
-	// console.log(date1);
-	// console.log("toDate & getTime for date1: " + date1.toDate().getTime());
-	console.log('getTime for date1: ' + numberDate1);
-
-	// const timeElapsed = Math.abs(date1.toDate() - date2.toDate())
-
-	// console.log("Time elapsed: " + timeElapsed)
-
-	// return
+	/* daysElapsed converts the miliseconds of timeElapsed into days */
+	const daysElapsed = timeElapsed / ONE_DAY_IN_MILLISECONDS;
+	return daysElapsed;
 }
-
-// const currentDate = new Date();
-// 		let purchasedDate = dateLastPurchased
-// 			? dateLastPurchased.toDate()
-// 			: dateLastPurchased;
-// 		const timeElapsed = Math.abs(currentDate - purchasedDate);
-// 		const hoursElapsed = timeElapsed / (1000 * 60 * 60);
-// 		hoursElapsed < 24 ? setCheck(true) : setCheck(false);
