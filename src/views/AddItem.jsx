@@ -41,14 +41,18 @@ export function AddItem({ listToken, data }) {
 			return;
 		}
 
-		// We are looking for an array of items that matches the user input
-		// We use `toLowerCase` and `replaceAll` to account for edge cases,
-		// such as casing and extra spaces
+		// `itemRegex` is a regular expression that matches any sequence of characters
+		// that does NOT include letters or digits
+		const itemRegex = /[^a-zA-Z0-9]+/g;
+
+		// We are looking for an array of items that matches the user input.
+		// We use `toLowerCase`, `replaceAll` and `itemRegex` to account for
+		// all the edge cases: white space, letter case, and non-letters/non-digits.
 		const nameMatchesArr = data.some((item) => {
 			return (
 				item.name &&
-				item.name.replaceAll(' ', '') ===
-					itemName.toLowerCase().replaceAll(' ', '')
+				item.name.toLowerCase().replaceAll(itemRegex, '') ===
+					itemName.toLowerCase().replaceAll(itemRegex, '')
 			);
 		});
 
