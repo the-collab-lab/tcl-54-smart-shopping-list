@@ -22,6 +22,7 @@ export function AddItem({ listToken, data }) {
 	// Notify if the item already exists in db
 	const notifyInList = () => toast.error('Already in your list');
 
+	// Notify if user submits spaces (blank)
 	const noBlanks = () => toast.error('No blanks may submitted');
 
 	// Notify when adding item but there's no list token
@@ -65,6 +66,8 @@ export function AddItem({ listToken, data }) {
 			return;
 		}
 
+		// The user is notified if the input, after spaces trimmed, is length of 0
+		// Exits the function
 		if (itemName.trim().length === 0) {
 			noBlanks();
 			return;
