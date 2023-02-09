@@ -22,6 +22,8 @@ export function AddItem({ listToken, data }) {
 	// Notify if the item already exists in db
 	const notifyInList = () => toast.error('Already in your list');
 
+	const noBlanks = () => toast.error('No blanks may submitted');
+
 	// Notify when adding item but there's no list token
 	const notifyNoToken = () => toast.error('Please add a list token first');
 
@@ -60,6 +62,11 @@ export function AddItem({ listToken, data }) {
 		// Item does not get added; exits the function
 		if (nameMatchesArr) {
 			notifyInList();
+			return;
+		}
+
+		if (itemName.trim().length === 0) {
+			noBlanks();
 			return;
 		}
 
