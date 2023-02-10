@@ -96,18 +96,22 @@ export async function updateItem(listId, itemId, checked) {
 		listItemSnap.data();
 
 	//This function returns the next purchase date in milliseconds
-	const getNextPurchaseDate = () => {
-		// Function estimating previous purchase interval
-		const previousEstimate = dateLastPurchased
-			? getDaysBetweenDates(dateNextPurchased, dateLastPurchased)
-			: getDaysBetweenDates(dateNextPurchased, dateCreated);
+	function getNextPurchaseDate() {
+		//If dateLastPurchased is null, then the dateLastUpdated value defaults to dateCreated
+		const dateLastUpdated = dateLastPurchased ? dateLastPurchased : dateCreated;
 
-		// This declares the number of days since the last transaction based on dateLastPurchased being a null or existing value
-		const numDaysSinceLastTransaction = dateLastPurchased
-			? // If dateLastPurchased returns TRUE, we get number of days between *dateLastPurchased* and current date
-			  getDaysBetweenDates(new Date(), dateLastPurchased.toDate())
-			: // If dateLastPurchased returns FALSE, we get number of days between *dateCreated* and current date
-			  getDaysBetweenDates(new Date(), dateCreated.toDate());
+		// The previous estimated interval is calculated by the interval between dateNextPurchased
+		//	and the last purchase date (or date created if dateLastPurchased is null)
+		const previousEstimate = getDaysBetweenDates(
+			dateNextPurchased,
+			dateLastUpdated,
+		);
+		// The number of days since the last transaction is calculated by the interval between
+		//	the current date and the last purchase date (or date created if dateLastPurchased is null)
+		const daysSinceLastTransaction = getDaysBetweenDates(
+			new Date(),
+			dateLastUpdated.toDate(),
+		);
 
 		// The estimated next purchase date is calculated by adding two values:
 		//	- The current date in milliseconds
@@ -116,14 +120,13 @@ export async function updateItem(listId, itemId, checked) {
 			new Date().getTime() +
 				calculateEstimate(
 					previousEstimate,
-					numDaysSinceLastTransaction,
+					daysSinceLastTransaction,
 					totalPurchases,
 				) *
 					ONE_DAY_IN_MILLISECONDS,
 		);
-
 		return nextPurchaseDate;
-	};
+	}
 
 	// This function sends updated values to Firestore
 	await updateDoc(listItemRef, {
