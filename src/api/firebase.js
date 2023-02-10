@@ -10,7 +10,11 @@ import {
 } from 'firebase/firestore';
 import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 import { db } from './config';
-import { getFutureDate, getDaysBetweenDates } from '../utils/dates';
+import {
+	getFutureDate,
+	getDaysBetweenDates,
+	ONE_DAY_IN_MILLISECONDS,
+} from '../utils/dates';
 
 /**
  * Subscribe to changes on a specific list in the Firestore database (listId), and run a callback (handleSuccess) every time a change happens.
@@ -87,39 +91,39 @@ export async function updateItem(listId, itemId, checked) {
 	const listItemRef = doc(db, listId, itemId);
 	const listItemSnap = await getDoc(listItemRef);
 
-	// Declaring how many milliseconds are in a day for date interval calculations
-	const ONE_DAY_IN_MILLISECONDS = 86400000;
+	// Retrieve item property values stored in Firebase
+	let { totalPurchases, dateLastPurchased, dateCreated, dateNextPurchased } =
+		listItemSnap.data();
 
-	// Retrieving values stored in firebase
-	let totalPurchases = listItemSnap.data().totalPurchases;
-	let dateLastPurchased = listItemSnap.data().dateLastPurchased;
-	let dateCreated = listItemSnap.data().dateCreated;
-	let dateNextPurchased = listItemSnap.data().dateNextPurchased;
+	//This function returns the next purchase date using calculateEstimate
+	const getNextPurchaseDate = () => {
+		// Function estimating previous purchase interval
+		const previousEstimate = dateLastPurchased
+			? getDaysBetweenDates(dateNextPurchased, dateLastPurchased)
+			: getDaysBetweenDates(dateNextPurchased, dateCreated);
 
-	// Function estimating previous purchase interval
-	const previousEstimate = dateLastPurchased
-		? getDaysBetweenDates(dateNextPurchased, dateLastPurchased)
-		: getDaysBetweenDates(dateNextPurchased, dateCreated);
+		// This declares the number of days since the last transaction based on dateLastPurchased being a null or existing value
+		const numDaysSinceLastTransaction = dateLastPurchased
+			? // If dateLastPurchased returns TRUE, we get number of days between *dateLastPurchased* and current date
+			  getDaysBetweenDates(new Date(), dateLastPurchased.toDate())
+			: // If dateLastPurchased returns FALSE, we get number of days between *dateCreated* and current date
+			  getDaysBetweenDates(new Date(), dateCreated.toDate());
 
-	// This declares the number of days since the last transaction based on dateLastPurchased being a null or existing value
-	const numDaysSinceLastTransaction = dateLastPurchased
-		? // If dateLastPurchased returns TRUE, we get number of days between *dateLastPurchased* and current date
-		  getDaysBetweenDates(new Date(), dateLastPurchased.toDate())
-		: // If dateLastPurchased returns FALSE, we get number of days between *dateCreated* and current date
-		  getDaysBetweenDates(new Date(), dateCreated.toDate());
+		// The estimated next purchase date is calculated by adding two values:
+		//	- The current date in milliseconds
+		//	- The estimated number of days until the next purchase converted into milliseconds
+		const nextPurchaseDate = new Date(
+			new Date().getTime() +
+				calculateEstimate(
+					previousEstimate,
+					numDaysSinceLastTransaction,
+					totalPurchases,
+				) *
+					ONE_DAY_IN_MILLISECONDS,
+		);
 
-	// The estimated next purchase date is calculated by adding two values:
-	//		- The current date in milliseconds
-	//		- The estimated interval of days for the next purchase converted into milliseconds
-	const nextPurchaseDate = new Date(
-		new Date().getTime() +
-			calculateEstimate(
-				previousEstimate,
-				numDaysSinceLastTransaction,
-				totalPurchases,
-			) *
-				ONE_DAY_IN_MILLISECONDS,
-	);
+		return nextPurchaseDate;
+	};
 
 	// This function sends updated values to Firestore
 	await updateDoc(listItemRef, {
@@ -128,7 +132,7 @@ export async function updateItem(listId, itemId, checked) {
 
 		// This is calucated using calculateEstimate and added to the current date,
 		// updating the next purchase date of an item
-		dateNextPurchased: nextPurchaseDate,
+		dateNextPurchased: getNextPurchaseDate(),
 
 		// Adds 1 to the total purchases of an item
 		totalPurchases: totalPurchases + 1,

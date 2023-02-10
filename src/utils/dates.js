@@ -1,4 +1,4 @@
-const ONE_DAY_IN_MILLISECONDS = 86400000;
+export const ONE_DAY_IN_MILLISECONDS = 86400000;
 
 /**
  * Get a new JavaScript Date that is `offset` days in the future.
@@ -17,7 +17,7 @@ export function getDaysBetweenDates(date1, date2) {
 	getting the absolute value of their difference. */
 	const timeElapsed = Math.abs(date1 - date2);
 
-	/* daysElapsed converts the miliseconds of timeElapsed into days */
+	/* daysElapsed converts the milliseconds of timeElapsed into days */
 	const daysElapsed = timeElapsed / ONE_DAY_IN_MILLISECONDS;
 	return daysElapsed;
 }
