@@ -95,7 +95,7 @@ export async function updateItem(listId, itemId, checked) {
 	let { totalPurchases, dateLastPurchased, dateCreated, dateNextPurchased } =
 		listItemSnap.data();
 
-	//This function returns the next purchase date using calculateEstimate
+	//This function returns the next purchase date in milliseconds
 	const getNextPurchaseDate = () => {
 		// Function estimating previous purchase interval
 		const previousEstimate = dateLastPurchased
