@@ -87,6 +87,9 @@ export async function updateItem(listId, itemId, checked) {
 	const listItemRef = doc(db, listId, itemId);
 	const listItemSnap = await getDoc(listItemRef);
 
+	// Declaring how many milliseconds are in a day for date interval calculations
+	const ONE_DAY_IN_MILLISECONDS = 86400000;
+
 	// Retrieving values stored in firebase
 	let totalPurchases = listItemSnap.data().totalPurchases;
 	let dateLastPurchased = listItemSnap.data().dateLastPurchased;
@@ -94,18 +97,9 @@ export async function updateItem(listId, itemId, checked) {
 	let dateNextPurchased = listItemSnap.data().dateNextPurchased;
 
 	// Function estimating previous purchase interval
-	// Because our lists have updated dateLastPurchased without updated dateNextPurchased,
-	// the time intervals won't be accurate, so we recommend using only:
-	const temporaryPreviousEstimate = getDaysBetweenDates(
-		dateNextPurchased,
-		dateCreated,
-	);
-
-	// *** ONCE DATABASE IS CLEANED UP ***
-	// But longer term, if we hadn't been updating dateLastPurchased, this should be the long term logic:
-	// const previousEstimate = dateLastPurchased
-	// ? getDaysBetweeenDates(dateNextPurchased, dateLastPurchased)
-	// : getDaysBetweenDates(dateNextPurchased, dateCreated)
+	const previousEstimate = dateLastPurchased
+		? getDaysBetweenDates(dateNextPurchased, dateLastPurchased)
+		: getDaysBetweenDates(dateNextPurchased, dateCreated);
 
 	// This declares the number of days since the last transaction based on dateLastPurchased being a null or existing value
 	const numDaysSinceLastTransaction = dateLastPurchased
@@ -114,17 +108,17 @@ export async function updateItem(listId, itemId, checked) {
 		: // If dateLastPurchased returns FALSE, we get number of days between *dateCreated* and current date
 		  getDaysBetweenDates(new Date(), dateCreated.toDate());
 
-	// Declaring variables for number of days until the NEXT purchase and converting to milliseconds
-	const numDaysUntilNextPurchase = calculateEstimate(
-		temporaryPreviousEstimate,
-		numDaysSinceLastTransaction,
-		totalPurchases,
-	);
-	const millisecondsUntilNextPurchase =
-		numDaysUntilNextPurchase * (24 * 60 * 60 * 1000);
-	// This is the nextPurchaseDate adding the the current date with the estimated next purchase date
+	// The estimated next purchase date is calculated by adding two values:
+	//		- The current date in milliseconds
+	//		- The estimated interval of days for the next purchase converted into milliseconds
 	const nextPurchaseDate = new Date(
-		new Date().getTime() + millisecondsUntilNextPurchase,
+		new Date().getTime() +
+			calculateEstimate(
+				previousEstimate,
+				numDaysSinceLastTransaction,
+				totalPurchases,
+			) *
+				ONE_DAY_IN_MILLISECONDS,
 	);
 
 	// This function sends updated values to Firestore
