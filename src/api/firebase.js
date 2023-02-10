@@ -103,9 +103,10 @@ export async function updateItem(listId, itemId, checked) {
 		// The previous estimated interval is calculated by the interval between dateNextPurchased
 		//	and the last purchase date (or date created if dateLastPurchased is null)
 		const previousEstimate = getDaysBetweenDates(
-			dateNextPurchased,
-			dateLastUpdated,
+			dateNextPurchased.toDate(),
+			dateLastUpdated.toDate(),
 		);
+
 		// The number of days since the last transaction is calculated by the interval between
 		//	the current date and the last purchase date (or date created if dateLastPurchased is null)
 		const daysSinceLastTransaction = getDaysBetweenDates(
@@ -125,6 +126,7 @@ export async function updateItem(listId, itemId, checked) {
 				) *
 					ONE_DAY_IN_MILLISECONDS,
 		);
+
 		return nextPurchaseDate;
 	}
 
