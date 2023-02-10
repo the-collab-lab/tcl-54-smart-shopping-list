@@ -13,8 +13,8 @@ export function getFutureDate(offset) {
 
 /** This function returns the number of days elapsed between two JavaScript Dates*/
 export function getDaysBetweenDates(date1, date2) {
-	/* The time elapsed between two dates is found by
-	getting the absolute value of their difference. */
+	/* The time elapsed between two dates is found by getting 
+	the absolute value of their difference in milliseconds. */
 	const timeElapsed = Math.abs(date1 - date2);
 
 	/* daysElapsed converts the milliseconds of timeElapsed into days */
