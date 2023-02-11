@@ -6,7 +6,6 @@ import {
 	query,
 	doc,
 	updateDoc,
-	increment,
 	getDoc,
 } from 'firebase/firestore';
 import { db } from './config';
@@ -49,7 +48,6 @@ export function getItemData(snapshot) {
 		 * so we get it from the document reference.
 		 */
 		data.id = docRef.id;
-
 		return data;
 	});
 }

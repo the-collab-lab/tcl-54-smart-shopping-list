@@ -8,29 +8,43 @@ import toast, { Toaster } from 'react-hot-toast';
  * and store that to db
  */
 
-export function AddItem({ listToken }) {
+export function AddItem({ listToken, data }) {
 	// declare itemName, daysUntilNextPurchase, and radioSelect
 	// into separate state variables
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 
-	// react-hot-toast notifications:
+	// `itemRegex` is a regular expression that matches any sequence of characters
+	// that does NOT include letters or digits
+	const itemRegex = /[^a-zA-Z0-9]+/g;
+
+	/* ↓↓ HOT TOAST NOTIFICATIONS ↓↓ */
 
 	// Notify when adding item is unsuccessful
 	const notifyFailedRequest = () => toast.error('Failed to add item');
+
+	// Notify if the item the user enters in form already exists in db.
+	// `reducedItemName` is the item name without spaces or special characters.
+	// The user is notified with this pared down name.
+	const notifyInList = (itemName) => {
+		const reducedItemName = itemName.toLowerCase().replace(itemRegex, '');
+		toast.error(`Looks like ${reducedItemName} is already on your list!`);
+	};
+
+	// Notify if user submits spaces (blank)
+	const noBlanks = () => toast.error('No blanks may submitted');
 
 	// Notify when adding item but there's no list token
 	const notifyNoToken = () => toast.error('Please add a list token first');
 
 	// Notify when adding item is successful
-	const notifyItemAdded = (itemName) => {
-		toast.success(`${itemName} was added to your list`);
-	};
+	const notifyItemAdded = (itemName) =>
+		toast.success(`${itemName} was added to your list!`);
 
 	// Store values inside itemData and sent over to database
 	// otherwise log an error if request fails
-	const onFormSubmit = (event) => {
-		event.preventDefault();
+	const onFormSubmit = (e) => {
+		e.preventDefault();
 
 		// if list token is not provided, notify user and exit function
 		if (!listToken) {
@@ -38,10 +52,40 @@ export function AddItem({ listToken }) {
 			return;
 		}
 
+		// We are looking for an array of items that matches the user input.
+		// We use `toLowerCase`, `replaceAll` and `itemRegex` to account for
+		// all the edge cases: white space, letter case, and non-letters/non-digits.
+		const nameMatchesArr = data.some((item) => {
+			return (
+				item.name &&
+				item.name.toLowerCase().replaceAll(itemRegex, '') ===
+					itemName.toLowerCase().replaceAll(itemRegex, '')
+			);
+		});
+
+		// The user is notified if the input matches an item in db
+		// Item does not get added; exits the function
+		if (nameMatchesArr) {
+			notifyInList(itemName);
+			return;
+		}
+
+		// The user is notified if the input, after spaces trimmed, is length of 0
+		// Exits the function
+		if (itemName.trim().length === 0) {
+			noBlanks();
+			return;
+		}
+
+		// Updates the relevant data in db
 		const itemData = {
 			itemName,
 			daysUntilNextPurchase,
 		};
+
+		// If the input has no match in db, the item is added, notifies the user,
+		// and sets input back to empty string.
+		// Errors are handled otherwise.
 		try {
 			addItem(listToken, itemData);
 			setItemName('');
@@ -73,7 +117,7 @@ export function AddItem({ listToken }) {
 					id="item"
 					name="item"
 					value={itemName}
-					onChange={(event) => setItemName(event.target.value)}
+					onChange={(e) => setItemName(e.target.value)}
 					required={true}
 				/>
 				<div id="purchase-date-label">How soon will you buy this again?</div>
