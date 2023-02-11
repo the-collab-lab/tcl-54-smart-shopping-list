@@ -14,13 +14,22 @@ export function AddItem({ listToken, data }) {
 	const [itemName, setItemName] = useState('');
 	const [daysUntilNextPurchase, setDaysUntilNextPurchase] = useState(7);
 
-	// react-hot-toast notifications:
+	// `itemRegex` is a regular expression that matches any sequence of characters
+	// that does NOT include letters or digits
+	const itemRegex = /[^a-zA-Z0-9]+/g;
+
+	/* ↓↓ HOT TOAST NOTIFICATIONS ↓↓ */
 
 	// Notify when adding item is unsuccessful
 	const notifyFailedRequest = () => toast.error('Failed to add item');
 
-	// Notify if the item already exists in db
-	const notifyInList = () => toast.error('Already in your list');
+	// Notify if the item the user enters in form already exists in db.
+	// `reducedItemName` is the item name without spaces or special characters.
+	// The user is notified with this pared down name.
+	const notifyInList = (itemName) => {
+		const reducedItemName = itemName.toLowerCase().replace(itemRegex, '');
+		toast.error(`Looks like ${reducedItemName} is already on your list!`);
+	};
 
 	// Notify if user submits spaces (blank)
 	const noBlanks = () => toast.error('No blanks may submitted');
@@ -29,9 +38,8 @@ export function AddItem({ listToken, data }) {
 	const notifyNoToken = () => toast.error('Please add a list token first');
 
 	// Notify when adding item is successful
-	const notifyItemAdded = (itemName) => {
-		toast.success(`${itemName} was added to your list`);
-	};
+	const notifyItemAdded = (itemName) =>
+		toast.success(`${itemName} was added to your list!`);
 
 	// Store values inside itemData and sent over to database
 	// otherwise log an error if request fails
@@ -43,10 +51,6 @@ export function AddItem({ listToken, data }) {
 			notifyNoToken();
 			return;
 		}
-
-		// `itemRegex` is a regular expression that matches any sequence of characters
-		// that does NOT include letters or digits
-		const itemRegex = /[^a-zA-Z0-9]+/g;
 
 		// We are looking for an array of items that matches the user input.
 		// We use `toLowerCase`, `replaceAll` and `itemRegex` to account for
@@ -62,7 +66,7 @@ export function AddItem({ listToken, data }) {
 		// The user is notified if the input matches an item in db
 		// Item does not get added; exits the function
 		if (nameMatchesArr) {
-			notifyInList();
+			notifyInList(itemName);
 			return;
 		}
 
