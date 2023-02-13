@@ -1,5 +1,5 @@
 import './ListItem.css';
-import { updateItem } from '../api/firebase';
+import { updateItem, deleteItem } from '../api/firebase';
 import { useState, useEffect } from 'react';
 
 export function ListItem({ name, itemId, dateLastPurchased }) {
@@ -29,6 +29,13 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 		});
 	};
 
+	const handleDelete = async (e) => {
+		const listId = localStorage.getItem('tcl-shopping-list-token');
+		if (window.confirm('Do you want to remove this?')) {
+			deleteItem(listId, itemId);
+		}
+	};
+
 	if (name) {
 		return (
 			<li className="ListItem">
@@ -42,6 +49,7 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 					/>
 					{name}
 				</label>
+				<button onClick={handleDelete}>Remove</button>
 			</li>
 		);
 	}
