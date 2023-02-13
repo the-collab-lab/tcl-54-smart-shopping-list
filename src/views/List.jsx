@@ -52,6 +52,8 @@ export function List({ data, loading }) {
 						/>
 					);
 			  })
+			: filterInput && filteredList.length === 0
+			? 'no matching item found'
 			: filteredList.map((item) => {
 					return (
 						<ListItem
