@@ -44,6 +44,34 @@ export function ListItem({
 		});
 	};
 
+	const getBuyingUrgency = () => {
+		//Use getDaysBetweenDates to find the difference between dateLastPurchased and dateNextPurchased
+		const daysUntilNextPurchase = getDaysBetweenDates(
+			new Date(),
+			dateNextPurchased.toDate(),
+		);
+
+		let daysSinceLastPurchase = dateLastPurchased
+			? getDaysBetweenDates(new Date(), dateLastPurchased.toDate())
+			: dateLastPurchased;
+
+		let buyingUrgency;
+
+		//if else statement to declare which of the 4 possible groups of urgency it belongs to
+		if (daysUntilNextPurchase >= 60) {
+			buyingUrgency = 'inactive (has not been purchased recently)';
+		} else if (daysUntilNextPurchase > 30 && daysSinceLastPurchase > 0) {
+			buyingUrgency = 'overdue for purchase';
+		} else if (daysUntilNextPurchase >= 30) {
+			buyingUrgency = 'not soon (more than 30 days)';
+		} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
+			buyingUrgency = 'kind of soon (30 days or less)';
+		} else {
+			buyingUrgency = 'soon (7 days or less)';
+		}
+		return buyingUrgency;
+	};
+
 	if (name) {
 		/**TEST AD
 		 *
@@ -60,7 +88,7 @@ export function ListItem({
 						disabled={check}
 					/>
 					{name}
-					&nbsp; frequency: {'buyingUrgency'}
+					&nbsp; frequency: {getBuyingUrgency()}
 				</label>
 			</li>
 		);

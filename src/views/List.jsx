@@ -102,7 +102,7 @@ export function List({ data, loading }) {
 				{/* Uses data or state of filteredList depending on state of filterInput */}
 				<ul>
 					{!filterInput
-						? data.map((item) => {
+						? urgencyData.map((item) => {
 								return (
 									<ListItem
 										key={item.id}
