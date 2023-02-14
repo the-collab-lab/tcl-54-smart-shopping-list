@@ -1,11 +1,17 @@
 import { ListItem } from '../components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { comparePurchaseUrgency } from '../api/firebase';
 
 /** List component that displays items in a user's shopping cart  */
 export function List({ data, loading }) {
 	const [filteredList, setFilteredList] = useState([]);
 	const [filterInput, setFilterInput] = useState('');
+
+	// **** TEST
+	// const listId = localStorage.getItem('tcl-shopping-list-token');
+	// console.log(listId);
+	// comparePurchaseUrgency(listId);
 
 	/* Declare navigate for view redirection */
 	const navigate = useNavigate();
@@ -88,6 +94,7 @@ export function List({ data, loading }) {
 										itemId={item.id}
 										name={item.name}
 										dateLastPurchased={item.dateLastPurchased}
+										dateNextPurchased={item.dateNextPurchased}
 									/>
 								);
 						  })
@@ -98,6 +105,7 @@ export function List({ data, loading }) {
 										itemId={item.id}
 										name={item.name}
 										dateLastPurchased={item.dateLastPurchased}
+										dateNextPurchased={item.dateNextPurchased}
 									/>
 								);
 						  })}

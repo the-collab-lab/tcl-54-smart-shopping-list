@@ -30,6 +30,42 @@ export function streamListItems(listId, handleSuccess) {
 }
 
 /**
+ * comparePurchaseUrgency
+ * sorts inactive items last, then
+ * sorts items in ascending order of days until purchase, and
+ * sorts items with the same days until purchase alphabetically
+ */
+export function comparePurchaseUrgency(dateNextPurchased) {
+	//take in an item value for date next purchased
+
+	//Use getDaysBetweenDates to find the difference between dateLastPurchased and dateNextPurchased
+	const currentDate = new Date();
+	const daysSinceLastPurchased = getDaysBetweenDates(
+		currentDate,
+		dateNextPurchased.toDate(),
+	);
+	console.log('Days since last purchased = ', daysSinceLastPurchased);
+	let buyingUrgency;
+
+	//if else statement to declare which of the 4 possible groups of urgency it belongs to
+	if (daysSinceLastPurchased <= 7) {
+		buyingUrgency = 'soon (7 days or less)';
+	} else if (7 < daysSinceLastPurchased < 30) {
+		buyingUrgency = 'kind of soon (30 days or less)';
+	} else if (daysSinceLastPurchased >= 30) {
+		buyingUrgency = 'not soon (more than 30 days)';
+	} else if (30 < daysSinceLastPurchased < 60) {
+		buyingUrgency = 'overdue for purchase';
+	} else {
+		buyingUrgency = 'inactive (has not been purchased recently)';
+	}
+
+	//return urgency value
+
+	return buyingUrgency;
+}
+
+/**
  * Read the information from the provided snapshot and return an array
  * that can be stored in our React state.
  * @param {Object} snapshot A special Firebase document with information about the current state of the database.

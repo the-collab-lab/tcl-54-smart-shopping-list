@@ -17,7 +17,8 @@ export function getDaysBetweenDates(date1, date2) {
 	the absolute value of their difference in milliseconds. */
 	const timeElapsed = Math.abs(date1 - date2);
 
-	/* daysElapsed converts the milliseconds of timeElapsed into days */
-	const daysElapsed = timeElapsed / ONE_DAY_IN_MILLISECONDS;
+	/* daysElapsed converts the milliseconds of timeElapsed into days 
+	and rounds the up that number  */
+	const daysElapsed = Math.ceil(timeElapsed / ONE_DAY_IN_MILLISECONDS);
 	return daysElapsed;
 }

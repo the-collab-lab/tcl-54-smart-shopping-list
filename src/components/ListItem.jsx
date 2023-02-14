@@ -2,8 +2,14 @@ import './ListItem.css';
 import { updateItem } from '../api/firebase';
 import { useState, useEffect } from 'react';
 import { getDaysBetweenDates } from '../utils/dates';
+import { comparePurchaseUrgency } from '../api/firebase';
 
-export function ListItem({ name, itemId, dateLastPurchased }) {
+export function ListItem({
+	name,
+	itemId,
+	dateLastPurchased,
+	dateNextPurchased,
+}) {
 	const [check, setCheck] = useState(false);
 
 	/**
@@ -39,6 +45,10 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 	};
 
 	if (name) {
+		/**TEST AD
+		 *
+		 */
+		let buyingUrgency = comparePurchaseUrgency(dateNextPurchased);
 		return (
 			<li className="ListItem">
 				<label>
@@ -50,6 +60,7 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 						disabled={check}
 					/>
 					{name}
+					&nbsp; frequency: {buyingUrgency}
 				</label>
 			</li>
 		);
