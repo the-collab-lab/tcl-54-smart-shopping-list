@@ -2,6 +2,7 @@ import { ListItem } from '../components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { comparePurchaseUrgency } from '../api/firebase';
+import { getDaysBetweenDates } from '../utils/dates';
 
 /** List component that displays items in a user's shopping cart  */
 export function List({ data, loading }) {
@@ -9,9 +10,23 @@ export function List({ data, loading }) {
 	const [filterInput, setFilterInput] = useState('');
 
 	// **** TEST
-	// const listId = localStorage.getItem('tcl-shopping-list-token');
-	// console.log(listId);
-	// comparePurchaseUrgency(listId);
+	const urgencyData = data
+		.filter((item) => item.name)
+		.sort(comparePurchaseUrgency);
+
+	console.log('Urgency sorted data: ', urgencyData);
+	console.log(
+		'ugency data days until next purchase: ',
+		urgencyData.map((item) => {
+			//Use getDaysBetweenDates to find the difference between dateLastPurchased and dateNextPurchased
+			const daysSinceLastPurchased = getDaysBetweenDates(
+				new Date(),
+				item.dateNextPurchased.toDate(),
+			);
+			console.log(daysSinceLastPurchased);
+			return item.name + item.dateNextPurchased.toDate();
+		}),
+	);
 
 	/* Declare navigate for view redirection */
 	const navigate = useNavigate();

@@ -35,35 +35,48 @@ export function streamListItems(listId, handleSuccess) {
  * sorts items in ascending order of days until purchase, and
  * sorts items with the same days until purchase alphabetically
  */
-export function comparePurchaseUrgency(dateNextPurchased) {
-	//take in an item value for date next purchased
 
-	//Use getDaysBetweenDates to find the difference between dateLastPurchased and dateNextPurchased
-	const currentDate = new Date();
-	const daysSinceLastPurchased = getDaysBetweenDates(
-		currentDate,
-		dateNextPurchased.toDate(),
-	);
-	console.log('Days since last purchased = ', daysSinceLastPurchased);
-	let buyingUrgency;
-
-	//if else statement to declare which of the 4 possible groups of urgency it belongs to
-	if (daysSinceLastPurchased <= 7) {
-		buyingUrgency = 'soon (7 days or less)';
-	} else if (7 < daysSinceLastPurchased < 30) {
-		buyingUrgency = 'kind of soon (30 days or less)';
-	} else if (daysSinceLastPurchased >= 30) {
-		buyingUrgency = 'not soon (more than 30 days)';
-	} else if (30 < daysSinceLastPurchased < 60) {
-		buyingUrgency = 'overdue for purchase';
+//TODO: include sort for inactive items last
+// IT DOES:  - sort to most urgent date next pruchased
+// 			 - sorts to earliest alphabet name if date next purchased is the same
+export function comparePurchaseUrgency(item1, item2) {
+	if (item1.dateNextPurchased.toDate() < item2.dateNextPurchased.toDate()) {
+		return -1;
+	} else if (
+		item1.dateNextPurchased.toDate() > item2.dateNextPurchased.toDate()
+	) {
+		return 1;
 	} else {
-		buyingUrgency = 'inactive (has not been purchased recently)';
+		if (item1.name < item2.name) {
+			return -1;
+		} else {
+			return 1;
+		}
 	}
-
-	//return urgency value
-
-	return buyingUrgency;
 }
+
+//Use getDaysBetweenDates to find the difference between dateLastPurchased and dateNextPurchased
+// const daysSinceLastPurchased = getDaysBetweenDates(
+// 	currentDate,
+// 	item.dateNextPurchased.toDate(),
+// );
+// console.log(daysSinceLastPurchased);
+// let buyingUrgency;
+
+//if else statement to declare which of the 4 possible groups of urgency it belongs to
+// if (daysSinceLastPurchased <= 7) {
+// 	buyingUrgency = 'soon (7 days or less)';
+// } else if (7 < daysSinceLastPurchased < 30) {
+// 	buyingUrgency = 'kind of soon (30 days or less)';
+// } else if (daysSinceLastPurchased >= 30) {
+// 	buyingUrgency = 'not soon (more than 30 days)';
+// } else if (30 < daysSinceLastPurchased < 60) {
+// 	buyingUrgency = 'overdue for purchase';
+// } else {
+// 	buyingUrgency = 'inactive (has not been purchased recently)';
+// }
+
+//return urgency value
 
 /**
  * Read the information from the provided snapshot and return an array

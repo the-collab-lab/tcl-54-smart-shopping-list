@@ -48,7 +48,7 @@ export function ListItem({
 		/**TEST AD
 		 *
 		 */
-		let buyingUrgency = comparePurchaseUrgency(dateNextPurchased);
+		// let buyingUrgency = comparePurchaseUrgency(dateNextPurchased);
 		return (
 			<li className="ListItem">
 				<label>
@@ -60,7 +60,7 @@ export function ListItem({
 						disabled={check}
 					/>
 					{name}
-					&nbsp; frequency: {buyingUrgency}
+					&nbsp; frequency: {'buyingUrgency'}
 				</label>
 			</li>
 		);
