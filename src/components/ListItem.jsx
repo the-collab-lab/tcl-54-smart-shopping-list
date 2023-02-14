@@ -6,6 +6,8 @@ import { getDaysBetweenDates } from '../utils/dates';
 export function ListItem({ name, itemId, dateLastPurchased }) {
 	const [check, setCheck] = useState(false);
 
+	const listId = localStorage.getItem('tcl-shopping-list-token');
+
 	/**
 	 * When List view is opened or refreshed,
 	 * this verifies how long since the item was
@@ -31,7 +33,6 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 	}, [dateLastPurchased]);
 
 	const handleCheck = async (e) => {
-		const listId = localStorage.getItem('tcl-shopping-list-token');
 		setCheck((prevCheck) => {
 			updateItem(listId, itemId, !prevCheck);
 			return !prevCheck;
@@ -40,7 +41,6 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 
 	// When remove button is clicked, a confirm window pops up, and when user confirms, deleteItem() is called
 	const handleDelete = async (e) => {
-		const listId = localStorage.getItem('tcl-shopping-list-token');
 		if (window.confirm(`Do you want to remove ${name}?`)) {
 			deleteItem(listId, itemId);
 		}
@@ -59,7 +59,9 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 					/>
 					{name}
 				</label>
-				<button onClick={handleDelete}>Remove</button>
+				<button type="button" onClick={handleDelete}>
+					Remove
+				</button>
 			</li>
 		);
 	}
