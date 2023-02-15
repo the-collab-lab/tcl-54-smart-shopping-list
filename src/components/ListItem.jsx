@@ -2,7 +2,6 @@ import './ListItem.css';
 import { updateItem } from '../api/firebase';
 import { useState, useEffect } from 'react';
 import { getDaysBetweenDates } from '../utils/dates';
-import { comparePurchaseUrgency } from '../api/firebase';
 
 export function ListItem({
 	name,
@@ -44,24 +43,35 @@ export function ListItem({
 		});
 	};
 
+	//Function to return the buying urgency tag associated with an item
 	const getBuyingUrgency = () => {
-		//Use getDaysBetweenDates to find the difference between dateLastPurchased and dateNextPurchased
+		//declare value for buying urgency string to be returned
+		let buyingUrgency;
+
+		//Use getDaysBetweenDates to find the difference between the current date and dateNextPurchased
+		//Note - this doesn't specify yet whether a dateNextPurchase date has passed
 		const daysUntilNextPurchase = getDaysBetweenDates(
 			new Date(),
 			dateNextPurchased.toDate(),
 		);
 
+		/**
+		 * TODO: STRETCH GOAL: (overdue)
+		 * 	- Extend the functionality of comparePurchaseUrgency to sort “overdue” items to the top of the list
+		 *	- Indicate in your UI when an item is overdue
+		 * QUESTION:
+		 * 	What shows date next purchase has passed? To be placed in conditional below
+		 */
 		let daysSinceLastPurchase = dateLastPurchased
-			? getDaysBetweenDates(new Date(), dateLastPurchased.toDate())
+			? getDaysBetweenDates(
+					dateNextPurchased.toDate(),
+					dateLastPurchased.toDate(),
+			  )
 			: dateLastPurchased;
-
-		let buyingUrgency;
 
 		//if else statement to declare which of the 4 possible groups of urgency it belongs to
 		if (daysUntilNextPurchase >= 60) {
 			buyingUrgency = 'inactive (has not been purchased recently)';
-		} else if (daysUntilNextPurchase > 30 && daysSinceLastPurchase > 0) {
-			buyingUrgency = 'overdue for purchase';
 		} else if (daysUntilNextPurchase >= 30) {
 			buyingUrgency = 'not soon (more than 30 days)';
 		} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
@@ -73,10 +83,6 @@ export function ListItem({
 	};
 
 	if (name) {
-		/**TEST AD
-		 *
-		 */
-		// let buyingUrgency = comparePurchaseUrgency(dateNextPurchased);
 		return (
 			<li className="ListItem">
 				<label>
@@ -88,7 +94,9 @@ export function ListItem({
 						disabled={check}
 					/>
 					{name}
-					&nbsp; frequency: {getBuyingUrgency()}
+					&nbsp;
+					{/* return buying urgency string */}
+					{getBuyingUrgency()}
 				</label>
 			</li>
 		);

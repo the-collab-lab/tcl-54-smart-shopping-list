@@ -30,29 +30,37 @@ export function streamListItems(listId, handleSuccess) {
 }
 
 /**
- * comparePurchaseUrgency
- * sorts inactive items last, then
- * sorts items in ascending order of days until purchase, and
- * sorts items with the same days until purchase alphabetically
+ * comparePurchaseUrgency CURRENT FUNCTIONS:
+ * - sort for inactive items last, then
+ * - sort to most urgent date next pruchased, then
+ * - sorts to earliest alphabet name if date next purchased is the same
+ *
+ * TODO (STRETCH GOAL):
+ * - sorts for overdue items to be listed at the top that aren't inactive
  */
-
-// IT DOES:  - sort for inactive items last, then
-//			 - sort to most urgent date next pruchased, then
-// 			 - sorts to earliest alphabet name if date next purchased is the same
 export function comparePurchaseUrgency(item1, item2) {
-	//inactive items got last immediately
-	const daysSinceLastPurchasedItem1 = getDaysBetweenDates(
+	//find the difference between the current date and next purchase date
+	const daysUntilNextPurchaseItem1 = getDaysBetweenDates(
 		new Date(),
 		item1.dateNextPurchased.toDate(),
 	);
 
-	if (daysSinceLastPurchasedItem1 >= 60) {
+	//TODO: can this be simplified/is this the right logic direction?
+	let daysSinceLastPurchaseItem1 = item1.dateLastPurchased
+		? getDaysBetweenDates(new Date(), item1.dateLastPurchased.toDate())
+		: item1.dateLastPurchased;
+
+	//Inactive item conditional
+	if (daysUntilNextPurchaseItem1 >= 60) {
 		return 1;
 	}
-	// if (daysSinceLastPurchasedItem1 < 60 && daysSinceLastPurchasedItem1 > 30) {
+
+	//TODO: overdue item conditional goes here
+	// if (daysUntilNextPurchaseItem1 < 60 && daysSinceLastPurchaseItem1 > 0) {
 	// 	return -1;
 	// }
 
+	//Conditionals for days until next purchase and alphabetized if same number of days
 	if (item1.dateNextPurchased.toDate() < item2.dateNextPurchased.toDate()) {
 		return -1;
 	} else if (

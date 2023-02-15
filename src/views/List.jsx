@@ -9,24 +9,10 @@ export function List({ data, loading }) {
 	const [filteredList, setFilteredList] = useState([]);
 	const [filterInput, setFilterInput] = useState('');
 
-	// **** TEST
+	/* Sorted shopping list data by purchase urgency */
 	const urgencyData = data
 		.filter((item) => item.name)
 		.sort(comparePurchaseUrgency);
-
-	console.log('Urgency sorted data: ', urgencyData);
-	console.log(
-		'ugency data days until next purchase: ',
-		urgencyData.map((item) => {
-			//Use getDaysBetweenDates to find the difference between dateLastPurchased and dateNextPurchased
-			const daysSinceLastPurchased = getDaysBetweenDates(
-				new Date(),
-				item.dateNextPurchased.toDate(),
-			);
-			console.log(daysSinceLastPurchased);
-			return item.name + item.dateNextPurchased.toDate();
-		}),
-	);
 
 	/* Declare navigate for view redirection */
 	const navigate = useNavigate();
@@ -102,7 +88,8 @@ export function List({ data, loading }) {
 				{/* Uses data or state of filteredList depending on state of filterInput */}
 				<ul>
 					{!filterInput
-						? urgencyData.map((item) => {
+						? // map over the sorted urgencyData
+						  urgencyData.map((item) => {
 								return (
 									<ListItem
 										key={item.id}
