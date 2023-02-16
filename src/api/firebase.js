@@ -39,41 +39,27 @@ export function streamListItems(listId, handleSuccess) {
  * - sorts for overdue items to be listed at the top that aren't inactive
  */
 export function comparePurchaseUrgency(item1, item2) {
-	//find the difference between the current date and next purchase date
-	const daysUntilNextPurchaseItem1 = getDaysBetweenDates(
-		new Date(),
-		item1.dateNextPurchased.toDate(),
-	);
-
-	//refactor test
-	// function daysUntilNextPurchase(item){
-	// 	return getDaysBetweenDates(
-	// 		new Date(),
-	// 		(item).dateNextPurchased.toDate(),
-	// 	)
-	// }
-
-	const daysUntilNextPurchaseItem2 = getDaysBetweenDates(
-		new Date(),
-		item2.dateNextPurchased.toDate(),
-	);
-
-	//Inactive item conditional
-	if (daysUntilNextPurchaseItem1 >= 60) {
-		return 1;
+	//gets the days until next purchase between current date and dateNextPurchased for item argument
+	function getDaysUntilNextPurchase(item) {
+		return getDaysBetweenDates(new Date(), item.dateNextPurchased.toDate());
 	}
 
+	//Inactive item conditional
+	if (getDaysUntilNextPurchase(item1) >= 60) {
+		return 1;
+	}
 	//Overdue item conditional
 	if (new Date() > item1.dateNextPurchased.toDate()) {
 		return -1;
 	} else if (new Date() > item2.dateNextPurchased.toDate()) {
 		return 1;
 	}
-
 	//Conditionals for days until next purchase and alphabetized if same number of days
-	if (daysUntilNextPurchaseItem1 < daysUntilNextPurchaseItem2) {
+	if (getDaysUntilNextPurchase(item1) < getDaysUntilNextPurchase(item2)) {
 		return -1;
-	} else if (daysUntilNextPurchaseItem1 > daysUntilNextPurchaseItem2) {
+	} else if (
+		getDaysUntilNextPurchase(item1) > getDaysUntilNextPurchase(item2)
+	) {
 		return 1;
 	} else {
 		if (item1.name < item2.name) {
