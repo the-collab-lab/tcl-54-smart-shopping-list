@@ -10,6 +10,7 @@ export function ListItem({
 	dateNextPurchased,
 }) {
 	const [check, setCheck] = useState(false);
+	const currentDate = new Date();
 
 	/**
 	 * When List view is opened or refreshed,
@@ -18,7 +19,6 @@ export function ListItem({
 	 * was purchased fewer than 24 hours ago.
 	 */
 	useEffect(() => {
-		const currentDate = new Date();
 		/*  purchaseDate is filtering for dates that exists in the Firestore shopping list collection
 		 And if date exists, it's converting it to a JavaScript timestamp */
 		let purchasedDate = dateLastPurchased
@@ -45,20 +45,19 @@ export function ListItem({
 
 	//Function to return the buying urgency tag associated with an item
 	const getBuyingUrgency = () => {
-		//declare value for buying urgency string to be returned
+		//Declare value for buying urgency string to be returned
 		let buyingUrgency;
 
-		//Use getDaysBetweenDates to find the difference between the current date and dateNextPurchased
-		//Note - this doesn't specify yet whether a dateNextPurchase date has passed
+		//Returns the difference between the currentDate and dateNextPurchased
 		const daysUntilNextPurchase = getDaysBetweenDates(
-			new Date(),
+			currentDate,
 			dateNextPurchased.toDate(),
 		);
 
-		//if else statement to declare which of the 4 possible groups of urgency it belongs to
+		//Conditional statement to declare which of the 4 possible groups of urgency it belongs to
 		if (daysUntilNextPurchase >= 60) {
 			buyingUrgency = 'inactive (has not been purchased recently)';
-		} else if (new Date() > dateNextPurchased.toDate()) {
+		} else if (currentDate > dateNextPurchased.toDate()) {
 			buyingUrgency = 'overdue';
 		} else if (daysUntilNextPurchase >= 30) {
 			buyingUrgency = 'not soon (more than 30 days)';
@@ -67,6 +66,7 @@ export function ListItem({
 		} else {
 			buyingUrgency = 'soon (7 days or less)';
 		}
+
 		return buyingUrgency;
 	};
 

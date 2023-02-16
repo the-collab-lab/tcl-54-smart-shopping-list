@@ -37,9 +37,12 @@ export function streamListItems(listId, handleSuccess) {
  * - sort to earliest alphabet name if date next purchased is the same
  */
 export function comparePurchaseUrgency(item1, item2) {
-	//gets the days until next purchase between current date and dateNextPurchased for item argument
+	//Declare current date
+	const currentDate = new Date();
+
+	//Returns the days until next purchase between currentDate and dateNextPurchased for item argument
 	function getDaysUntilNextPurchase(item) {
-		return getDaysBetweenDates(new Date(), item.dateNextPurchased.toDate());
+		return getDaysBetweenDates(currentDate, item.dateNextPurchased.toDate());
 	}
 
 	//Inactive item conditional
@@ -47,9 +50,9 @@ export function comparePurchaseUrgency(item1, item2) {
 		return 1;
 	}
 	//Overdue item conditional
-	if (new Date() > item1.dateNextPurchased.toDate()) {
+	if (currentDate > item1.dateNextPurchased.toDate()) {
 		return -1;
-	} else if (new Date() > item2.dateNextPurchased.toDate()) {
+	} else if (currentDate > item2.dateNextPurchased.toDate()) {
 		return 1;
 	}
 	//Conditionals for days until next purchase and alphabetized if same number of days
@@ -60,6 +63,8 @@ export function comparePurchaseUrgency(item1, item2) {
 	) {
 		return 1;
 	} else {
+		// if days until next purchase between item1 and item2 are the same,
+		// we return the item earlier in the alphabet
 		if (item1.name < item2.name) {
 			return -1;
 		} else {
