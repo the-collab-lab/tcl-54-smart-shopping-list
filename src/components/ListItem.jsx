@@ -55,23 +55,11 @@ export function ListItem({
 			dateNextPurchased.toDate(),
 		);
 
-		/**
-		 * TODO: STRETCH GOAL: (overdue)
-		 * 	- Extend the functionality of comparePurchaseUrgency to sort “overdue” items to the top of the list
-		 *	- Indicate in your UI when an item is overdue
-		 * QUESTION:
-		 * 	What shows date next purchase has passed? To be placed in conditional below
-		 */
-		let daysSinceLastPurchase = dateLastPurchased
-			? getDaysBetweenDates(
-					dateNextPurchased.toDate(),
-					dateLastPurchased.toDate(),
-			  )
-			: dateLastPurchased;
-
 		//if else statement to declare which of the 4 possible groups of urgency it belongs to
 		if (daysUntilNextPurchase >= 60) {
 			buyingUrgency = 'inactive (has not been purchased recently)';
+		} else if (new Date() > dateNextPurchased.toDate()) {
+			buyingUrgency = 'overdue';
 		} else if (daysUntilNextPurchase >= 30) {
 			buyingUrgency = 'not soon (more than 30 days)';
 		} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
