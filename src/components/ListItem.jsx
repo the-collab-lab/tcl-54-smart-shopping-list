@@ -79,7 +79,7 @@ export function ListItem({
 	};
 
 	if (name) {
-		//call on function getBuyingUrgency get the correct urgency attributes
+		//call on function getBuyingUrgency to assign urgency attributes
 		getBuyingUrgency();
 
 		return (
