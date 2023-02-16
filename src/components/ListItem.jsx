@@ -10,7 +10,10 @@ export function ListItem({
 	dateNextPurchased,
 }) {
 	const [check, setCheck] = useState(false);
+	//Declare currentDate, colorUrgency, and buyingUrgency
 	const currentDate = new Date();
+	let colorUrgency;
+	let buyingUrgency;
 
 	/**
 	 * When List view is opened or refreshed,
@@ -45,32 +48,38 @@ export function ListItem({
 
 	//Function to return the buying urgency tag associated with an item
 	const getBuyingUrgency = () => {
-		//Declare value for buying urgency string to be returned
-		let buyingUrgency;
-
 		//Returns the difference between the currentDate and dateNextPurchased
 		const daysUntilNextPurchase = getDaysBetweenDates(
 			currentDate,
 			dateNextPurchased.toDate(),
 		);
 
-		//Conditional statement to declare which of the 4 possible groups of urgency it belongs to
+		//Conditional statement to categorize if an item is:
+		// - inactive: (60 days have passed since the last purchase)
+		// - overdue: currentDate has passed the dateNextPurchased, but not yet inactive
+		// - not soon: (30 days or more until the next purchase)
+		// - kind of soon: (between 7 & 30 days until the next purchase)
+		// - soon: (7 days or fewer until the next purchase)
 		if (daysUntilNextPurchase >= 60) {
-			buyingUrgency = 'inactive (has not been purchased recently)';
+			buyingUrgency = 'inactive';
+			colorUrgency = '#878E88';
 		} else if (currentDate > dateNextPurchased.toDate()) {
 			buyingUrgency = 'overdue';
+			colorUrgency = '#A30000';
 		} else if (daysUntilNextPurchase >= 30) {
-			buyingUrgency = 'not soon (more than 30 days)';
+			buyingUrgency = 'not soon';
+			colorUrgency = '#004777';
 		} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
-			buyingUrgency = 'kind of soon (30 days or less)';
+			buyingUrgency = 'kind of soon';
+			colorUrgency = '#00AFB5';
 		} else {
-			buyingUrgency = 'soon (7 days or less)';
+			buyingUrgency = 'soon';
+			colorUrgency = '#FF7700';
 		}
-
-		return buyingUrgency;
 	};
 
 	if (name) {
+		getBuyingUrgency();
 		return (
 			<li className="ListItem">
 				<label>
@@ -82,9 +91,8 @@ export function ListItem({
 						disabled={check}
 					/>
 					{name}
-					&nbsp;
-					{/* return buying urgency string */}
-					{getBuyingUrgency()}
+					{/* return buying urgency and temporary color identifiers */}
+					<span style={{ color: `${colorUrgency}` }}> {buyingUrgency}</span>
 				</label>
 			</li>
 		);
