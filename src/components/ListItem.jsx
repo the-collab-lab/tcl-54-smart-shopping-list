@@ -46,7 +46,7 @@ export function ListItem({
 		});
 	};
 
-	//Function to return the buying urgency tag associated with an item
+	//Function to assign string value to buyingUrgency and color value to colorUrgency
 	const getBuyingUrgency = () => {
 		//Returns the difference between the currentDate and dateNextPurchased
 		const daysUntilNextPurchase = getDaysBetweenDates(
@@ -79,7 +79,9 @@ export function ListItem({
 	};
 
 	if (name) {
+		//call on function getBuyingUrgency get the correct urgency attributes
 		getBuyingUrgency();
+
 		return (
 			<li className="ListItem">
 				<label>
