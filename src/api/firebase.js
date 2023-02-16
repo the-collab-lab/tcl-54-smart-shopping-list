@@ -32,11 +32,9 @@ export function streamListItems(listId, handleSuccess) {
 /**
  * comparePurchaseUrgency CURRENT FUNCTIONS:
  * - sort for inactive items last, then
- * - sort to most urgent date next pruchased, then
- * - sorts to earliest alphabet name if date next purchased is the same
- *
- * TODO (STRETCH GOAL):
- * - sorts for overdue items to be listed at the top that aren't inactive
+ * - sort for overdue items to be listed at the top that aren't inactive, then
+ * - sort to most urgent date next purchased, then
+ * - sort to earliest alphabet name if date next purchased is the same
  */
 export function comparePurchaseUrgency(item1, item2) {
 	//gets the days until next purchase between current date and dateNextPurchased for item argument
