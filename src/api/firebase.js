@@ -52,9 +52,13 @@ export function comparePurchaseUrgency(item1, item2) {
 	//Overdue item conditional
 	if (currentDate > item1.dateNextPurchased.toDate()) {
 		return -1;
-	} else if (currentDate > item2.dateNextPurchased.toDate()) {
+	} else if (
+		currentDate > item2.dateNextPurchased.toDate() &&
+		getDaysUntilNextPurchase(item2) < 60
+	) {
 		return 1;
 	}
+
 	//Conditionals for days until next purchase and alphabetized if same number of days
 	if (getDaysUntilNextPurchase(item1) < getDaysUntilNextPurchase(item2)) {
 		return -1;
