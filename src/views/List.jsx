@@ -2,16 +2,12 @@ import { ListItem } from '../components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { comparePurchaseUrgency } from '../api/firebase';
+import { getDaysBetweenDates } from '../utils/dates';
 
 /** List component that displays items in a user's shopping cart  */
 export function List({ data, loading }) {
 	const [filteredList, setFilteredList] = useState([]);
 	const [filterInput, setFilterInput] = useState('');
-
-	/* Sorted shopping list data by purchase urgency */
-	const urgencyData = data
-		.filter((item) => item.name)
-		.sort(comparePurchaseUrgency);
 
 	/* Declare navigate for view redirection */
 	const navigate = useNavigate();
@@ -26,18 +22,6 @@ export function List({ data, loading }) {
 		return shoppingListArr.length === 0 ? true : false;
 	};
 
-	/* Use handler to change the state of filterInput 
-	and convert all items to lowercase to facilitate a more thorough search */
-	const handleInput = (event) => {
-		const value = event.target.value.toLowerCase().trim();
-		setFilterInput(value);
-		setFilteredList(
-			data.filter((item) => {
-				return item.name && item.name.toLowerCase().includes(value);
-			}),
-		);
-	};
-
 	const handleClick = (e) => {
 		e.preventDefault();
 		setFilterInput('');
@@ -46,6 +30,66 @@ export function List({ data, loading }) {
 	/*Handles navigation to Add Item view */
 	const handleAddItem = () => {
 		navigate('/add-item');
+	};
+
+	//Function to assign string value to buyingUrgency and color value to colorUrgency
+	const getBuyingUrgency = (item) => {
+		//Returns the difference between the currentDate and dateNextPurchased
+		let buyingUrgency;
+		let colorUrgency;
+
+		if (item.dateNextPurchased) {
+			let daysUntilNextPurchase = getDaysBetweenDates(
+				new Date(),
+				item.dateNextPurchased.toDate(),
+			);
+
+			//Conditional statement to categorize if an item is:
+			// - inactive: (60 days have passed since the last purchase)
+			// - overdue: currentDate has passed the dateNextPurchased, but not yet inactive
+			// - not soon: (30 days or more until the next purchase)
+			// - kind of soon: (between 7 & 30 days until the next purchase)
+			// - soon: (7 days or fewer until the next purchase)
+			if (daysUntilNextPurchase >= 60) {
+				buyingUrgency = 'inactive';
+				colorUrgency = '#878E88';
+			} else if (new Date() > item.dateNextPurchased.toDate()) {
+				buyingUrgency = 'overdue';
+				colorUrgency = '#A30000';
+			} else if (daysUntilNextPurchase >= 30) {
+				buyingUrgency = 'not soon';
+				colorUrgency = '#004777';
+			} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
+				buyingUrgency = 'kind of soon';
+				colorUrgency = '#00AFB5';
+			} else {
+				buyingUrgency = 'soon';
+				colorUrgency = '#FF7700';
+			}
+		}
+
+		return { buyingUrgency, colorUrgency };
+	};
+
+	/* Sorting the shopping list items by urgency */
+	let dataWithUrgency = data
+		.map((item) => ({
+			...item,
+			urgency: getBuyingUrgency(item),
+		}))
+		.filter((item) => item.hasOwnProperty('name'))
+		.sort(comparePurchaseUrgency);
+
+	/* Use handler to change the state of filterInput 
+	and convert all items to lowercase to facilitate a more thorough search */
+	const handleInput = (event) => {
+		const value = event.target.value.toLowerCase().trim();
+		setFilterInput(value);
+		setFilteredList(
+			dataWithUrgency.filter((item) => {
+				return item.name && item.name.toLowerCase().includes(value);
+			}),
+		);
 	};
 
 	if (loading) {
@@ -87,8 +131,8 @@ export function List({ data, loading }) {
 				{/* Uses data or state of filteredList depending on state of filterInput */}
 				<ul>
 					{!filterInput
-						? // map over the sorted urgencyData
-						  urgencyData.map((item) => {
+						? // map over the sorted dataWithUrgency
+						  dataWithUrgency.map((item) => {
 								return (
 									<ListItem
 										key={item.id}
@@ -96,6 +140,7 @@ export function List({ data, loading }) {
 										name={item.name}
 										dateLastPurchased={item.dateLastPurchased}
 										dateNextPurchased={item.dateNextPurchased}
+										urgency={item.urgency}
 									/>
 								);
 						  })
@@ -107,6 +152,7 @@ export function List({ data, loading }) {
 										name={item.name}
 										dateLastPurchased={item.dateLastPurchased}
 										dateNextPurchased={item.dateNextPurchased}
+										urgency={item.urgency}
 									/>
 								);
 						  })}
