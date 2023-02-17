@@ -40,9 +40,10 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 	};
 
 	// When remove button is clicked, a confirm window pops up, and when user confirms, deleteItem() is called
-	const handleDelete = async (e) => {
-		if (window.confirm(`Do you want to remove ${name}?`)) {
-			deleteItem(listId, itemId);
+	const handleDelete = async () => {
+		// eslint-disable-next-line no-restricted-globals
+		if (confirm(`Do you want to remove ${name}?`)) {
+			await deleteItem(listId, itemId);
 		}
 	};
 
