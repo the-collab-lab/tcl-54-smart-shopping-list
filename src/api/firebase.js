@@ -7,6 +7,7 @@ import {
 	doc,
 	updateDoc,
 	getDoc,
+	deleteDoc,
 } from 'firebase/firestore';
 import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 import { db } from './config';
@@ -143,12 +144,13 @@ export async function updateItem(listId, itemId, checked) {
 	});
 }
 
-export async function deleteItem() {
-	/**
-	 * TODO: Fill this out so that it uses the correct Firestore function
-	 * to delete an existing item. You'll need to figure out what arguments
-	 * this function must accept!
-	 */
+/**
+ * Delete an item in the user's list in Firestore.
+ * @param {string} listId The id of the list that has the item(s) we're deleting.
+ * @param {string} itemID The id of the list item we're deleting.
+ */
+export async function deleteItem(listId, itemId) {
+	await deleteDoc(doc(db, listId, itemId));
 }
 
 /** This function uses a new list token to create and save an empty new collection to Firestore.*/
