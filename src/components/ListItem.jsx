@@ -29,6 +29,8 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 		the number of hours between the purchase date and the current time is less than 1 day
 		*/
 
+		// TEST COMMENT //
+
 		getDaysBetweenDates(currentDate, purchasedDate, false) < 1
 			? setCheck(true)
 			: setCheck(false);
