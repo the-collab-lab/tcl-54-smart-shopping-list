@@ -34,10 +34,11 @@ export function List({ data, loading }) {
 
 	//Function to assign string value to buyingUrgency and color value to colorUrgency
 	const getBuyingUrgency = (item) => {
-		//Returns the difference between the currentDate and dateNextPurchased
 		let buyingUrgency;
 		let colorUrgency;
 
+		//To filter for non-empty items, if an item exists in the data and has a
+		//dateNextPurchased value, that item will be assigned a daysUntilNextPurchase value.
 		if (item.dateNextPurchased) {
 			let daysUntilNextPurchase = getDaysBetweenDates(
 				new Date(),
@@ -68,10 +69,16 @@ export function List({ data, loading }) {
 			}
 		}
 
+		//To be used as new additions to item properties in the new shopping list dataWithUrgency
 		return { buyingUrgency, colorUrgency };
 	};
 
-	/* Sorting the shopping list items by urgency */
+	/* Sorting the shopping list items by urgency using the following steps:
+		- filter() to use items that are non-empty
+		- map() to create a new array using the existing shopping items ,
+			and adding the urgency properties of buyingUrgency and colorUrgency to urgency key.
+		- sort() to utilize the comparePurchaseUrgency function created in firebase to sort items by urgency
+	*/
 	let dataWithUrgency = data
 		.filter((item) => item.hasOwnProperty('name'))
 		.map((item) => ({

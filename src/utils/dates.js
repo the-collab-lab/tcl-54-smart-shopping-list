@@ -18,7 +18,7 @@ export function getDaysBetweenDates(date1, date2, roundDays = true) {
 	const timeElapsed = Math.abs(date1 - date2);
 
 	/* daysElapsed converts the milliseconds of timeElapsed into days 
-	and rounds the up that number  */
+	and rounds up that number  */
 	const daysElapsed = timeElapsed / ONE_DAY_IN_MILLISECONDS;
 
 	return roundDays ? Math.ceil(daysElapsed) : daysElapsed;

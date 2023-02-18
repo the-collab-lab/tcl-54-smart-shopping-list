@@ -38,7 +38,7 @@ export function streamListItems(listId, handleSuccess) {
  * - sort to earliest alphabet name if date next purchased is the same
  */
 export function comparePurchaseUrgency(item1, item2) {
-	//Declare current date
+	//Declare current date and inactive days
 	const currentDate = new Date();
 
 	//Returns the days until next purchase between currentDate and dateNextPurchased for item argument
