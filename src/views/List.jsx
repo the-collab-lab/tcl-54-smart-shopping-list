@@ -73,11 +73,11 @@ export function List({ data, loading }) {
 
 	/* Sorting the shopping list items by urgency */
 	let dataWithUrgency = data
+		.filter((item) => item.hasOwnProperty('name'))
 		.map((item) => ({
 			...item,
 			urgency: getBuyingUrgency(item),
 		}))
-		.filter((item) => item.hasOwnProperty('name'))
 		.sort(comparePurchaseUrgency);
 
 	/* Use handler to change the state of filterInput 

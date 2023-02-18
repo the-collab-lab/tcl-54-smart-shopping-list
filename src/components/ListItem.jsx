@@ -26,7 +26,8 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 		Then, the checked value here is passed as a property to `firebase.js` relaying if
 		the number of hours between the purchase date and the current time is less than 1 day
 		*/
-		getDaysBetweenDates(currentDate, purchasedDate) < 1
+
+		getDaysBetweenDates(currentDate, purchasedDate, false) < 1
 			? setCheck(true)
 			: setCheck(false);
 	}, [dateLastPurchased]);
