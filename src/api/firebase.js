@@ -31,6 +31,54 @@ export function streamListItems(listId, handleSuccess) {
 }
 
 /**
+ * comparePurchaseUrgency CURRENT FUNCTIONS:
+ * - sort for inactive items last, then
+ * - sort for overdue items to be listed at the top that aren't inactive, then
+ * - sort to most urgent date next purchased, then
+ * - sort to earliest alphabet name if date next purchased is the same
+ */
+export function comparePurchaseUrgency(item1, item2) {
+	//Declare current date and inactive days
+	const currentDate = new Date();
+
+	//Returns the days until next purchase between currentDate and dateNextPurchased for item argument
+	function getDaysUntilNextPurchase(item) {
+		return getDaysBetweenDates(currentDate, item.dateNextPurchased.toDate());
+	}
+
+	//Inactive item conditional
+	if (getDaysUntilNextPurchase(item1) >= 60) {
+		return 1;
+	}
+	//Overdue item conditional
+	if (currentDate > item1.dateNextPurchased.toDate()) {
+		return -1;
+	} else if (
+		currentDate > item2.dateNextPurchased.toDate() &&
+		getDaysUntilNextPurchase(item2) < 60
+	) {
+		return 1;
+	}
+
+	//Conditionals for days until next purchase and alphabetized if same number of days
+	if (getDaysUntilNextPurchase(item1) < getDaysUntilNextPurchase(item2)) {
+		return -1;
+	} else if (
+		getDaysUntilNextPurchase(item1) > getDaysUntilNextPurchase(item2)
+	) {
+		return 1;
+	} else {
+		// if days until next purchase between item1 and item2 are the same,
+		// we return the item earlier in the alphabet
+		if (item1.name < item2.name) {
+			return -1;
+		} else {
+			return 1;
+		}
+	}
+}
+
+/**
  * Read the information from the provided snapshot and return an array
  * that can be stored in our React state.
  * @param {Object} snapshot A special Firebase document with information about the current state of the database.

@@ -3,8 +3,10 @@ import { updateItem, deleteItem } from '../api/firebase';
 import { useState, useEffect } from 'react';
 import { getDaysBetweenDates } from '../utils/dates';
 
-export function ListItem({ name, itemId, dateLastPurchased }) {
+export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	const [check, setCheck] = useState(false);
+	//Declare currentDate, colorUrgency, and buyingUrgency
+	const currentDate = new Date();
 
 	const listId = localStorage.getItem('tcl-shopping-list-token');
 
@@ -15,7 +17,6 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 	 * was purchased fewer than 24 hours ago.
 	 */
 	useEffect(() => {
-		const currentDate = new Date();
 		/*  purchaseDate is filtering for dates that exists in the Firestore shopping list collection
 		 And if date exists, it's converting it to a JavaScript timestamp */
 		let purchasedDate = dateLastPurchased
@@ -27,7 +28,8 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 		Then, the checked value here is passed as a property to `firebase.js` relaying if
 		the number of hours between the purchase date and the current time is less than 1 day
 		*/
-		getDaysBetweenDates(currentDate, purchasedDate) < 1
+
+		getDaysBetweenDates(currentDate, purchasedDate, false) < 1
 			? setCheck(true)
 			: setCheck(false);
 	}, [dateLastPurchased]);
@@ -47,6 +49,10 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 		}
 	};
 
+	/* Checking for the existence of urgency to avoid `undefined` */
+	const buyingUrgency = urgency ? urgency.buyingUrgency : '';
+	const colorUrgency = urgency ? urgency.colorUrgency : '';
+
 	if (name) {
 		return (
 			<li className="ListItem">
@@ -59,6 +65,8 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 						disabled={check}
 					/>
 					{name}
+					{/* return buying urgency and temporary color identifiers */}
+					<span style={{ color: colorUrgency }}> {buyingUrgency}</span>
 				</label>
 				<button type="button" onClick={handleDelete}>
 					Remove
