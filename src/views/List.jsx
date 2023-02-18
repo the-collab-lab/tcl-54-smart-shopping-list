@@ -55,13 +55,13 @@ export function List({ data, loading }) {
 				colorUrgency = '#878E88';
 			} else if (new Date() > item.dateNextPurchased.toDate()) {
 				buyingUrgency = 'overdue';
-				colorUrgency = '#A30000';
+				colorUrgency = '#CD001A';
 			} else if (daysUntilNextPurchase >= 30) {
 				buyingUrgency = 'not soon';
-				colorUrgency = '#004777';
+				colorUrgency = '#00AFB5';
 			} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
 				buyingUrgency = 'kind of soon';
-				colorUrgency = '#00AFB5';
+				colorUrgency = '#FFB81C';
 			} else {
 				buyingUrgency = 'soon';
 				colorUrgency = '#FF7700';
