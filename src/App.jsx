@@ -5,6 +5,7 @@ import { AddItem, Home, Layout, List } from './views';
 
 import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function App() {
 	const [data, setData] = useState([]);

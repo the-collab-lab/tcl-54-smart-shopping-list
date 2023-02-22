@@ -4,6 +4,7 @@ import { generateToken } from '@the-collab-lab/shopping-list-utils';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createNewList, listExists } from '../api/firebase';
+import { Button } from 'react-bootstrap';
 
 /** Home component that redirects a user to the List view if there is already a list created.
  * If the user doesn't already have a list, a user can create a list or join one to be saved to Firestore and be redirected to the List view. */
@@ -93,7 +94,9 @@ export function Home({ setListToken }) {
 			<p>
 				Hello from the home (<code>/</code>) page!
 			</p>
-			<button onClick={createNewToken}>Create a new list</button>
+			<Button onClick={createNewToken} variant="primary">
+				Create a new list
+			</Button>
 			<p>- or -</p>
 			<p>Join an existing shopping list by entering a three word token.</p>
 			<form id="join-shopping-list-form" onSubmit={joinExistingToken}>
@@ -109,9 +112,9 @@ export function Home({ setListToken }) {
 					/>
 				</div>
 				<div>
-					<button type="submit" id="submit-share-token">
+					<Button type="submit" id="submit-share-token" variant="primary">
 						Join an existing list
-					</button>
+					</Button>
 				</div>
 			</form>
 			<Toaster />
