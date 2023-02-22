@@ -111,7 +111,9 @@ export function List({ data, loading }) {
 					<strong>Add items to start your shopping list</strong>
 				</p>
 				<p>Once you add an item, your shopping list will appear here.</p>
-				<Button onClick={handleAddItem}>Add items</Button>
+				<Button onClick={handleAddItem} variant="primary">
+					Add items
+				</Button>
 			</>
 		) : (
 			/* If false that list contains items,
@@ -122,14 +124,14 @@ export function List({ data, loading }) {
 					Hello from the <code>/list</code> page!
 				</p>
 
-				<form>
-					<label htmlFor="list-filter">Filter items</label>
-					<br />
+				<Form>
+					{/* <Form.Label htmlFor="list-filter">Filter items</Form.Label>
+					<br /> */}
 					<InputGroup>
 						<Form.Control
 							id="list-filter"
 							type="text"
-							placeholder="Search"
+							placeholder="Search items"
 							value={filterInput}
 							onChange={handleInput}
 						/>
@@ -139,7 +141,7 @@ export function List({ data, loading }) {
 							</Button>
 						)}
 					</InputGroup>
-				</form>
+				</Form>
 				{/* Uses data or state of filteredList depending on state of filterInput */}
 				<ListGroup>
 					{!filterInput
