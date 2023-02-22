@@ -1,7 +1,7 @@
 import { addItem } from '../api/firebase';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { Button } from 'react-bootstrap';
+import { Button, Form, InputGroup } from 'react-bootstrap';
 
 /**
  * Allows user to add an item to their shopping list,
@@ -109,22 +109,24 @@ export function AddItem({ listToken, data }) {
 
 	return (
 		<>
-			<form onSubmit={onFormSubmit}>
-				<div>
-					<label htmlFor="item">Item Name:</label>
-				</div>
-				<input
-					type="text"
-					id="item"
-					name="item"
-					value={itemName}
-					onChange={(e) => setItemName(e.target.value)}
-					required={true}
-				/>
-				<div id="purchase-date-label">How soon will you buy this again?</div>
+			<Form onSubmit={onFormSubmit}>
+				<Form.Label htmlFor="item">Item Name:</Form.Label>
+				<InputGroup>
+					<Form.Control
+						type="text"
+						id="item"
+						name="item"
+						value={itemName}
+						onChange={(e) => setItemName(e.target.value)}
+						required={true}
+					/>
+				</InputGroup>
+				<Form.Label id="purchase-date-label">
+					How soon will you buy this again?
+				</Form.Label>
 				<fieldset>
 					<div>
-						<input
+						<Form.Check
 							defaultChecked
 							aria-labelledby="purchase-date-label"
 							type="radio"
@@ -132,32 +134,32 @@ export function AddItem({ listToken, data }) {
 							id="soon"
 							name="radio-btn"
 							onChange={handlePurchaseDate}
+							label="Soon"
 						/>
-						<label htmlFor="soon">Soon</label>
 					</div>
 					<div>
-						<input
+						<Form.Check
 							type="radio"
 							value="kind-of-soon"
 							id="kind-of-soon"
 							name="radio-btn"
 							onChange={handlePurchaseDate}
+							label="Kind of Soon"
 						/>
-						<label htmlFor="kind-of-soon">Kind Of Soon</label>
 					</div>
 					<div>
-						<input
+						<Form.Check
 							type="radio"
 							id="not-soon"
 							value="not-soon"
 							name="radio-btn"
 							onChange={handlePurchaseDate}
+							label="Not Soon"
 						/>
-						<label htmlFor="not-soon">Not Soon</label>
 					</div>
 				</fieldset>
 				<Button type="submit">Add Item</Button>
-			</form>
+			</Form>
 			<Toaster />
 		</>
 	);
