@@ -2,7 +2,7 @@ import './ListItem.css';
 import { updateItem, deleteItem } from '../api/firebase';
 import { useState, useEffect } from 'react';
 import { getDaysBetweenDates } from '../utils/dates';
-import { Button } from 'react-bootstrap';
+import { Button, ListGroup, Form } from 'react-bootstrap';
 
 export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	const [check, setCheck] = useState(false);
@@ -56,23 +56,23 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 
 	if (name) {
 		return (
-			<li className="ListItem">
-				<label>
-					<input
+			<ListGroup.Item className="ListItem">
+				<Form>
+					<Form.Check
 						value={name}
 						type="checkbox"
 						onChange={handleCheck}
 						checked={check}
 						disabled={check}
+						label={name}
 					/>
-					{name}
 					{/* return buying urgency and temporary color identifiers */}
 					<span style={{ color: colorUrgency }}> {buyingUrgency}</span>
-				</label>
-				<Button type="button" onClick={handleDelete} variant="primary">
-					Remove
-				</Button>
-			</li>
+					<Button type="button" onClick={handleDelete} variant="primary">
+						Remove
+					</Button>
+				</Form>
+			</ListGroup.Item>
 		);
 	}
 }

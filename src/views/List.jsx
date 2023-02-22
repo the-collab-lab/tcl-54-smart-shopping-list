@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { comparePurchaseUrgency } from '../api/firebase';
 import { getDaysBetweenDates } from '../utils/dates';
-import { Button, InputGroup, Form } from 'react-bootstrap';
+import { Button, InputGroup, Form, ListGroup } from 'react-bootstrap';
 
 /** List component that displays items in a user's shopping cart  */
 export function List({ data, loading }) {
@@ -141,7 +141,7 @@ export function List({ data, loading }) {
 					</InputGroup>
 				</form>
 				{/* Uses data or state of filteredList depending on state of filterInput */}
-				<ul>
+				<ListGroup>
 					{!filterInput
 						? // map over the sorted dataWithUrgency
 						  dataWithUrgency.map((item) => {
@@ -168,7 +168,7 @@ export function List({ data, loading }) {
 									/>
 								);
 						  })}
-				</ul>
+				</ListGroup>
 			</>
 		);
 	}
