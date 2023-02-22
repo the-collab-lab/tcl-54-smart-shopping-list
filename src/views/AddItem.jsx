@@ -1,6 +1,7 @@
 import { addItem } from '../api/firebase';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import { Button } from 'react-bootstrap';
 
 /**
  * Allows user to add an item to their shopping list,
@@ -155,7 +156,7 @@ export function AddItem({ listToken, data }) {
 						<label htmlFor="not-soon">Not Soon</label>
 					</div>
 				</fieldset>
-				<button type="submit">Add Item</button>
+				<Button type="submit">Add Item</Button>
 			</form>
 			<Toaster />
 		</>

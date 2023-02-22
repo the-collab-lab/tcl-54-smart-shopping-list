@@ -2,6 +2,7 @@ import './ListItem.css';
 import { updateItem, deleteItem } from '../api/firebase';
 import { useState, useEffect } from 'react';
 import { getDaysBetweenDates } from '../utils/dates';
+import { Button } from 'react-bootstrap';
 
 export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	const [check, setCheck] = useState(false);
@@ -68,9 +69,9 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 					{/* return buying urgency and temporary color identifiers */}
 					<span style={{ color: colorUrgency }}> {buyingUrgency}</span>
 				</label>
-				<button type="button" onClick={handleDelete}>
+				<Button type="button" onClick={handleDelete} variant="primary">
 					Remove
-				</button>
+				</Button>
 			</li>
 		);
 	}
