@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { comparePurchaseUrgency } from '../api/firebase';
 import { getDaysBetweenDates } from '../utils/dates';
+import { Button, InputGroup, Form, ListGroup } from 'react-bootstrap';
 
 /** List component that displays items in a user's shopping cart  */
 export function List({ data, loading }) {
@@ -110,7 +111,9 @@ export function List({ data, loading }) {
 					<strong>Add items to start your shopping list</strong>
 				</p>
 				<p>Once you add an item, your shopping list will appear here.</p>
-				<button onClick={handleAddItem}>Add items</button>
+				<Button onClick={handleAddItem} variant="primary">
+					Add items
+				</Button>
 			</>
 		) : (
 			/* If false that list contains items,
@@ -121,22 +124,26 @@ export function List({ data, loading }) {
 					Hello from the <code>/list</code> page!
 				</p>
 
-				<form>
-					<label htmlFor="list-filter">Filter items</label>
-					<br />
-					<div>
-						<input
+				<Form>
+					{/* <Form.Label htmlFor="list-filter">Filter items</Form.Label>
+					<br /> */}
+					<InputGroup>
+						<Form.Control
 							id="list-filter"
 							type="text"
-							placeholder="Start typing here..."
+							placeholder="Search items"
 							value={filterInput}
 							onChange={handleInput}
 						/>
-						{filterInput && <button onClick={handleClick}>X</button>}
-					</div>
-				</form>
+						{filterInput && (
+							<Button onClick={handleClick} variant="outline-primary">
+								X
+							</Button>
+						)}
+					</InputGroup>
+				</Form>
 				{/* Uses data or state of filteredList depending on state of filterInput */}
-				<ul>
+				<ListGroup>
 					{!filterInput
 						? // map over the sorted dataWithUrgency
 						  dataWithUrgency.map((item) => {
@@ -163,7 +170,7 @@ export function List({ data, loading }) {
 									/>
 								);
 						  })}
-				</ul>
+				</ListGroup>
 			</>
 		);
 	}
