@@ -93,7 +93,6 @@ export function List({ data, loading }) {
 			urgency: getBuyingUrgency(item),
 		}))
 		.sort(comparePurchaseUrgency);
-	console.log(dataWithUrgency);
 
 	/* Use handler to change the state of filterInput 
 	and convert all items to lowercase to facilitate a more thorough search */
@@ -146,7 +145,9 @@ export function List({ data, loading }) {
 					</InputGroup>
 				</Form>
 				{/* Card is used for the oven image to be used as a background for the shopping list items */}
-				<Card>
+				{/* border-0 and bg-transparent removes the encasing border and background color of a card
+					so that the oven image is the sole display */}
+				<Card className="border-0 bg-transparent">
 					<Card.Img src="../img/bread_styling/oven.svg/" alt="Card image" />
 					<Card.ImgOverlay style={{ paddingTop: '20%' }}>
 						<Card.Text className="overflow-auto" style={{ maxHeight: '100%' }}>
