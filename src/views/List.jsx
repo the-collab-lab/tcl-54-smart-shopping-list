@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { comparePurchaseUrgency } from '../api/firebase';
 import { getDaysBetweenDates } from '../utils/dates';
-import { Button, InputGroup, Form, ListGroup } from 'react-bootstrap';
+import { Button, InputGroup, Form, ListGroup, Card } from 'react-bootstrap';
 
 /** List component that displays items in a user's shopping cart  */
 export function List({ data, loading }) {
@@ -143,11 +143,49 @@ export function List({ data, loading }) {
 					</InputGroup>
 				</Form>
 				{/* Uses data or state of filteredList depending on state of filterInput */}
-				<ListGroup>
-					{!filterInput
-						? // map over the sorted dataWithUrgency
-						  dataWithUrgency.map((item) => {
-								return (
+				{/* <ListGroup> */}
+				<Card>
+					<Card.Img src="/img/oven.svg/" alt="Card image" />
+					<Card.ImgOverlay style={{ paddingTop: '70px' }}>
+						<Card.Text className="overflow-auto" style={{ maxHeight: '490px' }}>
+							<ListGroup>
+								{!filterInput
+									? // map over the sorted dataWithUrgency
+									  dataWithUrgency.map((item) => {
+											return (
+												<>
+													<ListItem
+														key={item.id}
+														itemId={item.id}
+														name={item.name}
+														dateLastPurchased={item.dateLastPurchased}
+														dateNextPurchased={item.dateNextPurchased}
+														urgency={item.urgency}
+													/>
+												</>
+											);
+									  })
+									: filteredList.map((item) => {
+											return (
+												<ListItem
+													key={item.id}
+													itemId={item.id}
+													name={item.name}
+													dateLastPurchased={item.dateLastPurchased}
+													dateNextPurchased={item.dateNextPurchased}
+													urgency={item.urgency}
+												/>
+											);
+									  })}
+							</ListGroup>
+						</Card.Text>
+					</Card.ImgOverlay>
+				</Card>
+				{/* {!filterInput
+					? // map over the sorted dataWithUrgency
+					  dataWithUrgency.map((item) => {
+							return (
+								<>
 									<ListItem
 										key={item.id}
 										itemId={item.id}
@@ -156,21 +194,22 @@ export function List({ data, loading }) {
 										dateNextPurchased={item.dateNextPurchased}
 										urgency={item.urgency}
 									/>
-								);
-						  })
-						: filteredList.map((item) => {
-								return (
-									<ListItem
-										key={item.id}
-										itemId={item.id}
-										name={item.name}
-										dateLastPurchased={item.dateLastPurchased}
-										dateNextPurchased={item.dateNextPurchased}
-										urgency={item.urgency}
-									/>
-								);
-						  })}
-				</ListGroup>
+								</>
+							);
+					  })
+					: filteredList.map((item) => {
+							return (
+								<ListItem
+									key={item.id}
+									itemId={item.id}
+									name={item.name}
+									dateLastPurchased={item.dateLastPurchased}
+									dateNextPurchased={item.dateNextPurchased}
+									urgency={item.urgency}
+								/>
+							);
+					  })} */}
+				{/* </ListGroup> */}
 			</>
 		);
 	}
