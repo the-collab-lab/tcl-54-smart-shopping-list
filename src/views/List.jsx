@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { comparePurchaseUrgency } from '../api/firebase';
 import { getDaysBetweenDates } from '../utils/dates';
-import { Button, InputGroup, Form, ListGroup } from 'react-bootstrap';
+import { Button, InputGroup, Form, ListGroup, Card } from 'react-bootstrap';
 
 /** List component that displays items in a user's shopping cart  */
 export function List({ data, loading }) {
