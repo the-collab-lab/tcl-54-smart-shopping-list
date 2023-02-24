@@ -37,6 +37,7 @@ export function List({ data, loading }) {
 	const getBuyingUrgency = (item) => {
 		let buyingUrgency;
 		let colorUrgency;
+		let imgUrgency;
 
 		//To filter for non-empty items, if an item exists in the data and has a
 		//dateNextPurchased value, that item will be assigned a daysUntilNextPurchase value.
@@ -55,23 +56,28 @@ export function List({ data, loading }) {
 			if (daysUntilNextPurchase >= 60) {
 				buyingUrgency = 'inactive';
 				colorUrgency = '#878E88';
+				imgUrgency = '../img/bread_styling/inactive-loaf.svg/';
 			} else if (new Date() > item.dateNextPurchased.toDate()) {
 				buyingUrgency = 'overdue';
 				colorUrgency = '#CD001A';
+				imgUrgency = '../img/bread_styling/overdue-loaf.svg/';
 			} else if (daysUntilNextPurchase >= 30) {
 				buyingUrgency = 'not soon';
 				colorUrgency = '#00AFB5';
+				imgUrgency = '../img/bread_styling/not-soon-loaf.svg/';
 			} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
 				buyingUrgency = 'kind of soon';
 				colorUrgency = '#FFB81C';
+				imgUrgency = '../img/bread_styling/kind-of-soon-loaf.svg/';
 			} else {
 				buyingUrgency = 'soon';
 				colorUrgency = '#FF7700';
+				imgUrgency = '../img/bread_styling/soon-loaf.svg/';
 			}
 		}
 
 		//To be used as new additions to item properties in the new shopping list dataWithUrgency
-		return { buyingUrgency, colorUrgency };
+		return { buyingUrgency, colorUrgency, imgUrgency };
 	};
 
 	/* Sorting the shopping list items by urgency using the following steps:
@@ -87,6 +93,7 @@ export function List({ data, loading }) {
 			urgency: getBuyingUrgency(item),
 		}))
 		.sort(comparePurchaseUrgency);
+	console.log(dataWithUrgency);
 
 	/* Use handler to change the state of filterInput 
 	and convert all items to lowercase to facilitate a more thorough search */
@@ -120,10 +127,6 @@ export function List({ data, loading }) {
 			 the shopping list is displayed including the item filtering feature */
 
 			<>
-				<p>
-					Hello from the <code>/list</code> page!
-				</p>
-
 				<Form>
 					{/* <Form.Label htmlFor="list-filter">Filter items</Form.Label>
 					<br /> */}
@@ -142,12 +145,11 @@ export function List({ data, loading }) {
 						)}
 					</InputGroup>
 				</Form>
-				{/* Uses data or state of filteredList depending on state of filterInput */}
-				{/* <ListGroup> */}
+				{/* Card is used for the oven image to be used as a background for the shopping list items */}
 				<Card>
-					<Card.Img src="/img/oven.svg/" alt="Card image" />
-					<Card.ImgOverlay style={{ paddingTop: '70px' }}>
-						<Card.Text className="overflow-auto" style={{ maxHeight: '490px' }}>
+					<Card.Img src="../img/bread_styling/oven.svg/" alt="Card image" />
+					<Card.ImgOverlay style={{ paddingTop: '20%' }}>
+						<Card.Text className="overflow-auto" style={{ maxHeight: '100%' }}>
 							<ListGroup>
 								{!filterInput
 									? // map over the sorted dataWithUrgency
@@ -181,35 +183,6 @@ export function List({ data, loading }) {
 						</Card.Text>
 					</Card.ImgOverlay>
 				</Card>
-				{/* {!filterInput
-					? // map over the sorted dataWithUrgency
-					  dataWithUrgency.map((item) => {
-							return (
-								<>
-									<ListItem
-										key={item.id}
-										itemId={item.id}
-										name={item.name}
-										dateLastPurchased={item.dateLastPurchased}
-										dateNextPurchased={item.dateNextPurchased}
-										urgency={item.urgency}
-									/>
-								</>
-							);
-					  })
-					: filteredList.map((item) => {
-							return (
-								<ListItem
-									key={item.id}
-									itemId={item.id}
-									name={item.name}
-									dateLastPurchased={item.dateLastPurchased}
-									dateNextPurchased={item.dateNextPurchased}
-									urgency={item.urgency}
-								/>
-							);
-					  })} */}
-				{/* </ListGroup> */}
 			</>
 		);
 	}
