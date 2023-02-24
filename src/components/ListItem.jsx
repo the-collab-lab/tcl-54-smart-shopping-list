@@ -56,29 +56,30 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 
 	if (name) {
 		return (
-			<ListGroup.Item
-				as="li"
-				className="d-flex justify-content-between align-items-start"
-			>
-				<Form>
-					<Form.Check
-						value={name}
-						type="checkbox"
-						onChange={handleCheck}
-						checked={check}
-						disabled={check}
-						label={name}
-						id={`inline-checkbox-2`}
-						className="mb-3"
+			<>
+				<ListGroup.Item
+					as="li"
+					className="d-flex justify-content-between align-items-start"
+				>
+					<Form>
+						<Form.Check
+							value={name}
+							type="checkbox"
+							onChange={handleCheck}
+							checked={check}
+							disabled={check}
+							label={name}
+						/>
+					</Form>
+					<Image src={imgUrgency} style={{ paddingTop: '10%' }} />
+					<Image
+						src="../img/bread_styling/trash-icon.svg"
+						type="button"
+						onClick={handleDelete}
+						style={{ padding: '2%' }}
 					/>
-				</Form>
-				<Image src={imgUrgency} className="align-bottom" />
-				<Image
-					src="../img/bread_styling/trash-icon.svg"
-					type="button"
-					onClick={handleDelete}
-				/>
-			</ListGroup.Item>
+				</ListGroup.Item>
+			</>
 		);
 	}
 }
