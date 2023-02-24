@@ -1,7 +1,7 @@
 import { updateItem, deleteItem } from '../api/firebase';
 import { useState, useEffect } from 'react';
 import { getDaysBetweenDates } from '../utils/dates';
-import { Button, ListGroup, Form } from 'react-bootstrap';
+import { Button, ListGroup, Form, Image } from 'react-bootstrap';
 
 export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	const [check, setCheck] = useState(false);
@@ -52,6 +52,7 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	/* Checking for the existence of urgency to avoid `undefined` */
 	const buyingUrgency = urgency ? urgency.buyingUrgency : '';
 	const colorUrgency = urgency ? urgency.colorUrgency : '';
+	const imgUrgency = urgency ? urgency.imgUrgency : '';
 
 	if (name) {
 		return (
@@ -66,7 +67,7 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 						label={name}
 					/>
 					{/* return buying urgency and temporary color identifiers */}
-					<span style={{ color: colorUrgency }}> {buyingUrgency}</span>
+					<Image src={imgUrgency} />
 					<Button type="button" onClick={handleDelete} variant="primary">
 						Remove
 					</Button>
