@@ -1,6 +1,10 @@
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import { useLocation } from 'react-router';
 
 export function NavbarShoppingList() {
+	// useLocation hook is used to access the current route
+	const location = useLocation();
+
 	return (
 		<Navbar fluid="md" bg="light" expand="lg">
 			<Container>
@@ -11,12 +15,18 @@ export function NavbarShoppingList() {
 						<Nav.Link href="/">Home</Nav.Link>
 						<Nav.Link href="/list">List</Nav.Link>
 						<Nav.Link href="/add-item">Add Item</Nav.Link>
-						<Nav.Link
-							href="/"
-							onClick={() => localStorage.removeItem('tcl-shopping-list-token')}
-						>
-							Exit List
-						</Nav.Link>
+
+						{/* This will make 'Exit List' visible ONLY when route is on /list */}
+						{location.pathname === '/list' ? (
+							<Nav.Link
+								href="/"
+								onClick={() =>
+									localStorage.removeItem('tcl-shopping-list-token')
+								}
+							>
+								Exit List
+							</Nav.Link>
+						) : null}
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
