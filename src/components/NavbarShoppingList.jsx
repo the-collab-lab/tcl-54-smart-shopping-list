@@ -11,6 +11,12 @@ export function NavbarShoppingList() {
 						<Nav.Link href="/">Home</Nav.Link>
 						<Nav.Link href="/list">List</Nav.Link>
 						<Nav.Link href="/add-item">Add Item</Nav.Link>
+						<Nav.Link
+							href="/"
+							onClick={() => localStorage.removeItem('tcl-shopping-list-token')}
+						>
+							Exit List
+						</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
