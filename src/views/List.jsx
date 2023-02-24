@@ -3,7 +3,14 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { comparePurchaseUrgency } from '../api/firebase';
 import { getDaysBetweenDates } from '../utils/dates';
-import { Button, InputGroup, Form, ListGroup, Card } from 'react-bootstrap';
+import {
+	Button,
+	InputGroup,
+	Form,
+	ListGroup,
+	Card,
+	Image,
+} from 'react-bootstrap';
 
 /** List component that displays items in a user's shopping cart  */
 export function List({ data, loading }) {
@@ -147,13 +154,23 @@ export function List({ data, loading }) {
 			/* If true that list is empty, 
 			a welcoming user prompt is displayed to start adding items to the list */
 			<>
-				<p>
-					<strong>Add items to start your shopping list</strong>
-				</p>
-				<p>Once you add an item, your shopping list will appear here.</p>
-				<Button onClick={handleAddItem} variant="primary">
-					Add items
-				</Button>
+				<Card className="border-0 bg-transparent">
+					<Card.Img src="../img/bread_styling/oven.svg/" alt="Card image" />
+					<Card.ImgOverlay style={{ paddingTop: '20%' }}>
+						<Card.Text className="overflow-auto" style={{ maxHeight: '100%' }}>
+							<Image
+								src="../img/bread_styling/sad-pastry.png"
+								style={{ width: '50%', paddingTop: '15%' }}
+								className="rounded mx-auto d-block"
+							/>
+							<h1>Your list is empty.</h1>
+							<h2>Stop loafing around, and start shopping!</h2>
+							<Button onClick={handleAddItem} variant="primary">
+								Add items
+							</Button>
+						</Card.Text>
+					</Card.ImgOverlay>
+				</Card>
 			</>
 		) : (
 			/* If false that list contains items,
