@@ -161,13 +161,15 @@ export function List({ data, loading }) {
 							<Image
 								src="../img/bread_styling/sad-pastry.png"
 								style={{ width: '50%', paddingTop: '15%' }}
-								className="rounded mx-auto d-block"
+								className="mx-auto d-block"
 							/>
-							<h1>Your list is empty.</h1>
-							<h2>Stop loafing around, and start shopping!</h2>
-							<Button onClick={handleAddItem} variant="primary">
-								Add items
-							</Button>
+							<div className="mx-auto">
+								<h1>Your list is empty.</h1>
+								<h2>Stop loafing around, and start shopping!</h2>
+								<Button onClick={handleAddItem} variant="primary" size="lg">
+									Add items
+								</Button>
+							</div>
 						</Card.Text>
 					</Card.ImgOverlay>
 				</Card>
