@@ -175,10 +175,16 @@ export function List({ data, loading }) {
 			 the shopping list is displayed including the item filtering feature */
 
 			<>
-				<Form>
+				<Form
+					className="mx-auto"
+					style={{ maxWidth: '80%', paddingBottom: '5%', paddingTop: '1%' }}
+				>
 					{/* <Form.Label htmlFor="list-filter">Filter items</Form.Label>
 					<br /> */}
 					<InputGroup>
+						<InputGroup.Text>
+							<Image src="../img/icons/search-icon.svg" />
+						</InputGroup.Text>
 						<Form.Control
 							id="list-filter"
 							type="text"
@@ -188,7 +194,7 @@ export function List({ data, loading }) {
 						/>
 						{filterInput && (
 							<Button onClick={handleClick} variant="outline-primary">
-								X
+								{/* <i class="fa fa-search"></i> */}
 							</Button>
 						)}
 					</InputGroup>
