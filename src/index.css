@@ -40,13 +40,14 @@
 
 /**
  * Make sure the app fills the height of the viewport
+ * This causes issues with the navbar, so we commented it out but may need to revisit
  */
-html,
+/* html,
 body,
 #root,
 #root > * {
 	min-height: 100vh;
-}
+} */
 
 html {
 	font-size: 62.5%;

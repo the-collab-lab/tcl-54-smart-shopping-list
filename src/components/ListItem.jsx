@@ -1,10 +1,15 @@
 import './ListItem.css';
-import { updateItem } from '../api/firebase';
+import { updateItem, deleteItem } from '../api/firebase';
 import { useState, useEffect } from 'react';
 import { getDaysBetweenDates } from '../utils/dates';
+import { Button, ListGroup, Form } from 'react-bootstrap';
 
-export function ListItem({ name, itemId, dateLastPurchased }) {
+export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	const [check, setCheck] = useState(false);
+	//Declare currentDate, colorUrgency, and buyingUrgency
+	const currentDate = new Date();
+
+	const listId = localStorage.getItem('tcl-shopping-list-token');
 
 	/**
 	 * When List view is opened or refreshed,
@@ -13,7 +18,6 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 	 * was purchased fewer than 24 hours ago.
 	 */
 	useEffect(() => {
-		const currentDate = new Date();
 		/*  purchaseDate is filtering for dates that exists in the Firestore shopping list collection
 		 And if date exists, it's converting it to a JavaScript timestamp */
 		let purchasedDate = dateLastPurchased
@@ -25,33 +29,50 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 		Then, the checked value here is passed as a property to `firebase.js` relaying if
 		the number of hours between the purchase date and the current time is less than 1 day
 		*/
-		getDaysBetweenDates(currentDate, purchasedDate) < 1
+
+		getDaysBetweenDates(currentDate, purchasedDate, false) < 1
 			? setCheck(true)
 			: setCheck(false);
 	}, [dateLastPurchased]);
 
 	const handleCheck = async (e) => {
-		const listId = localStorage.getItem('tcl-shopping-list-token');
 		setCheck((prevCheck) => {
 			updateItem(listId, itemId, !prevCheck);
 			return !prevCheck;
 		});
 	};
 
+	// When remove button is clicked, a confirm window pops up, and when user confirms, deleteItem() is called
+	const handleDelete = async () => {
+		// eslint-disable-next-line no-restricted-globals
+		if (confirm(`Do you want to remove ${name}?`)) {
+			await deleteItem(listId, itemId);
+		}
+	};
+
+	/* Checking for the existence of urgency to avoid `undefined` */
+	const buyingUrgency = urgency ? urgency.buyingUrgency : '';
+	const colorUrgency = urgency ? urgency.colorUrgency : '';
+
 	if (name) {
 		return (
-			<li className="ListItem">
-				<label>
-					<input
+			<ListGroup.Item className="ListItem">
+				<Form>
+					<Form.Check
 						value={name}
 						type="checkbox"
 						onChange={handleCheck}
 						checked={check}
 						disabled={check}
+						label={name}
 					/>
-					{name}
-				</label>
-			</li>
+					{/* return buying urgency and temporary color identifiers */}
+					<span style={{ color: colorUrgency }}> {buyingUrgency}</span>
+					<Button type="button" onClick={handleDelete} variant="primary">
+						Remove
+					</Button>
+				</Form>
+			</ListGroup.Item>
 		);
 	}
 }

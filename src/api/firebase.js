@@ -7,6 +7,7 @@ import {
 	doc,
 	updateDoc,
 	getDoc,
+	deleteDoc,
 } from 'firebase/firestore';
 import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 import { db } from './config';
@@ -27,6 +28,54 @@ import {
 export function streamListItems(listId, handleSuccess) {
 	const listCollectionRef = collection(db, listId);
 	return onSnapshot(listCollectionRef, handleSuccess);
+}
+
+/**
+ * comparePurchaseUrgency CURRENT FUNCTIONS:
+ * - sort for inactive items last, then
+ * - sort for overdue items to be listed at the top that aren't inactive, then
+ * - sort to most urgent date next purchased, then
+ * - sort to earliest alphabet name if date next purchased is the same
+ */
+export function comparePurchaseUrgency(item1, item2) {
+	//Declare current date and inactive days
+	const currentDate = new Date();
+
+	//Returns the days until next purchase between currentDate and dateNextPurchased for item argument
+	function getDaysUntilNextPurchase(item) {
+		return getDaysBetweenDates(currentDate, item.dateNextPurchased.toDate());
+	}
+
+	//Inactive item conditional
+	if (getDaysUntilNextPurchase(item1) >= 60) {
+		return 1;
+	}
+	//Overdue item conditional
+	if (currentDate > item1.dateNextPurchased.toDate()) {
+		return -1;
+	} else if (
+		currentDate > item2.dateNextPurchased.toDate() &&
+		getDaysUntilNextPurchase(item2) < 60
+	) {
+		return 1;
+	}
+
+	//Conditionals for days until next purchase and alphabetized if same number of days
+	if (getDaysUntilNextPurchase(item1) < getDaysUntilNextPurchase(item2)) {
+		return -1;
+	} else if (
+		getDaysUntilNextPurchase(item1) > getDaysUntilNextPurchase(item2)
+	) {
+		return 1;
+	} else {
+		// if days until next purchase between item1 and item2 are the same,
+		// we return the item earlier in the alphabet
+		if (item1.name < item2.name) {
+			return -1;
+		} else {
+			return 1;
+		}
+	}
 }
 
 /**
@@ -143,12 +192,13 @@ export async function updateItem(listId, itemId, checked) {
 	});
 }
 
-export async function deleteItem() {
-	/**
-	 * TODO: Fill this out so that it uses the correct Firestore function
-	 * to delete an existing item. You'll need to figure out what arguments
-	 * this function must accept!
-	 */
+/**
+ * Delete an item in the user's list in Firestore.
+ * @param {string} listId The id of the list that has the item(s) we're deleting.
+ * @param {string} itemID The id of the list item we're deleting.
+ */
+export async function deleteItem(listId, itemId) {
+	await deleteDoc(doc(db, listId, itemId));
 }
 
 /** This function uses a new list token to create and save an empty new collection to Firestore.*/
