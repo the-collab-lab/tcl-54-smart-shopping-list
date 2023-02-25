@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import React, { useState } from 'react';
 import { Image } from 'react-bootstrap';
+import toast, { Toaster } from 'react-hot-toast';
 
 // import './Layout.css';
 import { NavbarShoppingList } from '../components';
@@ -12,17 +13,25 @@ export function Layout({ listToken }) {
 	const location = useLocation();
 	const [copied, setCopied] = useState(false);
 
+	// Notify when adding item is unsuccessful
+	const notifyCopied = () => toast('Copied!');
+
 	if (location.pathname === '/list') {
 		return (
 			<React.Fragment>
+				<Toaster />
 				<div className="Layout">
 					<header className="Layout-header">
 						<h4>Current List:</h4>
 						<h1>
 							{listToken}
 							<span>
-								<CopyToClipboard text="Hello!">
-									<Image type="button" src="../img/icons/copy-icon.svg" />
+								<CopyToClipboard text={listToken}>
+									<Image
+										type="button"
+										src="../img/icons/copy-icon.svg"
+										onClick={notifyCopied}
+									/>
 								</CopyToClipboard>
 							</span>
 						</h1>
