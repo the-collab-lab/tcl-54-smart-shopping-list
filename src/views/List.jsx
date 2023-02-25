@@ -1,5 +1,5 @@
 import { ListItem } from '../components';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { comparePurchaseUrgency } from '../api/firebase';
 import { getDaysBetweenDates } from '../utils/dates';
@@ -119,27 +119,23 @@ export function List({ data, loading }) {
 		return checkForEmptyList() ? (
 			/* If true that list is empty, 
 			a welcoming user prompt is displayed to start adding items to the list */
-			<>
-				<Card className="border-0 bg-transparent">
-					<Card.Img src="../img/bread_styling/oven.svg/" alt="Card image" />
-					<Card.ImgOverlay style={{ paddingTop: '20%' }}>
-						<Card.Text className="overflow-auto" style={{ maxHeight: '100%' }}>
-							<Image
-								src="../img/bread_styling/sad-pastry.png"
-								style={{ width: '50%', paddingTop: '15%' }}
-								className="mx-auto d-block"
-							/>
-							<div className="mx-auto">
-								<h1>Your list is empty.</h1>
-								<h2>Stop loafing around, and start shopping!</h2>
-								<Button onClick={handleAddItem} variant="primary" size="lg">
-									Add items
-								</Button>
-							</div>
-						</Card.Text>
-					</Card.ImgOverlay>
-				</Card>
-			</>
+			<Card className="border-0 bg-transparent">
+				<Card.Img src="../img/bread_styling/oven.svg/" alt="Card image" />
+				<Card.ImgOverlay style={{ paddingTop: '20%' }}>
+					<Image
+						src="../img/bread_styling/sad-pastry.png"
+						style={{ width: '50%', paddingTop: '15%' }}
+						className="mx-auto d-block"
+					/>
+					<Card.Title>Your list is empty.</Card.Title>
+					<Card.Subtitle>
+						Stop loafing around, and start shopping!
+					</Card.Subtitle>
+					<Button type="button" onClick={handleAddItem} variant="primary">
+						Add items
+					</Button>
+				</Card.ImgOverlay>
+			</Card>
 		) : (
 			/* If false that list contains items,
 			 the shopping list is displayed including the item filtering feature */
@@ -166,41 +162,43 @@ export function List({ data, loading }) {
 				{/* Card is used for the oven image to be used as a background for the shopping list items */}
 				{/* border-0 and bg-transparent removes the encasing border and background color of a card
 					so that the oven image is the sole display */}
-				<Card className="border-0 bg-transparent">
+				<Card className="border-0 bg-transparent mx-auto">
 					<Card.Img src="../img/bread_styling/oven.svg/" alt="Card image" />
 					<Card.ImgOverlay style={{ paddingTop: '20%' }}>
-						<Card.Text className="overflow-auto" style={{ maxHeight: '100%' }}>
+						<Card className="overflow-auto" style={{ maxHeight: '100%' }}>
 							<ListGroup>
 								{!filterInput
 									? // map over the sorted dataWithUrgency
 									  dataWithUrgency.map((item) => {
 											return (
-												<>
+												<React.Fragment key={item.id}>
 													<ListItem
-														key={item.id}
+														keyField={item.id}
 														itemId={item.id}
 														name={item.name}
 														dateLastPurchased={item.dateLastPurchased}
 														dateNextPurchased={item.dateNextPurchased}
 														urgency={item.urgency}
 													/>
-												</>
+												</React.Fragment>
 											);
 									  })
 									: filteredList.map((item) => {
 											return (
-												<ListItem
-													key={item.id}
-													itemId={item.id}
-													name={item.name}
-													dateLastPurchased={item.dateLastPurchased}
-													dateNextPurchased={item.dateNextPurchased}
-													urgency={item.urgency}
-												/>
+												<React.Fragment key={item.id}>
+													<ListItem
+														keyField={item.id}
+														itemId={item.id}
+														name={item.name}
+														dateLastPurchased={item.dateLastPurchased}
+														dateNextPurchased={item.dateNextPurchased}
+														urgency={item.urgency}
+													/>
+												</React.Fragment>
 											);
 									  })}
 							</ListGroup>
-						</Card.Text>
+						</Card>
 					</Card.ImgOverlay>
 				</Card>
 			</>
