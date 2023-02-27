@@ -159,7 +159,7 @@ export function AddItem({ listToken, data }) {
 										/>
 									</Col>
 									<Col xs={8}>
-										<Form.Label className="radio-button-label" for="soon">
+										<Form.Label className="radio-button-label" htmlFor="soon">
 											Soon (1-7 days)
 										</Form.Label>
 									</Col>
@@ -175,14 +175,13 @@ export function AddItem({ listToken, data }) {
 											id="kind-of-soon"
 											name="radio-btn"
 											onChange={handlePurchaseDate}
-											// label="Kind of Soon (7-14 days)"
 											className="radio-button"
 										/>
 									</Col>
 									<Col xs={8}>
 										<Form.Label
 											className="radio-button-label"
-											for="kind-of-soon"
+											htmlFor="kind-of-soon"
 										>
 											Kind of Soon (7-14 days)
 										</Form.Label>
@@ -203,7 +202,10 @@ export function AddItem({ listToken, data }) {
 										/>
 									</Col>
 									<Col xs={8}>
-										<Form.Label className="radio-button-label" for="not-soon">
+										<Form.Label
+											className="radio-button-label"
+											htmlFor="not-soon"
+										>
 											Not Soon (14+ days)
 										</Form.Label>
 									</Col>
