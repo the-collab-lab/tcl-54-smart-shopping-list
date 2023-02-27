@@ -97,7 +97,7 @@ export function Home({ setListToken }) {
 				<img src={appImage} alt="app logo" />
 			</div>
 			<p className="app-summary">
-				Summary: Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+				Summary Lorem ipsum dolor, sit amet consectetur adipisicing elit.
 				Adipisci possimus tempora a quo deleniti dolore.
 			</p>
 			<div className="text-center">
@@ -108,7 +108,7 @@ export function Home({ setListToken }) {
 					<strong>- or -</strong>{' '}
 				</p>
 				<Form id="join-shopping-list-form" onSubmit={joinExistingToken}>
-					<Form.Label htmlFor="join-token">Share Token</Form.Label>
+					<Form.Label htmlFor="join-token">List Token</Form.Label>
 					<div className="d-flex flex-row justify-content-center">
 						<Form.Group>
 							<Form.Control
@@ -131,6 +131,7 @@ export function Home({ setListToken }) {
 						</Form.Group>
 					</div>
 				</Form>
+				<p>Learn More</p>
 			</div>
 			<Toaster />
 		</div>
