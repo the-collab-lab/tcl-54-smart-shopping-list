@@ -1,21 +1,14 @@
 import { useEffect, useState } from 'react';
-import {
-	BrowserRouter as Router,
-	Routes,
-	Route,
-	useLocation,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { AddItem, Home, Layout, List } from './views';
 
 import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
-import { NavbarShoppingList } from './components/NavbarShoppingList';
 
 export function App() {
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
-	// const location = useLocation();
 
 	/**
 	 * Here, we're using a custom hook to create `listToken` and a function
