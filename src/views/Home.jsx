@@ -1,4 +1,3 @@
-import './Home.css';
 import toast, { Toaster } from 'react-hot-toast';
 import { generateToken } from '@the-collab-lab/shopping-list-utils';
 import { useEffect, useState } from 'react';

@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom';
 
-import './Layout.css';
+// import './Layout.css';
 import { NavbarShoppingList } from '../components';
 
 export function Layout() {
