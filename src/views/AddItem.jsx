@@ -1,7 +1,16 @@
 import { addItem } from '../api/firebase';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { Button, Form, InputGroup } from 'react-bootstrap';
+import {
+	Button,
+	Form,
+	InputGroup,
+	Container,
+	Row,
+	Col,
+	Image,
+} from 'react-bootstrap';
+import './AddItem.css';
 
 /**
  * Allows user to add an item to their shopping list,
@@ -109,57 +118,92 @@ export function AddItem({ listToken, data }) {
 
 	return (
 		<>
-			<Form onSubmit={onFormSubmit}>
-				<Form.Label htmlFor="item">Item Name:</Form.Label>
-				<InputGroup>
-					<Form.Control
-						type="text"
-						id="item"
-						name="item"
-						value={itemName}
-						onChange={(e) => setItemName(e.target.value)}
-						required={true}
-					/>
-				</InputGroup>
-				<Form.Label id="purchase-date-label">
-					How soon will you buy this again?
-				</Form.Label>
-				<fieldset>
-					<div>
-						<Form.Check
-							defaultChecked
-							aria-labelledby="purchase-date-label"
-							type="radio"
-							value="soon"
-							id="soon"
-							name="radio-btn"
-							onChange={handlePurchaseDate}
-							label="Soon"
-						/>
-					</div>
-					<div>
-						<Form.Check
-							type="radio"
-							value="kind-of-soon"
-							id="kind-of-soon"
-							name="radio-btn"
-							onChange={handlePurchaseDate}
-							label="Kind of Soon"
-						/>
-					</div>
-					<div>
-						<Form.Check
-							type="radio"
-							id="not-soon"
-							value="not-soon"
-							name="radio-btn"
-							onChange={handlePurchaseDate}
-							label="Not Soon"
-						/>
-					</div>
-				</fieldset>
-				<Button type="submit">Add Item</Button>
-			</Form>
+			<div className="add-item">
+				<header className="add-item-header">
+					<h1>Add Item</h1>
+				</header>
+
+				<Container className="add-item-form">
+					<Form onSubmit={onFormSubmit}>
+						<div className="form-group">
+							<Form.Label htmlFor="item">Item Name:</Form.Label>
+							<InputGroup>
+								<Form.Control
+									type="text"
+									id="item"
+									name="item"
+									value={itemName}
+									onChange={(e) => setItemName(e.target.value)}
+									required={true}
+									placeholder="e.g., croissants"
+									className="item-input"
+								/>
+							</InputGroup>
+						</div>
+						<div className="form-group">
+							<Form.Label id="purchase-date-label">
+								How soon will you buy this again?
+							</Form.Label>
+							<fieldset>
+								<Row className="soon-row purchase-date-row">
+									<Col>
+										<Form.Check
+											defaultChecked
+											aria-labelledby="purchase-date-label"
+											type="radio"
+											value="soon"
+											id="soon"
+											name="radio-btn"
+											onChange={handlePurchaseDate}
+											label="Soon (1-7 days)"
+											className="radio-button"
+										/>
+									</Col>
+									<Col xs={2}>
+										<Image src="https://via.placeholder.com/25"></Image>
+									</Col>
+								</Row>
+								<Row className="kind-of-soon-row purchase-date-row">
+									<Col>
+										<Form.Check
+											type="radio"
+											value="kind-of-soon"
+											id="kind-of-soon"
+											name="radio-btn"
+											onChange={handlePurchaseDate}
+											label="Kind of Soon (7-14 days)"
+											className="radio-button"
+										/>
+									</Col>
+									<Col xs={2}>
+										<Image src="https://via.placeholder.com/25"></Image>
+									</Col>
+								</Row>
+								<Row className="not-soon purchase-date-row">
+									<Col>
+										<Form.Check
+											type="radio"
+											id="not-soon"
+											value="not-soon"
+											name="radio-btn"
+											onChange={handlePurchaseDate}
+											label="Not Soon (14+ days)"
+											className="radio-button"
+										/>
+									</Col>
+
+									<Col xs={2}>
+										<Image src="https://via.placeholder.com/25"></Image>
+									</Col>
+								</Row>
+							</fieldset>
+						</div>
+						<div className="form-group form-group-button">
+							<Button type="submit">Add Item</Button>
+						</div>
+					</Form>
+				</Container>
+			</div>
 			<Toaster />
 		</>
 	);
