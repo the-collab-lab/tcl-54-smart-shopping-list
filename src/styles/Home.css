@@ -1,5 +1,6 @@
 .home {
 	text-align: center;
+	margin: 1.25rem 0;
 }
 
 .home h1 {
@@ -8,15 +9,23 @@
 }
 
 .home .app-summary {
+	font-family: 'Lustria', serif;
 	padding: 0 1rem;
 	margin: 0 0 2.5rem;
+	font-size: 1rem;
 }
 
 .home .text-center > .btn-custom {
 	margin: 0 0 1rem;
 }
 
+.home p:last-child {
+	font-weight: 700;
+	margin: 1.6rem 0 0;
+	font-size: 0.9rem;
+}
+
 .app-logo {
-	width: 50%;
+	width: 35%;
 	margin: 0 auto 1.25rem;
 }
