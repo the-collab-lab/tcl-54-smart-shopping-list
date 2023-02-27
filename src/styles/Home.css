@@ -1,4 +1,4 @@
 .home h1 {
 	font-family: 'Lustria', serif;
-	color: red;
+	color: var(--color-dark-gray);
 }

@@ -99,7 +99,7 @@ export function Home({ setListToken }) {
 				Adipisci possimus tempora a quo deleniti dolore.
 			</p>
 			<div className="text-center">
-				<Button onClick={createNewToken} variant="primary">
+				<Button onClick={createNewToken} className="btn-custom">
 					Create a new list
 				</Button>
 				<p>- or -</p>
@@ -117,7 +117,11 @@ export function Home({ setListToken }) {
 							/>
 						</Form.Group>
 						<Form.Group>
-							<Button type="submit" id="submit-share-token" variant="primary">
+							<Button
+								type="submit"
+								id="submit-share-token"
+								className="btn-custom"
+							>
 								Join List
 							</Button>
 						</Form.Group>

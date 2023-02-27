@@ -22,6 +22,14 @@
 	--color-bg-well: var(--color-gray-dark);
 	--color-error: var(--color-red);
 	--color-text: var(--color-white);
+
+	/* new colors */
+	--color-peach: #ecc8af;
+	--color-mid-peach: #e7ad99;
+	--color-coral: #ce796b;
+	--color-caramel: #c18c5d;
+	--color-dusty-blue: #495867;
+	--color-dark-gray: #2d3237; /* main font color */
 }
 
 @media screen and (prefers-color-scheme: light) {
@@ -62,8 +70,8 @@ html {
 }
 
 body {
-	background-color: var(--color-bg);
-	color: var(--color-text);
+	background-color: var(--color-peach);
+	color: var(--color-dusty-blue);
 	font-family: 'Lato', -apple-system, BlinkMacSystemFont, avenir next, avenir,
 		segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
 	font-size: 1.6rem;
@@ -72,6 +80,11 @@ body {
 
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+.btn-custom {
+	background: var(--color-dusty-blue);
+	border: var(--color-dusty-blue);
 }
 
 code {
