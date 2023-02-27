@@ -83,6 +83,15 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+a {
+	text-decoration: none;
+	color: var(--color-dusty-blue);
+}
+
+a:hover {
+	color: var(--color-dark-blue-hover);
+}
+
 img {
 	width: 100%;
 }

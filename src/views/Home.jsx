@@ -6,12 +6,15 @@ import { createNewList, listExists } from '../api/firebase';
 import { Button, Form } from 'react-bootstrap';
 import appImage from '../../public/img/burger-boy1.png';
 
+import Modal from '../components/Modal';
+
 /** Home component that redirects a user to the List view if there is already a list created.
  * If the user doesn't already have a list, a user can create a list or join one to be saved to Firestore and be redirected to the List view. */
 
 export function Home({ setListToken }) {
 	//Declare useState variable for user shared token input
 	const [joinToken, setJoinToken] = useState('');
+	const [show, setShow] = useState(false);
 
 	// Declare navigate for view redirection
 	const navigate = useNavigate();
@@ -131,8 +134,13 @@ export function Home({ setListToken }) {
 						</Form.Group>
 					</div>
 				</Form>
-				<p>Learn More</p>
+				<div className="learn-more">
+					<a href="/#" onClick={() => setShow(true)}>
+						Learn More
+					</a>
+				</div>
 			</div>
+			<Modal show={show} hide={() => setShow(false)} />
 			<Toaster />
 		</div>
 	);
