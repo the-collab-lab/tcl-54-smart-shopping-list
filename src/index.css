@@ -28,8 +28,8 @@
 	--color-mid-peach: #e7ad99;
 	--color-coral: #ce796b;
 	--color-caramel: #c18c5d;
-	--color-dusty-blue: #495867;
-	--color-dark-blue-hover: #2e3c49;
+	--color-dusty-blue: #495867; /* button & navbar color */
+	--color-dark-blue-hover: #2e3c49; /* when hovering over a button or link */
 	--color-dark-gray: #2d3237; /* main font color */
 }
 
@@ -66,7 +66,8 @@ body,
 	min-height: 100vh;
 } */
 
-/* html {
+/* 
+html {
 	font-size: 62.5%;
 } */
 
@@ -109,7 +110,8 @@ img {
 	background: var(--color-dusty-blue) !important;
 }
 
-/* code {
+/* to team: I don't think we need this "code" styling */
+code {
 	--color-bg: var(--color-gray-dark);
 	--color-text: var(--color-accent);
 
@@ -121,7 +123,7 @@ img {
 		monospace;
 	font-size: 0.9em;
 	padding: 0.15em 0.15em;
-} */
+}
 
 @media screen and (prefers-color-scheme: light) {
 	code {
