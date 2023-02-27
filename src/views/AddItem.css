@@ -18,8 +18,8 @@
 }
 
 .form-group {
-	padding: 15px;
-	margin: 15px;
+	padding: 0px 0px 15px 0px;
+	margin: 0 15px;
 }
 
 .item-input {
@@ -33,12 +33,7 @@
 
 .form-group-button {
 	text-align: center;
-}
-
-fieldset {
-}
-
-.radio-button {
+	margin-bottom: 15px;
 }
 
 .purchase-date-row {
@@ -48,26 +43,47 @@ fieldset {
 	border-radius: 9px;
 }
 
+.radio-button {
+	margin: 10px 0px 0px 0px !important;
+	text-align: center;
+	vertical-align: center;
+}
+
+.radio-button-label {
+	margin: 0px 0px 0px 10px !important;
+}
+
 .soon-row {
 	border: 2px solid #b65c1a;
 }
 
-#soon {
-	border: 1px solid #b65c1a;
+.soon-radio-button {
+	background-color: #b65c1a;
+	margin: -10px 0px -10px -10px !important;
+	padding: 0px !important;
 }
 
 .kind-of-soon-row {
 	border: 2px solid #f99d5a;
 }
 
-#kind-of-soon {
-	border: 1px solid #f99d5a;
+.kind-of-soon-radio-button {
+	background-color: #f99d5a;
+	margin: -10px 0px -10px -10px !important;
+	padding: 0px !important;
 }
 
 .not-soon {
 	border: 2px solid #ffda92;
 }
 
-#not-soon {
-	border: 1px solid #ffda92;
+.not-soon-radio-button {
+	background-color: #ffda92;
+	margin: -10px 0px -10px -10px !important;
+	padding: 0px !important;
+}
+
+.croissant {
+	text-align: center;
+	margin-top: 40px;
 }

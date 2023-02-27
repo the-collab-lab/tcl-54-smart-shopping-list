@@ -146,7 +146,7 @@ export function AddItem({ listToken, data }) {
 							</Form.Label>
 							<fieldset>
 								<Row className="soon-row purchase-date-row">
-									<Col>
+									<Col className="soon-radio-button">
 										<Form.Check
 											defaultChecked
 											aria-labelledby="purchase-date-label"
@@ -155,55 +155,74 @@ export function AddItem({ listToken, data }) {
 											id="soon"
 											name="radio-btn"
 											onChange={handlePurchaseDate}
-											label="Soon (1-7 days)"
 											className="radio-button"
 										/>
 									</Col>
+									<Col xs={8}>
+										<Form.Label className="radio-button-label" for="soon">
+											Soon (1-7 days)
+										</Form.Label>
+									</Col>
 									<Col xs={2}>
-										<Image src="https://via.placeholder.com/25"></Image>
+										<Image src="../../public/img/soon-toast.png"></Image>
 									</Col>
 								</Row>
 								<Row className="kind-of-soon-row purchase-date-row">
-									<Col>
+									<Col className="kind-of-soon-radio-button">
 										<Form.Check
 											type="radio"
 											value="kind-of-soon"
 											id="kind-of-soon"
 											name="radio-btn"
 											onChange={handlePurchaseDate}
-											label="Kind of Soon (7-14 days)"
+											// label="Kind of Soon (7-14 days)"
 											className="radio-button"
 										/>
 									</Col>
+									<Col xs={8}>
+										<Form.Label
+											className="radio-button-label"
+											for="kind-of-soon"
+										>
+											Kind of Soon (7-14 days)
+										</Form.Label>
+									</Col>
 									<Col xs={2}>
-										<Image src="https://via.placeholder.com/25"></Image>
+										<Image src="../../public/img/kind-of-soon-toast.png"></Image>
 									</Col>
 								</Row>
 								<Row className="not-soon purchase-date-row">
-									<Col>
+									<Col className="not-soon-radio-button">
 										<Form.Check
 											type="radio"
 											id="not-soon"
 											value="not-soon"
 											name="radio-btn"
 											onChange={handlePurchaseDate}
-											label="Not Soon (14+ days)"
 											className="radio-button"
 										/>
 									</Col>
-
+									<Col xs={8}>
+										<Form.Label className="radio-button-label" for="not-soon">
+											Not Soon (14+ days)
+										</Form.Label>
+									</Col>
 									<Col xs={2}>
-										<Image src="https://via.placeholder.com/25"></Image>
+										<Image src="../../public/img/not-soon-toast.png"></Image>
 									</Col>
 								</Row>
 							</fieldset>
 						</div>
-						<div className="form-group form-group-button">
+						<div className="form-group-button">
 							<Button type="submit">Add Item</Button>
 						</div>
 					</Form>
 				</Container>
+				<div className="croissant">
+					<Image src="../../public/img/croissant.png"></Image>
+				</div>
 			</div>
+
 			<Toaster />
 		</>
 	);
