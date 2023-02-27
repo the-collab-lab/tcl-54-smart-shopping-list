@@ -1,4 +1,13 @@
+.home {
+	text-align: center;
+}
+
 .home h1 {
 	font-family: 'Lustria', serif;
 	color: var(--color-dark-gray);
+}
+
+.app-logo {
+	width: 50%;
+	margin: 0 auto;
 }

@@ -29,6 +29,7 @@
 	--color-coral: #ce796b;
 	--color-caramel: #c18c5d;
 	--color-dusty-blue: #495867;
+	--color-dark-blue-hover: #2e3c49;
 	--color-dark-gray: #2d3237; /* main font color */
 }
 
@@ -65,16 +66,16 @@ body,
 	min-height: 100vh;
 } */
 
-html {
+/* html {
 	font-size: 62.5%;
-}
+} */
 
 body {
 	background-color: var(--color-peach);
 	color: var(--color-dusty-blue);
 	font-family: 'Lato', -apple-system, BlinkMacSystemFont, avenir next, avenir,
 		segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
-	font-size: 1.6rem;
+	font-size: 1rem;
 	line-height: 1.4;
 	margin: 0;
 
@@ -82,12 +83,20 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+img {
+	width: 100%;
+}
+
 .btn-custom {
 	background: var(--color-dusty-blue);
 	border: var(--color-dusty-blue);
 }
 
-code {
+.btn-custom:hover {
+	background: var(--color-dark-blue-hover);
+}
+
+/* code {
 	--color-bg: var(--color-gray-dark);
 	--color-text: var(--color-accent);
 
@@ -99,7 +108,7 @@ code {
 		monospace;
 	font-size: 0.9em;
 	padding: 0.15em 0.15em;
-}
+} */
 
 @media screen and (prefers-color-scheme: light) {
 	code {
