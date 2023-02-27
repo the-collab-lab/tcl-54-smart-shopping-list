@@ -96,6 +96,10 @@ img {
 	background: var(--color-dark-blue-hover);
 }
 
+.btn-custom:active {
+	background: var(--color-dusty-blue) !important;
+}
+
 /* code {
 	--color-bg: var(--color-gray-dark);
 	--color-text: var(--color-accent);
