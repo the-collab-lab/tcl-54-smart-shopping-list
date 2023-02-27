@@ -104,7 +104,9 @@ export function Home({ setListToken }) {
 				<Button onClick={createNewToken} className="btn-custom">
 					Create a new list
 				</Button>
-				<p>- or -</p>
+				<p>
+					<strong>- or -</strong>{' '}
+				</p>
 				<Form id="join-shopping-list-form" onSubmit={joinExistingToken}>
 					<Form.Label htmlFor="join-token">Share Token</Form.Label>
 					<div className="d-flex flex-row justify-content-center">

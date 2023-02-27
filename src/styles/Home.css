@@ -7,7 +7,16 @@
 	color: var(--color-dark-gray);
 }
 
+.home .app-summary {
+	padding: 0 1rem;
+	margin: 0 0 2.5rem;
+}
+
+.home .text-center > .btn-custom {
+	margin: 0 0 1rem;
+}
+
 .app-logo {
 	width: 50%;
-	margin: 0 auto;
+	margin: 0 auto 1.25rem;
 }
