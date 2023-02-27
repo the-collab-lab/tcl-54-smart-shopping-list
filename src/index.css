@@ -3,6 +3,8 @@
 
 /* Component styles */
 @import './styles/Home.css';
+@import './styles/ListItem.css';
+@import './styles/Layout.css';
 
 :root {
 	--color-black: hsla(220, 13%, 18%, 1);
