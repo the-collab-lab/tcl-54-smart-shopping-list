@@ -93,7 +93,9 @@ export function Home({ setListToken }) {
 		<div className="home">
 			<p>Welcome to</p>
 			<h1>App Title!</h1>
-			<img src={appImage} alt="app logo" />
+			<div className="app-logo">
+				<img src={appImage} alt="app logo" />
+			</div>
 			<p className="app-summary">
 				Summary: Lorem ipsum dolor, sit amet consectetur adipisicing elit.
 				Adipisci possimus tempora a quo deleniti dolore.
