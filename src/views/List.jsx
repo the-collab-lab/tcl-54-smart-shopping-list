@@ -174,17 +174,10 @@ export function List({ data, loading }) {
 		) : (
 			/* If false that list contains items,
 			 the shopping list is displayed including the item filtering feature */
-
 			<>
 				<Form className="mx-auto" style={{ width: '275px' }}>
-					{/* <Form.Label htmlFor="list-filter">Filter items</Form.Label>
-					<br /> */}
 					<InputGroup>
-						<InputGroup.Text
-							variant="outline-secondary"
-							id="button-addon1"
-							className="mvb"
-						>
+						<InputGroup.Text>
 							<Image src="/../img/icons/search-icon.svg" />
 						</InputGroup.Text>
 						<Form.Control
@@ -195,7 +188,11 @@ export function List({ data, loading }) {
 							onChange={handleInput}
 						/>
 						{filterInput && (
-							<Button onClick={handleClick} variant="outline-primary">
+							<Button
+								onClick={handleClick}
+								variant="outline-primary mvb"
+								id="button-addon1"
+							>
 								X
 							</Button>
 						)}
@@ -210,13 +207,16 @@ export function List({ data, loading }) {
 				>
 					<Card.Img src="../img/bread_styling/oven.svg/" alt="Card image" />
 					<Card.ImgOverlay style={{ paddingTop: '20%' }}>
-						<Card className="overflow-auto" style={{ maxHeight: '100%' }}>
+						<Card
+							className="overflow-auto border-0"
+							style={{ maxHeight: '100%' }}
+						>
 							<ListGroup>
 								{!filterInput
 									? // map over the sorted dataWithUrgency
 									  dataWithUrgency.map((item) => {
 											return (
-												<Container key={item.id}>
+												<div key={item.id} className="border-0">
 													<ListItem
 														keyField={item.id}
 														itemId={item.id}
@@ -225,12 +225,12 @@ export function List({ data, loading }) {
 														dateNextPurchased={item.dateNextPurchased}
 														urgency={item.urgency}
 													/>
-												</Container>
+												</div>
 											);
 									  })
 									: filteredList.map((item) => {
 											return (
-												<Container key={item.id}>
+												<Container key={item.id} className="border-0">
 													<ListItem
 														keyField={item.id}
 														itemId={item.id}
