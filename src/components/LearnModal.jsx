@@ -1,7 +1,7 @@
 import { Button, Modal } from 'react-bootstrap';
 import { useState } from 'React';
 
-export const instructions = [
+const instructions = [
 	{
 		text: '1. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque explicabo excepturi minima fuga exercitationem perferendis. Vero aliquid iure dignissimos incidunt.',
 	},
