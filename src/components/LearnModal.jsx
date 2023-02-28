@@ -39,13 +39,12 @@ export default function LearnModal({ show, hide }) {
 	return (
 		<Modal show={show} onHide={hide}>
 			<Modal.Header closeButton>
-				<Modal.Title>Welcome to App Title!</Modal.Title>
+				<Modal.Title>Get Started</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				{/** The imported text from `modal-instructions.js` file are conditionally rendered
 				 * based on the slide of the carousel
 				 */}
-				{currentIndex === 0 && <p>Get Started</p>}
 				{currentIndex !== 3 && <p>{instructions[currentIndex].text}</p>}
 				{currentIndex === 2 && (
 					<>
