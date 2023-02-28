@@ -1,5 +1,5 @@
 import { ListItem } from '../components';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { comparePurchaseUrgency } from '../api/firebase';
 import { getDaysBetweenDates } from '../utils/dates';
@@ -10,6 +10,7 @@ import {
 	ListGroup,
 	Card,
 	Image,
+	Container,
 } from 'react-bootstrap';
 
 /** List component that displays items in a user's shopping cart  */
@@ -119,7 +120,7 @@ export function List({ data, loading }) {
 		return checkForEmptyList() ? (
 			/* If true that list is empty, 
 			a welcoming user prompt is displayed to start adding items to the list */
-			<Card className="border-0 bg-transparent">
+			<Card className="border-0 bg-transparent" style={{ width: '345px' }}>
 				<Card.Img src="../img/bread_styling/oven.svg/" alt="Card image" />
 				<Card.ImgOverlay style={{ paddingTop: '20%' }}>
 					<Image
@@ -141,10 +142,17 @@ export function List({ data, loading }) {
 			 the shopping list is displayed including the item filtering feature */
 
 			<>
-				<Form>
+				<Form className="mx-auto" style={{ width: '275px' }}>
 					{/* <Form.Label htmlFor="list-filter">Filter items</Form.Label>
 					<br /> */}
 					<InputGroup>
+						<InputGroup.Text
+							variant="outline-secondary"
+							id="button-addon1"
+							className="mvb"
+						>
+							<Image src="/../img/icons/search-icon.svg" />
+						</InputGroup.Text>
 						<Form.Control
 							id="list-filter"
 							type="text"
@@ -162,7 +170,10 @@ export function List({ data, loading }) {
 				{/* Card is used for the oven image to be used as a background for the shopping list items */}
 				{/* border-0 and bg-transparent removes the encasing border and background color of a card
 					so that the oven image is the sole display */}
-				<Card className="border-0 bg-transparent mx-auto">
+				<Card
+					className="border-0 bg-transparent mx-auto"
+					style={{ width: '345px' }}
+				>
 					<Card.Img src="../img/bread_styling/oven.svg/" alt="Card image" />
 					<Card.ImgOverlay style={{ paddingTop: '20%' }}>
 						<Card className="overflow-auto" style={{ maxHeight: '100%' }}>
@@ -171,7 +182,7 @@ export function List({ data, loading }) {
 									? // map over the sorted dataWithUrgency
 									  dataWithUrgency.map((item) => {
 											return (
-												<React.Fragment key={item.id}>
+												<Container key={item.id}>
 													<ListItem
 														keyField={item.id}
 														itemId={item.id}
@@ -180,12 +191,12 @@ export function List({ data, loading }) {
 														dateNextPurchased={item.dateNextPurchased}
 														urgency={item.urgency}
 													/>
-												</React.Fragment>
+												</Container>
 											);
 									  })
 									: filteredList.map((item) => {
 											return (
-												<React.Fragment key={item.id}>
+												<Container key={item.id}>
 													<ListItem
 														keyField={item.id}
 														itemId={item.id}
@@ -194,7 +205,7 @@ export function List({ data, loading }) {
 														dateNextPurchased={item.dateNextPurchased}
 														urgency={item.urgency}
 													/>
-												</React.Fragment>
+												</Container>
 											);
 									  })}
 							</ListGroup>
