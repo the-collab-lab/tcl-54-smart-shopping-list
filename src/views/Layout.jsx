@@ -4,18 +4,20 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import React, { useState } from 'react';
 import { Image } from 'react-bootstrap';
 import toast, { Toaster } from 'react-hot-toast';
+
 import './Layout.css';
 
 export function Layout({ listToken }) {
 	// useLocation hook will be used to check current route
 	const location = useLocation();
+	const [copied, setCopied] = useState(false);
 
 	// Notify when adding item is unsuccessful
 	const notifyCopied = () => toast('Copied!');
 
 	if (location.pathname === '/list') {
 		return (
-			<>
+			<React.Fragment>
 				<Toaster />
 				<div className="Layout">
 					<header className="Layout-header">
@@ -37,7 +39,7 @@ export function Layout({ listToken }) {
 						<Outlet />
 					</main>
 				</div>
-			</>
+			</React.Fragment>
 		);
 	}
 
