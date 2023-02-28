@@ -20,10 +20,27 @@ export default function LearnModal({ show, hide }) {
 	return (
 		<Modal show={show} onHide={hide}>
 			<Modal.Header closeButton>
-				<Modal.Title>Modal heading</Modal.Title>
+				<Modal.Title>Welcome to App Title!</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				<p>{instructions[currentIndex].text}</p>
+				{currentIndex === 0 && <p>Get Started</p>}
+				{currentIndex !== 3 && <p>{instructions[currentIndex].text}</p>}
+				{currentIndex === 2 && (
+					<>
+						<p className="mb-2">• {instructions[2].stepOne}</p>
+						<p className="mb-2">• {instructions[2].stepTwo}</p>
+						<p className="mb-2">• {instructions[2].stepThree}</p>
+					</>
+				)}
+				{currentIndex === 3 && (
+					<>
+						<p>Notes:</p>
+						<p>{instructions[3].noteOne}</p>
+						<p>{instructions[3].noteTwo}</p>
+					</>
+				)}
+			</Modal.Body>
+			<Modal.Footer className="justify-content-between">
 				<div className="controls">
 					<button type="button" onClick={handlePrev} className="button">
 						<i className="fa-solid fa-arrow-left" />
@@ -32,8 +49,6 @@ export default function LearnModal({ show, hide }) {
 						<i className="fa-solid fa-arrow-right" />
 					</button>
 				</div>
-			</Modal.Body>
-			<Modal.Footer>
 				<Button variant="secondary" onClick={hide}>
 					Close
 				</Button>
