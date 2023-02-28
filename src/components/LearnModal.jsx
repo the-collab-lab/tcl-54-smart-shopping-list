@@ -13,7 +13,7 @@ const instructions = [
 	},
 ];
 
-export default function LearnModal({ show, hide }) {
+export function LearnModal({ show, hide }) {
 	const [currentIndex, setCurrentIndex] = useState(0);
 
 	const handlePrev = () => {
