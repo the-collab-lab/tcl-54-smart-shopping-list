@@ -115,6 +115,12 @@ img {
 	background: var(--color-dusty-blue) !important;
 }
 
+.btn-arrow {
+	color: #fff;
+	border-radius: 5px;
+	margin: 0 0.3rem;
+}
+
 /* to team: I don't think we need this `code` styling? Might have to delete later */
 code {
 	--color-bg: var(--color-gray-dark);

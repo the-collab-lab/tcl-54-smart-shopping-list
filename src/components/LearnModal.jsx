@@ -1,5 +1,5 @@
 import { Button, Modal } from 'react-bootstrap';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { instructions } from '../data/modal-instructions';
 
 /** This modal will provide more detail on how to use the app
@@ -10,8 +10,19 @@ export default function LearnModal({ show, hide }) {
 	/** index in useState will be used for the carousel function of the modal */
 	const [currentIndex, setCurrentIndex] = useState(0);
 
+	/** the useEffect keeps track of the state of `show`.
+	 * If `show` is false, it will reset the carousel's index to 0.
+	 * This is so that when a user clicks off the modal and clicks to view it again,
+	 * they are brought back to the first slide of the carousel
+	 */
+	useEffect(() => {
+		if (!show) {
+			setCurrentIndex(0);
+		}
+	}, [show]);
+
 	/** handler functions for the arrow buttons in modal,
-	 * which lets user navigate through the instructions like a carousel
+	 * which lets user navigate through the carousel slides
 	 */
 	const handlePrev = () => {
 		setCurrentIndex(
@@ -32,7 +43,7 @@ export default function LearnModal({ show, hide }) {
 			</Modal.Header>
 			<Modal.Body>
 				{/** The imported text from `modal-instructions.js` file are conditionally rendered
-				 * based on the page of the carousel
+				 * based on the slide of the carousel
 				 */}
 				{currentIndex === 0 && <p>Get Started</p>}
 				{currentIndex !== 3 && <p>{instructions[currentIndex].text}</p>}
@@ -54,10 +65,18 @@ export default function LearnModal({ show, hide }) {
 			<Modal.Footer className="justify-content-between">
 				{/* Next and Previous buttons in modal */}
 				<div className="controls">
-					<button type="button" onClick={handlePrev} className="button">
+					<button
+						type="button"
+						onClick={handlePrev}
+						className="btn-custom btn-arrow"
+					>
 						<i className="fa-solid fa-arrow-left" />
 					</button>
-					<button type="button" onClick={handleNext} className="button">
+					<button
+						type="button"
+						onClick={handleNext}
+						className="btn-custom btn-arrow"
+					>
 						<i className="fa-solid fa-arrow-right" />
 					</button>
 				</div>
