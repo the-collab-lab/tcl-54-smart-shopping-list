@@ -67,12 +67,12 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 						label={name}
 					/>
 				</Form>
-				<Image src={imgUrgency} style={{ paddingTop: '10%' }} />
+				<Image src={imgUrgency} style={{ paddingTop: '10%', width: '205px' }} />
 				<Image
 					src="../img/bread_styling/trash-icon.svg"
 					type="button"
 					onClick={handleDelete}
-					style={{ padding: '2%' }}
+					style={{ width: '25px' }}
 				/>
 			</ListGroup.Item>
 		);
