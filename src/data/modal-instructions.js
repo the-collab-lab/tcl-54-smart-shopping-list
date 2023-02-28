@@ -1,3 +1,5 @@
+/* Onboarding instructions for the Learn More modal */
+
 export const instructions = [
 	{
 		text: "1. You can create an new (empty) list with a randomly generated name (token). Otherwise, you can join an existing list by entering its token. In this new list, you'll be able to add new items.",

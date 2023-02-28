@@ -5,15 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import { createNewList, listExists } from '../api/firebase';
 import { Button, Form } from 'react-bootstrap';
 import appImage from '/img/burger-boy1.png';
-
 import LearnModal from '../components/LearnModal';
 
 /** Home component that redirects a user to the List view if there is already a list created.
  * If the user doesn't already have a list, a user can create a list or join one to be saved to Firestore and be redirected to the List view. */
 
 export function Home({ setListToken }) {
-	//Declare useState variable for user shared token input
+	// Declare useState variable for user shared token input
 	const [joinToken, setJoinToken] = useState('');
+	// Declare state used for showing/hiding the modal
 	const [show, setShow] = useState(false);
 
 	// Declare navigate for view redirection
@@ -134,12 +134,16 @@ export function Home({ setListToken }) {
 						</Form.Group>
 					</div>
 				</Form>
+				{/* When Learn More is clicked the state for `show` is set to true */}
 				<div className="learn-more">
 					<a href="/#" onClick={() => setShow(true)}>
 						Learn More
 					</a>
 				</div>
 			</div>
+			{/** This is the imported modal, to which we pass the state of `show`, which will show the modal.
+			 * The `hide` prop takes a false, which will be used to hide the modal.
+			 */}
 			<LearnModal show={show} hide={() => setShow(false)} />
 			<Toaster />
 		</div>

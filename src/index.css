@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Lustria&display=swap');
 
 /* Component styles */
+/* All css styles for the individual components and views should be imported here */
 @import './styles/Home.css';
 @import './styles/ListItem.css';
 @import './styles/Layout.css';
@@ -66,12 +67,14 @@ body,
 	min-height: 100vh;
 } */
 
+/** AC: I've commented out the code block below for `html` because it's making all the fonts super small.
+ * I'm actually not sure why this code block was here to begin with.
+*/
 /* 
 html {
 	font-size: 62.5%;
 } */
 
-/* AC: TEST COMMIT 4*/
 body {
 	background-color: var(--color-peach);
 	color: var(--color-dusty-blue);
@@ -98,6 +101,7 @@ img {
 	width: 100%;
 }
 
+/** These custom button classes are used to override the Bootstrap button colors */
 .btn-custom {
 	background: var(--color-dusty-blue);
 	border: var(--color-dusty-blue);
@@ -111,7 +115,7 @@ img {
 	background: var(--color-dusty-blue) !important;
 }
 
-/* to team: I don't think we need this "code" styling */
+/* to team: I don't think we need this `code` styling? Might have to delete later */
 code {
 	--color-bg: var(--color-gray-dark);
 	--color-text: var(--color-accent);
