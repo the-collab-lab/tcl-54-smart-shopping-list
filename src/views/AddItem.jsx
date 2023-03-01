@@ -118,8 +118,8 @@ export function AddItem({ listToken, data }) {
 
 	return (
 		<>
-			<div className="add-item">
-				<header className="add-item-header">
+			<div className="add-item d-flex flex-column">
+				<header className="text-center">
 					<h1>Add Item</h1>
 				</header>
 
@@ -155,7 +155,7 @@ export function AddItem({ listToken, data }) {
 											id="soon"
 											name="radio-btn"
 											onChange={handlePurchaseDate}
-											className="radio-button"
+											className="radio-button text-center align-middle"
 										/>
 									</Col>
 									<Col xs={8}>
@@ -175,7 +175,7 @@ export function AddItem({ listToken, data }) {
 											id="kind-of-soon"
 											name="radio-btn"
 											onChange={handlePurchaseDate}
-											className="radio-button"
+											className="radio-button text-center align-middle"
 										/>
 									</Col>
 									<Col xs={8}>
@@ -198,7 +198,7 @@ export function AddItem({ listToken, data }) {
 											value="not-soon"
 											name="radio-btn"
 											onChange={handlePurchaseDate}
-											className="radio-button"
+											className="radio-button text-center align-middle"
 										/>
 									</Col>
 									<Col xs={8}>
@@ -215,12 +215,12 @@ export function AddItem({ listToken, data }) {
 								</Row>
 							</fieldset>
 						</div>
-						<div className="form-group-button">
+						<div className="form-group-button text-center">
 							<Button type="submit">Add Item</Button>
 						</div>
 					</Form>
 				</Container>
-				<div className="croissant">
+				<div className="croissant text-center">
 					<Image src="../../public/img/croissant.png"></Image>
 				</div>
 			</div>

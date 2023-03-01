@@ -1,12 +1,6 @@
 .add-item {
-	display: flex;
-	flex-direction: column;
 	margin: 0 auto;
 	color: #242a32;
-}
-
-.add-item-header {
-	text-align: center;
 }
 
 .add-item-form {
@@ -33,7 +27,6 @@
 }
 
 .form-group-button {
-	text-align: center;
 	margin-bottom: 15px;
 }
 
@@ -46,8 +39,6 @@
 
 .radio-button {
 	margin: 10px 0px 0px 0px !important;
-	text-align: center;
-	vertical-align: center;
 }
 
 .radio-button-label {
@@ -85,6 +76,5 @@
 }
 
 .croissant {
-	text-align: center;
 	margin-top: 40px;
 }
