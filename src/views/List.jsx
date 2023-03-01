@@ -10,7 +10,6 @@ import {
 	ListGroup,
 	Card,
 	Image,
-	Container,
 } from 'react-bootstrap';
 
 /** List component that displays items in a user's shopping cart  */
@@ -31,6 +30,13 @@ export function List({ data, loading }) {
 		return shoppingListArr.length === 0 ? true : false;
 	};
 
+	/* This function will return:
+	- True if the updated urgency list has more than one item
+	- False if the list has one item or less*/
+	const checkForMoreThanOneItem = () => {
+		return dataWithUrgency.length > 1 ? true : false;
+	};
+
 	const handleClick = (e) => {
 		e.preventDefault();
 		setFilterInput('');
@@ -43,8 +49,6 @@ export function List({ data, loading }) {
 
 	//Function to assign string value to buyingUrgency and color value to colorUrgency
 	const getBuyingUrgency = (item) => {
-		let buyingUrgency;
-		let colorUrgency;
 		let imgUrgency;
 
 		//To filter for non-empty items, if an item exists in the data and has a
@@ -62,30 +66,20 @@ export function List({ data, loading }) {
 			// - kind of soon: (between 7 & 30 days until the next purchase)
 			// - soon: (7 days or fewer until the next purchase)
 			if (daysUntilNextPurchase >= 60) {
-				buyingUrgency = 'inactive';
-				colorUrgency = '#878E88';
 				imgUrgency = '../img/bread_styling/inactive-loaf.svg/';
 			} else if (new Date() > item.dateNextPurchased.toDate()) {
-				buyingUrgency = 'overdue';
-				colorUrgency = '#CD001A';
 				imgUrgency = '../img/bread_styling/overdue-loaf.svg/';
 			} else if (daysUntilNextPurchase >= 30) {
-				buyingUrgency = 'not soon';
-				colorUrgency = '#00AFB5';
 				imgUrgency = '../img/bread_styling/not-soon-loaf.svg/';
 			} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
-				buyingUrgency = 'kind of soon';
-				colorUrgency = '#FFB81C';
 				imgUrgency = '../img/bread_styling/kind-of-soon-loaf.svg/';
 			} else {
-				buyingUrgency = 'soon';
-				colorUrgency = '#FF7700';
 				imgUrgency = '../img/bread_styling/soon-loaf.svg/';
 			}
 		}
 
 		//To be used as new additions to item properties in the new shopping list dataWithUrgency
-		return { buyingUrgency, colorUrgency, imgUrgency };
+		return { imgUrgency };
 	};
 
 	/* Sorting the shopping list items by urgency using the following steps:
@@ -171,29 +165,31 @@ export function List({ data, loading }) {
 			/* If false that list contains items,
 			 the shopping list is displayed including the item filtering feature */
 			<>
-				<Form className="mx-auto" style={{ width: '275px' }}>
-					<InputGroup>
-						<InputGroup.Text>
-							<Image src="/../img/icons/search-icon.svg" />
-						</InputGroup.Text>
-						<Form.Control
-							id="list-filter"
-							type="text"
-							placeholder="Search items"
-							value={filterInput}
-							onChange={handleInput}
-						/>
-						{filterInput && (
-							<Button
-								onClick={handleClick}
-								variant="outline-primary mvb"
-								id="button-addon1"
-							>
-								X
-							</Button>
-						)}
-					</InputGroup>
-				</Form>
+				{checkForMoreThanOneItem() ? (
+					<Form className="mx-auto" style={{ width: '275px', margin: '15px' }}>
+						<InputGroup>
+							<InputGroup.Text>
+								<Image src="/../img/icons/search-icon.svg" />
+							</InputGroup.Text>
+							<Form.Control
+								id="list-filter"
+								type="text"
+								placeholder="Search items"
+								value={filterInput}
+								onChange={handleInput}
+							/>
+							{filterInput && (
+								<Button
+									onClick={handleClick}
+									variant="outline-primary mvb"
+									id="button-addon1"
+								>
+									X
+								</Button>
+							)}
+						</InputGroup>
+					</Form>
+				) : null}
 				{/* Card is used for the oven image to be used as a background for the shopping list items */}
 				<Card
 					className="border-0 bg-transparent mx-auto"

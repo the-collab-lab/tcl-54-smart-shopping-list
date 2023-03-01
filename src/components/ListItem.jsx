@@ -51,8 +51,6 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	};
 
 	/* Checking for the existence of urgency to avoid `undefined` */
-	const buyingUrgency = urgency ? urgency.buyingUrgency : '';
-	const colorUrgency = urgency ? urgency.colorUrgency : '';
 	const imgUrgency = urgency ? urgency.imgUrgency : '';
 
 	if (name) {
