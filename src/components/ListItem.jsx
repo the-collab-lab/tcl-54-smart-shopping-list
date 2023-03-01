@@ -89,7 +89,16 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 			// 	</Container>
 			// </ListGroup.Item>
 
-			<ListGroup.Item style={{ border: '0' }}>
+			<ListGroup.Item
+				className="p-1 "
+				style={{
+					background: '#FFE2CD',
+					borderColor: '#495867 ',
+					borderWidth: 'thin',
+					borderStyle: 'solid',
+					borderRadius: '5px',
+				}}
+			>
 				<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 					<Form>
 						<Form.Check
@@ -111,7 +120,7 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 				<div style={{ display: 'flex', justifyContent: 'center' }}>
 					<Image
 						src={imgUrgency}
-						style={{ width: '205px', paddingTop: '5%', paddingBottom: '2px' }}
+						style={{ width: '205px', paddingTop: '5%' }}
 					/>
 				</div>
 			</ListGroup.Item>
