@@ -1,0 +1,79 @@
+/* Empty list view CSS */
+.empty-list-view .card {
+	width: 345px;
+	text-align: center;
+	border: 0;
+	background-color: transparent;
+	margin: auto;
+}
+
+.empty-list-view .card-img-overlay {
+	padding-top: 25%;
+	text-align: center;
+}
+
+.empty-list-view .oven-handle {
+	border-color: #495867;
+	border-width: 1.25px;
+	border-style: solid;
+	border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 5%;
+}
+
+.empty-list-view .card-overlay-background {
+	background: #ffe2cd;
+	border-color: #495867;
+	border-width: 1.25px;
+	border-style: solid;
+	border-radius: 5px;
+	padding: 5%;
+}
+
+.empty-list-view .card-img-overlay img {
+	width: 170px;
+	margin-bottom: 5%;
+}
+
+.empty-list-view .card-title {
+	margin-bottom: 5%;
+}
+
+.empty-list-view .card-subtitle {
+	margin-bottom: 5%;
+}
+
+.empty-list-view button {
+	margin-bottom: 5%;
+}
+
+/* Unsorted filled shopping list view CSS */
+.filled-list-view .search-bar {
+	margin: auto;
+	width: 275px;
+	padding-top: 2%;
+	padding-bottom: 2%;
+}
+
+.filled-list-view .card {
+	width: 345px;
+	border: 0;
+	background-color: transparent;
+	margin: auto;
+}
+
+.filled-list-view .card-img-overlay {
+	padding-top: 20%;
+	text-align: center;
+}
+
+.filled-list-view .list-overflow {
+	overflow: auto;
+	max-height: 100%;
+}
+
+.filled-list-view .item-card {
+	margin: auto;
+	padding-bottom: 15px;
+	width: 95%;
+}

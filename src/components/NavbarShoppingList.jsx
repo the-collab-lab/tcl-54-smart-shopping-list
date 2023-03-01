@@ -2,7 +2,7 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 
 export function NavbarShoppingList() {
 	return (
-		<Navbar fluid="md" bg="light" expand="lg">
+		<Navbar fluid="md" bg="light" expand="lg" style={{ zIndex: '99' }}>
 			<Container>
 				<Navbar.Brand href="/">Smart Shopping List</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -11,6 +11,7 @@ import {
 	Card,
 	Image,
 } from 'react-bootstrap';
+import './List.css';
 
 /** List component that displays items in a user's shopping cart  */
 export function List({ data, loading }) {
@@ -114,103 +115,62 @@ export function List({ data, loading }) {
 		return checkForEmptyList() ? (
 			/* If true that list is empty, 
 			a welcoming user prompt is displayed to start adding items to the list */
-			<Card
-				className="border-0 bg-transparent mx-auto"
-				style={{ width: '345px', textAlign: 'center' }}
-			>
-				<Card.Img src="../img/bread_styling/oven.svg/" alt="Card image" />
-				<Card.ImgOverlay style={{ paddingTop: '25%', textAlign: 'center' }}>
-					<div
-						style={{
-							borderColor: '#495867',
-							borderWidth: 'thin',
-							borderStyle: 'solid',
-							borderRadius: '5px',
-							padding: '10px',
-							marginBottom: '5%',
-						}}
-					></div>
-					<div
-						style={{
-							background: '#FFE2CD',
-							borderColor: '#495867',
-							borderWidth: 'thin',
-							borderStyle: 'solid',
-							borderRadius: '5px',
-							padding: '5%',
-						}}
-					>
-						<Image
-							src="../img/bread_styling/sad-pastry.png"
-							style={{ width: '170px', marginBottom: '5%' }}
-						/>
-						<Card.Title style={{ marginBottom: '5%' }}>
-							List is empty.
-						</Card.Title>
-						<Card.Subtitle style={{ marginBottom: '5%' }}>
-							Stop loafing around, and start shopping!
-						</Card.Subtitle>
-						<Button
-							type="button"
-							onClick={handleAddItem}
-							variant="primary"
-							style={{ marginBottom: '5%' }}
-						>
-							Add items
-						</Button>
-					</div>
-				</Card.ImgOverlay>
-			</Card>
+			<div className="empty-list-view">
+				<Card>
+					<Card.Img src="../img/bread_styling/oven.svg/" alt="Card image" />
+					<Card.ImgOverlay>
+						<div className="oven-handle" />
+						<div className="card-overlay-background">
+							<Image src="../img/bread_styling/sad-pastry.png" />
+							<Card.Title>List is empty.</Card.Title>
+							<Card.Subtitle>
+								Stop loafing around, and start shopping!
+							</Card.Subtitle>
+							<Button type="button" onClick={handleAddItem} variant="primary">
+								Add items
+							</Button>
+						</div>
+					</Card.ImgOverlay>
+				</Card>
+			</div>
 		) : (
 			/* If false that list contains items,
 			 the shopping list is displayed including the item filtering feature */
-			<>
+			<div className="filled-list-view">
 				{checkForMoreThanOneItem() ? (
-					<Form className="mx-auto" style={{ width: '275px', margin: '15px' }}>
-						<InputGroup>
-							<InputGroup.Text>
-								<Image src="/../img/icons/search-icon.svg" />
-							</InputGroup.Text>
-							<Form.Control
-								id="list-filter"
-								type="text"
-								placeholder="Search items"
-								value={filterInput}
-								onChange={handleInput}
-							/>
-							{filterInput && (
-								<Button
-									onClick={handleClick}
-									variant="outline-primary mvb"
-									id="button-addon1"
-								>
-									X
-								</Button>
-							)}
-						</InputGroup>
-					</Form>
+					<div className="search-bar">
+						<Form>
+							<InputGroup>
+								<InputGroup.Text>
+									<Image src="/../img/icons/search-icon.svg" />
+								</InputGroup.Text>
+								<Form.Control
+									id="list-filter"
+									type="text"
+									placeholder="Search items"
+									value={filterInput}
+									onChange={handleInput}
+								/>
+								{filterInput && (
+									<Button onClick={handleClick} variant="outline-primary mvb">
+										X
+									</Button>
+								)}
+							</InputGroup>
+						</Form>
+					</div>
 				) : null}
 				{/* Card is used for the oven image to be used as a background for the shopping list items */}
-				<Card
-					className="border-0 bg-transparent mx-auto"
-					style={{ width: '345px' }}
-				>
+				<Card>
 					<Card.Img src="../img/bread_styling/oven.svg/" alt="Card image" />
-					<Card.ImgOverlay style={{ paddingTop: '20%' }}>
-						<Card
-							className="overflow-auto border-0"
-							style={{ maxHeight: '100%' }}
-						>
+					<Card.ImgOverlay>
+						<div className="list-overflow">
 							<ListGroup>
 								{!filterInput
 									? // map over the sorted dataWithUrgency
 									  dataWithUrgency.map((item) => {
 											return (
-												<div
-													key={item.id}
-													className="d-grid gap-3 border-0 mx-auto"
-													style={{ paddingBottom: '15px', width: '95%' }}
-												>
+												<div className="item-card" key={item.id}>
 													<ListItem
 														keyField={item.id}
 														itemId={item.id}
@@ -224,11 +184,7 @@ export function List({ data, loading }) {
 									  })
 									: filteredList.map((item) => {
 											return (
-												<div
-													key={item.id}
-													className="d-grid gap-3 border-0 mx-auto"
-													style={{ paddingBottom: '15px', width: '95%' }}
-												>
+												<div className="item-card" key={item.id}>
 													<ListItem
 														keyField={item.id}
 														itemId={item.id}
@@ -241,10 +197,10 @@ export function List({ data, loading }) {
 											);
 									  })}
 							</ListGroup>
-						</Card>
+						</div>
 					</Card.ImgOverlay>
 				</Card>
-			</>
+			</div>
 		);
 	}
 }

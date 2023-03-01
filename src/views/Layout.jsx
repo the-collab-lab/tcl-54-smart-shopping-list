@@ -19,8 +19,8 @@ export function Layout({ listToken }) {
 		return (
 			<React.Fragment>
 				<Toaster />
-				<div className="Layout">
-					<header className="Layout-header">
+				<div className="List">
+					<header className="List-header">
 						<h4>Current List:</h4>
 						<h1>
 							{listToken}
