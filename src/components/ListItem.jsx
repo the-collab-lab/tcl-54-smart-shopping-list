@@ -56,40 +56,8 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 
 	if (name) {
 		return (
-			// <ListGroup.Item className="d-flex flex-wrap border-0">
-			// 	<Container>
-			// 		<Row>
-			// 			<Col md={4}>
-			// 				<Form>
-			// 					<Form.Check
-			// 						value={name}
-			// 						type="checkbox"
-			// 						onChange={handleCheck}
-			// 						checked={check}
-			// 						disabled={check}
-			// 						label={name}
-			// 					/>
-			// 				</Form>
-			// 			</Col>
-			// 			<Col md={{ span: 4, offset: 4 }}>
-			// 				<Image
-			// 					src="../img/bread_styling/trash-icon.svg"
-			// 					type="button"
-			// 					onClick={handleDelete}
-			// 					style={{ width: '25px' }}
-			// 				/>
-			// 			</Col>
-			// 		</Row>
-			// 		<Row>
-			// 			<Col md={{ span: 6, offset: 3 }}>
-			// 				<Image src={imgUrgency} style={{ width: '205px' }} />
-			// 			</Col>
-			// 		</Row>
-			// 	</Container>
-			// </ListGroup.Item>
-
 			<ListGroup.Item
-				className="p-1 "
+				className="p-2"
 				style={{
 					background: '#FFE2CD',
 					borderColor: '#495867 ',
@@ -98,8 +66,20 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 					borderRadius: '5px',
 				}}
 			>
-				<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-					<Form>
+				<div
+					style={{
+						display: 'flex',
+						flexWrap: 'wrap',
+						justifyContent: 'space-between',
+					}}
+				>
+					<Form
+						style={{
+							display: 'inline-block',
+							width: '225px',
+							overflow: 'hidden',
+						}}
+					>
 						<Form.Check
 							value={name}
 							type="checkbox"
@@ -113,7 +93,7 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 						src="../img/bread_styling/trash-icon.svg"
 						type="button"
 						onClick={handleDelete}
-						style={{ paddingLeft: '20%' }}
+						style={{ marginRight: '0' }}
 					/>
 				</div>
 				<div style={{ display: 'flex', justifyContent: 'center' }}>

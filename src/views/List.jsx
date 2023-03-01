@@ -246,8 +246,8 @@ export function List({ data, loading }) {
 											return (
 												<div
 													key={item.id}
-													className="d-grid gap-3 border-0"
-													style={{ paddingBottom: '15px' }}
+													className="d-grid gap-3 border-0 mx-auto"
+													style={{ paddingBottom: '15px', width: '95%' }}
 												>
 													<ListItem
 														keyField={item.id}
@@ -262,9 +262,10 @@ export function List({ data, loading }) {
 									  })
 									: filteredList.map((item) => {
 											return (
-												<Container
+												<div
 													key={item.id}
-													className="d-grid gap-3 border-0"
+													className="d-grid gap-3 border-0 mx-auto"
+													style={{ paddingBottom: '15px', width: '95%' }}
 												>
 													<ListItem
 														keyField={item.id}
@@ -274,7 +275,7 @@ export function List({ data, loading }) {
 														dateNextPurchased={item.dateNextPurchased}
 														urgency={item.urgency}
 													/>
-												</Container>
+												</div>
 											);
 									  })}
 							</ListGroup>
