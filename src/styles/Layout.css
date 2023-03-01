@@ -61,7 +61,7 @@
 	text-underline-offset: 0.1em;
 }
 
-/* List Header Layout */
+/* List View Header Layout */
 .List {
 	display: flex;
 	flex-direction: column;
@@ -78,6 +78,10 @@
 	top: 0;
 }
 
+.List-header img {
+	width: 8%;
+	padding-left: 1%;
+}
 .List-header h1 {
 	font-size: 28px;
 }
