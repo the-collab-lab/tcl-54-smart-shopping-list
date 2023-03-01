@@ -154,13 +154,15 @@ export function List({ data, loading }) {
 		return checkForEmptyList() ? (
 			/* If true that list is empty, 
 			a welcoming user prompt is displayed to start adding items to the list */
-			<Card className="border-0 bg-transparent" style={{ width: '345px' }}>
+			<Card
+				className="border-0 bg-transparent mx-auto"
+				style={{ width: '345px' }}
+			>
 				<Card.Img src="../img/bread_styling/oven.svg/" alt="Card image" />
-				<Card.ImgOverlay style={{ paddingTop: '20%' }}>
+				<Card.ImgOverlay style={{ paddingTop: '20%', textAlign: 'center' }}>
 					<Image
 						src="../img/bread_styling/sad-pastry.png"
-						style={{ width: '50%', paddingTop: '15%' }}
-						className="mx-auto d-block"
+						style={{ width: '50%', paddingTop: '20%' }}
 					/>
 					<Card.Title>Your list is empty.</Card.Title>
 					<Card.Subtitle>
@@ -199,8 +201,6 @@ export function List({ data, loading }) {
 					</InputGroup>
 				</Form>
 				{/* Card is used for the oven image to be used as a background for the shopping list items */}
-				{/* border-0 and bg-transparent removes the encasing border and background color of a card
-					so that the oven image is the sole display */}
 				<Card
 					className="border-0 bg-transparent mx-auto"
 					style={{ width: '345px' }}
@@ -216,7 +216,11 @@ export function List({ data, loading }) {
 									? // map over the sorted dataWithUrgency
 									  dataWithUrgency.map((item) => {
 											return (
-												<div key={item.id} className="border-0">
+												<div
+													key={item.id}
+													className="d-grid gap-3 border-0"
+													style={{ paddingBottom: '15px' }}
+												>
 													<ListItem
 														keyField={item.id}
 														itemId={item.id}
@@ -230,7 +234,10 @@ export function List({ data, loading }) {
 									  })
 									: filteredList.map((item) => {
 											return (
-												<Container key={item.id} className="border-0">
+												<Container
+													key={item.id}
+													className="d-grid gap-3 border-0"
+												>
 													<ListItem
 														keyField={item.id}
 														itemId={item.id}
