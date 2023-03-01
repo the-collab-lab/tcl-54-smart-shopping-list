@@ -54,30 +54,9 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 
 	if (name) {
 		return (
-			<ListGroup.Item
-				className="p-2"
-				style={{
-					background: '#FFE2CD',
-					borderColor: '#495867 ',
-					borderWidth: 'thin',
-					borderStyle: 'solid',
-					borderRadius: '5px',
-				}}
-			>
-				<div
-					style={{
-						display: 'flex',
-						flexWrap: 'wrap',
-						justifyContent: 'space-between',
-					}}
-				>
-					<Form
-						style={{
-							display: 'inline-block',
-							width: '225px',
-							overflow: 'hidden',
-						}}
-					>
+			<ListGroup.Item>
+				<div className="flex-wrap-item-name">
+					<Form>
 						<Form.Check
 							value={name}
 							type="checkbox"
@@ -91,14 +70,10 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 						src="../img/bread_styling/trash-icon.svg"
 						type="button"
 						onClick={handleDelete}
-						style={{ marginRight: '0' }}
 					/>
 				</div>
-				<div style={{ display: 'flex', justifyContent: 'center' }}>
-					<Image
-						src={imgUrgency}
-						style={{ width: '205px', paddingTop: '5%' }}
-					/>
+				<div className="flex-center-bread-img">
+					<Image src={imgUrgency} />
 				</div>
 			</ListGroup.Item>
 		);

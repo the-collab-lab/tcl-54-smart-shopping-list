@@ -51,8 +51,8 @@
 .filled-list-view .search-bar {
 	margin: auto;
 	width: 275px;
-	padding-top: 2%;
-	padding-bottom: 2%;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 
 .filled-list-view .card {
@@ -63,7 +63,7 @@
 }
 
 .filled-list-view .card-img-overlay {
-	padding-top: 20%;
+	padding-top: 22%;
 	text-align: center;
 }
 
@@ -76,4 +76,5 @@
 	margin: auto;
 	padding-bottom: 15px;
 	width: 95%;
+	border-radius: 5px;
 }
