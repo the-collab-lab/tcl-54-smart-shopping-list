@@ -1,40 +1,13 @@
 .add-item {
-	margin: 0 auto;
 	color: #242a32;
 }
 
 .add-item-form {
 	border: 2px solid #b65c1a;
-	padding: 15px;
-	border-radius: 5px;
-	background-color: #ffffff;
-	margin-top: 25px;
-	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
-
-.form-group {
-	padding: 0px 0px 15px 0px;
-	margin: 0 15px;
 }
 
 .item-input {
 	border: 2px solid #c18c5d !important;
-	border-radius: 9px !important;
-}
-
-#purchase-date-label {
-	margin-bottom: 15px;
-}
-
-.form-group-button {
-	margin-bottom: 15px;
-}
-
-.purchase-date-row {
-	margin-top: 20px;
-	margin-bottom: 20px;
-	padding: 10px;
-	border-radius: 9px;
 }
 
 .radio-button {
@@ -52,7 +25,6 @@
 .soon-radio-button {
 	background-color: #b65c1a;
 	margin: -10px 0px -10px -10px !important;
-	padding: 0px !important;
 }
 
 .kind-of-soon-row {
@@ -62,7 +34,6 @@
 .kind-of-soon-radio-button {
 	background-color: #f99d5a;
 	margin: -10px 0px -10px -10px !important;
-	padding: 0px !important;
 }
 
 .not-soon {
@@ -72,9 +43,4 @@
 .not-soon-radio-button {
 	background-color: #ffda92;
 	margin: -10px 0px -10px -10px !important;
-	padding: 0px !important;
-}
-
-.croissant {
-	margin-top: 40px;
 }

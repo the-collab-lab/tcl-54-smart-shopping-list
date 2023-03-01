@@ -123,9 +123,9 @@ export function AddItem({ listToken, data }) {
 					<h1>Add Item</h1>
 				</header>
 
-				<Container className="add-item-form">
+				<Container className="add-item-form shadow rounded-3 p-5 mt-5 bg-white">
 					<Form onSubmit={onFormSubmit}>
-						<div className="form-group">
+						<div className="pb-4 mx-5">
 							<Form.Label htmlFor="item">Item Name:</Form.Label>
 							<InputGroup>
 								<Form.Control
@@ -136,17 +136,17 @@ export function AddItem({ listToken, data }) {
 									onChange={(e) => setItemName(e.target.value)}
 									required={true}
 									placeholder="e.g., croissants"
-									className="item-input"
+									className="item-input rounded-4"
 								/>
 							</InputGroup>
 						</div>
-						<div className="form-group">
-							<Form.Label id="purchase-date-label">
+						<div className="pb-4 mx-5">
+							<Form.Label className="mb-4">
 								How soon will you buy this again?
 							</Form.Label>
 							<fieldset>
-								<Row className="soon-row purchase-date-row">
-									<Col className="soon-radio-button">
+								<Row className="soon-row rounded-4 my-4 p-3">
+									<Col className="soon-radio-button rounded-start">
 										<Form.Check
 											defaultChecked
 											aria-labelledby="purchase-date-label"
@@ -167,8 +167,8 @@ export function AddItem({ listToken, data }) {
 										<Image src="../../public/img/soon-toast.png"></Image>
 									</Col>
 								</Row>
-								<Row className="kind-of-soon-row purchase-date-row">
-									<Col className="kind-of-soon-radio-button">
+								<Row className="kind-of-soon-row rounded-4 my-4 p-3">
+									<Col className="kind-of-soon-radio-button rounded-start">
 										<Form.Check
 											type="radio"
 											value="kind-of-soon"
@@ -190,8 +190,8 @@ export function AddItem({ listToken, data }) {
 										<Image src="../../public/img/kind-of-soon-toast.png"></Image>
 									</Col>
 								</Row>
-								<Row className="not-soon purchase-date-row">
-									<Col className="not-soon-radio-button">
+								<Row className="not-soon rounded-4 my-4 p-3">
+									<Col className="not-soon-radio-button rounded-start">
 										<Form.Check
 											type="radio"
 											id="not-soon"
@@ -215,12 +215,12 @@ export function AddItem({ listToken, data }) {
 								</Row>
 							</fieldset>
 						</div>
-						<div className="form-group-button text-center">
+						<div className="mb-4 text-center">
 							<Button type="submit">Add Item</Button>
 						</div>
 					</Form>
 				</Container>
-				<div className="croissant text-center">
+				<div className="mt-5 text-center ">
 					<Image src="../../public/img/croissant.png"></Image>
 				</div>
 			</div>
