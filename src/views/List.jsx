@@ -156,21 +156,49 @@ export function List({ data, loading }) {
 			a welcoming user prompt is displayed to start adding items to the list */
 			<Card
 				className="border-0 bg-transparent mx-auto"
-				style={{ width: '345px' }}
+				style={{ width: '345px', textAlign: 'center' }}
 			>
 				<Card.Img src="../img/bread_styling/oven.svg/" alt="Card image" />
-				<Card.ImgOverlay style={{ paddingTop: '20%', textAlign: 'center' }}>
-					<Image
-						src="../img/bread_styling/sad-pastry.png"
-						style={{ width: '50%', paddingTop: '20%' }}
-					/>
-					<Card.Title>Your list is empty.</Card.Title>
-					<Card.Subtitle>
-						Stop loafing around, and start shopping!
-					</Card.Subtitle>
-					<Button type="button" onClick={handleAddItem} variant="primary">
-						Add items
-					</Button>
+				<Card.ImgOverlay style={{ paddingTop: '25%', textAlign: 'center' }}>
+					<div
+						style={{
+							borderColor: '#495867',
+							borderWidth: 'thin',
+							borderStyle: 'solid',
+							borderRadius: '5px',
+							padding: '10px',
+							marginBottom: '5%',
+						}}
+					></div>
+					<div
+						style={{
+							background: '#FFE2CD',
+							borderColor: '#495867',
+							borderWidth: 'thin',
+							borderStyle: 'solid',
+							borderRadius: '5px',
+							padding: '5%',
+						}}
+					>
+						<Image
+							src="../img/bread_styling/sad-pastry.png"
+							style={{ width: '170px', marginBottom: '5%' }}
+						/>
+						<Card.Title style={{ marginBottom: '5%' }}>
+							List is empty.
+						</Card.Title>
+						<Card.Subtitle style={{ marginBottom: '5%' }}>
+							Stop loafing around, and start shopping!
+						</Card.Subtitle>
+						<Button
+							type="button"
+							onClick={handleAddItem}
+							variant="primary"
+							style={{ marginBottom: '5%' }}
+						>
+							Add items
+						</Button>
+					</div>
 				</Card.ImgOverlay>
 			</Card>
 		) : (
