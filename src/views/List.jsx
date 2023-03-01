@@ -1,3 +1,4 @@
+import './List.css';
 import { ListItem } from '../components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +12,6 @@ import {
 	Card,
 	Image,
 } from 'react-bootstrap';
-import './List.css';
 
 /** List component that displays items in a user's shopping cart  */
 export function List({ data, loading }) {
@@ -171,6 +171,7 @@ export function List({ data, loading }) {
 			/* If false that list contains items,
 			 the shopping list is displayed including the item filtering feature */
 			<div className="filled-list-view">
+				{/* if the shopping list has more than one item, the search bar is displayed */}
 				{checkForMoreThanOneItem() ? (
 					<div className="search-bar">
 						<Form>
@@ -194,7 +195,8 @@ export function List({ data, loading }) {
 						</Form>
 					</div>
 				) : null}
-				{/* Card is used for the oven image to be used as a background for the shopping list items */}
+				{/* conditional will display either the filtered
+				 or unfiltered shopping list with buying urgency attributes */}
 				<Card>
 					<Card.Img src="../img/bread_styling/oven.svg/" alt="Card image" />
 					<Card.ImgOverlay>

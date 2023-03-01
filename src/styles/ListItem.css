@@ -1,19 +1,4 @@
-.ListItem {
-	align-items: baseline;
-	display: flex;
-	flex-direction: row;
-	font-size: 1.2em;
-}
-
-.ListItem-checkbox {
-	accent-color: var(--color-accent);
-}
-
-.ListItem-label {
-	margin-left: 0.2em;
-}
-
-/* List group item styling */
+/* List item styling */
 .filled-list-view .list-group-item {
 	background-color: #ffe2cd;
 	border-color: #495867;
@@ -26,6 +11,7 @@
 	justify-content: space-between;
 }
 
+/* this hides the overflow of an extremely long worded item edge case */
 .filled-list-view form {
 	display: inline-block;
 	width: '225px';
