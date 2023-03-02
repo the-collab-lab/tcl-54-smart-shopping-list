@@ -77,7 +77,6 @@ export default function LearnModal({ show, hide }) {
 					<button
 						type="button"
 						onClick={handleNext}
-						// className="btn-custom btn-arrow"
 						className={`btn-custom btn-arrow ${
 							currentIndex === 3 && 'disabled'
 						}`}
@@ -86,9 +85,9 @@ export default function LearnModal({ show, hide }) {
 						<i className="fa-solid fa-arrow-right" />
 					</button>
 				</div>
-				<Button variant="secondary" onClick={hide}>
+				<button type="button" className="btn-custom p-2" onClick={hide}>
 					Close
-				</Button>
+				</button>
 			</Modal.Footer>
 		</Modal>
 	);
