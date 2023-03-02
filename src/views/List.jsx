@@ -43,37 +43,6 @@ export function List({ data, loading }) {
 		setFilterInput('');
 	};
 
-	const renderList = () => {
-		return !filterInput
-			? // map over the sorted dataWithUrgency
-			  dataWithUrgency.map((item) => {
-					return (
-						<ListItem
-							key={item.id}
-							itemId={item.id}
-							name={item.name}
-							dateLastPurchased={item.dateLastPurchased}
-							dateNextPurchased={item.dateNextPurchased}
-							urgency={item.urgency}
-						/>
-					);
-			  })
-			: filterInput && filteredList.length === 0
-			? 'no matching item found'
-			: filteredList.map((item) => {
-					return (
-						<ListItem
-							key={item.id}
-							itemId={item.id}
-							name={item.name}
-							dateLastPurchased={item.dateLastPurchased}
-							dateNextPurchased={item.dateNextPurchased}
-							urgency={item.urgency}
-						/>
-					);
-			  });
-	};
-
 	/*Handles navigation to Add Item view */
 	const handleAddItem = () => {
 		navigate('/add-item');
@@ -143,6 +112,46 @@ export function List({ data, loading }) {
 		);
 	};
 
+	const renderList = () => {
+		return !filterInput ? (
+			// map over the sorted dataWithUrgency
+			dataWithUrgency.map((item) => {
+				return (
+					<div className="item-card" key={item.id}>
+						<ListItem
+							keyField={item.id}
+							itemId={item.id}
+							name={item.name}
+							dateLastPurchased={item.dateLastPurchased}
+							dateNextPurchased={item.dateNextPurchased}
+							urgency={item.urgency}
+						/>
+					</div>
+				);
+			})
+		) : filterInput && filteredList.length === 0 ? (
+			<div className="item-not-found">
+				<Image src="../img/bread_styling/confused-bread.png" />
+				<h4>no matching item found</h4>
+			</div>
+		) : (
+			filteredList.map((item) => {
+				return (
+					<div className="item-card" key={item.id}>
+						<ListItem
+							keyField={item.id}
+							itemId={item.id}
+							name={item.name}
+							dateLastPurchased={item.dateLastPurchased}
+							dateNextPurchased={item.dateNextPurchased}
+							urgency={item.urgency}
+						/>
+					</div>
+				);
+			})
+		);
+	};
+
 	if (loading) {
 		return;
 	} else {
@@ -195,44 +204,15 @@ export function List({ data, loading }) {
 						</Form>
 					</div>
 				) : null}
-				{/* conditional will display either the filtered
-				 or unfiltered shopping list with buying urgency attributes */}
+				{/* conditional will display three options within ListGroup through renderList():
+					- unfiltered shopping list
+					- filtered shopping list
+					- item not found view */}
 				<Card>
 					<Card.Img src="../img/bread_styling/oven.svg/" alt="Card image" />
 					<Card.ImgOverlay>
 						<div className="list-overflow">
-							<ListGroup>
-								{!filterInput
-									? // map over the sorted dataWithUrgency
-									  dataWithUrgency.map((item) => {
-											return (
-												<div className="item-card" key={item.id}>
-													<ListItem
-														keyField={item.id}
-														itemId={item.id}
-														name={item.name}
-														dateLastPurchased={item.dateLastPurchased}
-														dateNextPurchased={item.dateNextPurchased}
-														urgency={item.urgency}
-													/>
-												</div>
-											);
-									  })
-									: filteredList.map((item) => {
-											return (
-												<div className="item-card" key={item.id}>
-													<ListItem
-														keyField={item.id}
-														itemId={item.id}
-														name={item.name}
-														dateLastPurchased={item.dateLastPurchased}
-														dateNextPurchased={item.dateNextPurchased}
-														urgency={item.urgency}
-													/>
-												</div>
-											);
-									  })}
-							</ListGroup>
+							<ListGroup>{renderList()}</ListGroup>
 						</div>
 					</Card.ImgOverlay>
 				</Card>
