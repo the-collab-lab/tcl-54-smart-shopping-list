@@ -4,8 +4,8 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import React, { useState } from 'react';
 import { Image } from 'react-bootstrap';
 import toast, { Toaster } from 'react-hot-toast';
-
-import './Layout.css';
+import { NavbarShoppingList } from '../components';
+import '../styles/Layout.css';
 
 export function Layout({ listToken }) {
 	// useLocation hook will be used to check current route
@@ -18,27 +18,30 @@ export function Layout({ listToken }) {
 	// to show the current list token of the use with copy functionality
 	if (location.pathname === '/list') {
 		return (
-			<div className="List">
-				<Toaster />
-				<header className="List-header">
-					<h4>Current List:</h4>
-					<h1>
-						{listToken}
-						<span>
-							<CopyToClipboard text={listToken}>
-								<Image
-									type="button"
-									src="../img/icons/copy-icon.svg"
-									onClick={notifyCopied}
-								/>
-							</CopyToClipboard>
-						</span>
-					</h1>
-				</header>
-				<main className="Layout-main">
-					<Outlet />
-				</main>
-			</div>
+			<>
+				<NavbarShoppingList />
+				<div className="List">
+					<Toaster />
+					<header className="List-header">
+						<h4>Current List:</h4>
+						<h1>
+							{listToken}
+							<span>
+								<CopyToClipboard text={listToken}>
+									<Image
+										type="button"
+										src="../img/icons/copy-icon.svg"
+										onClick={notifyCopied}
+									/>
+								</CopyToClipboard>
+							</span>
+						</h1>
+					</header>
+					<main className="Layout-main">
+						<Outlet />
+					</main>
+				</div>
+			</>
 		);
 	}
 

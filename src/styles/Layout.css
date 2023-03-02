@@ -73,7 +73,7 @@
 }
 
 .List-header {
-	background-color: var(--color-bg);
+	background-color: transparent;
 	text-align: center;
 	top: 0;
 }
