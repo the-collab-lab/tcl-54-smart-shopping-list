@@ -1,29 +1,3 @@
-.home {
-	text-align: center;
-	margin: 1.25rem 0;
-}
-
-.home h1 {
-	font-family: 'Lustria', serif;
-	color: var(--color-dark-gray);
-}
-
-.home .app-summary {
-	padding: 0 1rem;
-	margin: 0 0 2.5rem;
-	font-size: 1rem;
-}
-
-.home .text-center > .btn-custom {
-	margin: 0 0 1rem;
-}
-
-.home .learn-more {
-	font-weight: 700;
-	margin: 1.6rem 0 0;
-}
-
-.app-logo {
+.home .app-logo {
 	width: 35%;
-	margin: 0 auto 1.25rem;
 }

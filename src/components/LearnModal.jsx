@@ -37,7 +37,7 @@ export default function LearnModal({ show, hide }) {
 	};
 
 	return (
-		<Modal show={show} onHide={hide}>
+		<Modal show={show} onHide={hide} centered>
 			<Modal.Header closeButton>
 				<Modal.Title>Get Started</Modal.Title>
 			</Modal.Header>
