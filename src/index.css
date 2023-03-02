@@ -101,8 +101,8 @@ img {
 	width: 100%;
 }
 
-button.disabled,
-button:disabled:hover {
+.btn-custom.disabled,
+.btn-custom:disabled:hover {
 	background: lightgray;
 }
 

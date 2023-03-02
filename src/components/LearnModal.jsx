@@ -64,7 +64,7 @@ export default function LearnModal({ show, hide }) {
 			<Modal.Footer className="justify-content-between">
 				{/* Next and Previous buttons in modal */}
 				<div className="controls">
-					<button
+					<Button
 						type="button"
 						onClick={handlePrev}
 						className={`btn-custom btn-arrow ${
@@ -73,8 +73,8 @@ export default function LearnModal({ show, hide }) {
 						disabled={currentIndex === 0}
 					>
 						<i className="fa-solid fa-arrow-left" />
-					</button>
-					<button
+					</Button>
+					<Button
 						type="button"
 						onClick={handleNext}
 						className={`btn-custom btn-arrow ${
@@ -83,7 +83,7 @@ export default function LearnModal({ show, hide }) {
 						disabled={currentIndex === 3}
 					>
 						<i className="fa-solid fa-arrow-right" />
-					</button>
+					</Button>
 				</div>
 				<button type="button" className="btn-custom p-2" onClick={hide}>
 					Close
