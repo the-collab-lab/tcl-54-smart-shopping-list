@@ -110,6 +110,9 @@ button:disabled:hover {
 .btn-custom {
 	background: var(--color-dusty-blue);
 	border: var(--color-dusty-blue);
+	border-radius: 5px;
+	color: #fff;
+	margin: 0 0.3rem;
 }
 
 .btn-custom:hover {
@@ -118,12 +121,6 @@ button:disabled:hover {
 
 .btn-custom:active {
 	background: var(--color-dusty-blue) !important;
-}
-
-.btn-arrow {
-	color: #fff;
-	border-radius: 5px;
-	margin: 0 0.3rem;
 }
 
 /* to team: I don't think we need this `code` styling? Might have to delete later */
