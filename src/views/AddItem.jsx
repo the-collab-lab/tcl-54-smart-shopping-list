@@ -10,10 +10,6 @@ import {
 	Col,
 	Image,
 } from 'react-bootstrap';
-import croissant from '/img/croissant.png';
-import soonToast from '/img/soon-toast.png';
-import kindOfSoonToast from '/img/kind-of-soon-toast.png';
-import notSoonToast from '/img/not-soon-toast.png';
 import './AddItem.css';
 
 /**
@@ -168,7 +164,7 @@ export function AddItem({ listToken, data }) {
 										</Form.Label>
 									</Col>
 									<Col xs={2}>
-										<Image src={soonToast}></Image>
+										<Image src="/img/soon-toast.svg"></Image>
 									</Col>
 								</Row>
 								<Row className="kind-of-soon-row rounded-4 my-4 p-3">
@@ -191,7 +187,7 @@ export function AddItem({ listToken, data }) {
 										</Form.Label>
 									</Col>
 									<Col xs={2}>
-										<Image src={kindOfSoonToast}></Image>
+										<Image src="/img/kind-of-soon-toast.svg"></Image>
 									</Col>
 								</Row>
 								<Row className="not-soon rounded-4 my-4 p-3">
@@ -214,7 +210,7 @@ export function AddItem({ listToken, data }) {
 										</Form.Label>
 									</Col>
 									<Col xs={2}>
-										<Image src={notSoonToast}></Image>
+										<Image src="/img/not-soon-toast.svg"></Image>
 									</Col>
 								</Row>
 							</fieldset>
@@ -225,7 +221,7 @@ export function AddItem({ listToken, data }) {
 					</Form>
 				</Container>
 				<div className="mt-5 text-center ">
-					<Image src={croissant} />
+					<Image src="/img/croissant.svg" />
 				</div>
 			</div>
 
