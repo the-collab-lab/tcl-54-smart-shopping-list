@@ -3,7 +3,7 @@ import { generateToken } from '@the-collab-lab/shopping-list-utils';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createNewList, listExists } from '../api/firebase';
-import { Button, Form, Image } from 'react-bootstrap';
+import { Button, Form, Image, InputGroup } from 'react-bootstrap';
 import appImage from '/img/burger-boy1.png';
 import LearnModal from '../components/LearnModal';
 
@@ -93,18 +93,18 @@ export function Home({ setListToken }) {
 	};
 
 	return (
-		<div className="home">
+		<div className="home my-4 text-center">
 			<p>Welcome to</p>
 			<h1>App Title!</h1>
-			<div className="app-logo">
+			<div className="app-logo mx-auto mb-3">
 				<Image src={appImage} alt="app logo" />
 			</div>
-			<p className="app-summary">
+			<p className="app-summary px-3 mb-4 fs-6">
 				App Title learns your buying habits and helps you remember what you're
 				likely to need to buy on your next shopping trip.
 			</p>
 			<div className="text-center">
-				<Button onClick={createNewToken} className="btn-custom">
+				<Button onClick={createNewToken} className="btn-custom mb-3">
 					Create a new list
 				</Button>
 				<p>
@@ -113,7 +113,7 @@ export function Home({ setListToken }) {
 				<Form id="join-shopping-list-form" onSubmit={joinExistingToken}>
 					<Form.Label htmlFor="join-token">List Token</Form.Label>
 					<div className="d-flex flex-row justify-content-center">
-						<Form.Group>
+						<InputGroup className="w-75">
 							<Form.Control
 								type="text"
 								name="join-token"
@@ -122,8 +122,6 @@ export function Home({ setListToken }) {
 								placeholder="three word token"
 								onChange={(e) => setJoinToken(e.target.value)}
 							/>
-						</Form.Group>
-						<Form.Group>
 							<Button
 								type="submit"
 								id="submit-share-token"
@@ -131,11 +129,11 @@ export function Home({ setListToken }) {
 							>
 								Join List
 							</Button>
-						</Form.Group>
+						</InputGroup>
 					</div>
 				</Form>
 				{/* When Learn More is clicked the state for `show` is set to true */}
-				<div className="learn-more">
+				<div className="learn-more fw-bold mt-4">
 					<a href="/#" onClick={() => setShow(true)}>
 						Learn More
 					</a>
