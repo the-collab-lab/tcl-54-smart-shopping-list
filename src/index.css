@@ -101,6 +101,11 @@ img {
 	width: 100%;
 }
 
+button.disabled,
+button:disabled:hover {
+	background: lightgray;
+}
+
 /** These custom button classes are used to override the Bootstrap button colors */
 .btn-custom {
 	background: var(--color-dusty-blue);

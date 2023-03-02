@@ -67,14 +67,21 @@ export default function LearnModal({ show, hide }) {
 					<button
 						type="button"
 						onClick={handlePrev}
-						className="btn-custom btn-arrow"
+						className={`btn-custom btn-arrow ${
+							currentIndex === 0 && 'disabled'
+						}`}
+						disabled={currentIndex === 0}
 					>
 						<i className="fa-solid fa-arrow-left" />
 					</button>
 					<button
 						type="button"
 						onClick={handleNext}
-						className="btn-custom btn-arrow"
+						// className="btn-custom btn-arrow"
+						className={`btn-custom btn-arrow ${
+							currentIndex === 3 && 'disabled'
+						}`}
+						disabled={currentIndex === 3}
 					>
 						<i className="fa-solid fa-arrow-right" />
 					</button>
