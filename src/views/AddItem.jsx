@@ -10,6 +10,10 @@ import {
 	Col,
 	Image,
 } from 'react-bootstrap';
+import croissant from '/img/croissant.png';
+import soonToast from '/img/soon-toast.png';
+import kindOfSoonToast from '/img/kind-of-soon-toast.png';
+import notSoonToast from '/img/not-soon-toast.png';
 import './AddItem.css';
 
 /**
@@ -164,7 +168,7 @@ export function AddItem({ listToken, data }) {
 										</Form.Label>
 									</Col>
 									<Col xs={2}>
-										<Image src="../../public/img/soon-toast.png"></Image>
+										<Image src={soonToast}></Image>
 									</Col>
 								</Row>
 								<Row className="kind-of-soon-row rounded-4 my-4 p-3">
@@ -187,7 +191,7 @@ export function AddItem({ listToken, data }) {
 										</Form.Label>
 									</Col>
 									<Col xs={2}>
-										<Image src="../../public/img/kind-of-soon-toast.png"></Image>
+										<Image src={kindOfSoonToast}></Image>
 									</Col>
 								</Row>
 								<Row className="not-soon rounded-4 my-4 p-3">
@@ -210,7 +214,7 @@ export function AddItem({ listToken, data }) {
 										</Form.Label>
 									</Col>
 									<Col xs={2}>
-										<Image src="../../public/img/not-soon-toast.png"></Image>
+										<Image src={notSoonToast}></Image>
 									</Col>
 								</Row>
 							</fieldset>
@@ -221,7 +225,7 @@ export function AddItem({ listToken, data }) {
 					</Form>
 				</Container>
 				<div className="mt-5 text-center ">
-					<Image src="../../public/img/croissant.png"></Image>
+					<Image src={croissant} />
 				</div>
 			</div>
 
