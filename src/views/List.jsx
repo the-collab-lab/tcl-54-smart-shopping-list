@@ -43,6 +43,37 @@ export function List({ data, loading }) {
 		setFilterInput('');
 	};
 
+	const renderList = () => {
+		return !filterInput
+			? // map over the sorted dataWithUrgency
+			  dataWithUrgency.map((item) => {
+					return (
+						<ListItem
+							key={item.id}
+							itemId={item.id}
+							name={item.name}
+							dateLastPurchased={item.dateLastPurchased}
+							dateNextPurchased={item.dateNextPurchased}
+							urgency={item.urgency}
+						/>
+					);
+			  })
+			: filterInput && filteredList.length === 0
+			? 'no matching item found'
+			: filteredList.map((item) => {
+					return (
+						<ListItem
+							key={item.id}
+							itemId={item.id}
+							name={item.name}
+							dateLastPurchased={item.dateLastPurchased}
+							dateNextPurchased={item.dateNextPurchased}
+							urgency={item.urgency}
+						/>
+					);
+			  });
+	};
+
 	/*Handles navigation to Add Item view */
 	const handleAddItem = () => {
 		navigate('/add-item');
@@ -100,11 +131,14 @@ export function List({ data, loading }) {
 	/* Use handler to change the state of filterInput 
 	and convert all items to lowercase to facilitate a more thorough search */
 	const handleInput = (event) => {
-		const value = event.target.value.toLowerCase().trim();
+		const value = event.target.value;
 		setFilterInput(value);
 		setFilteredList(
 			dataWithUrgency.filter((item) => {
-				return item.name && item.name.toLowerCase().includes(value);
+				return (
+					item.name &&
+					item.name.toLowerCase().includes(value.toLowerCase().trim())
+				);
 			}),
 		);
 	};

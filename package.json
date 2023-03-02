@@ -40,7 +40,8 @@
 		"build": "vite build",
 		"test": "vitest",
 		"preview": "vite preview",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"host": "vite --host"
 	},
 	"lint-staged": {
 		"*.{js,jsx}": [
