@@ -78,3 +78,29 @@
 	width: 95%;
 	border-radius: 5px;
 }
+
+.filled-list-view .item-not-found {
+	background: #ffe2cd;
+	border-color: #495867;
+	border-width: 1.25px;
+	border-style: solid;
+	border-radius: 5px;
+	padding: 5%;
+	margin-top: 15%;
+	height: 367px;
+}
+
+.filled-list-view .item-not-found img {
+	width: 170px;
+	margin-top: 20%;
+	margin-bottom: 5%;
+}
+
+.filled-list-view .oven-handle {
+	border-color: #495867;
+	border-width: 1.25px;
+	border-style: solid;
+	border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 5%;
+}
