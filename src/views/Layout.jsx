@@ -11,7 +11,7 @@ export function Layout({ listToken }) {
 	// useLocation hook will be used to check current route
 	const location = useLocation();
 
-	// Notify when adding item is unsuccessful
+	// Notify when copying item is successful
 	const notifyCopied = () => toast('Copied!');
 
 	// List view header will display if on list pathname
