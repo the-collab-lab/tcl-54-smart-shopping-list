@@ -3,7 +3,7 @@ import { generateToken } from '@the-collab-lab/shopping-list-utils';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createNewList, listExists } from '../api/firebase';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Image } from 'react-bootstrap';
 import appImage from '/img/burger-boy1.png';
 import LearnModal from '../components/LearnModal';
 
@@ -97,11 +97,11 @@ export function Home({ setListToken }) {
 			<p>Welcome to</p>
 			<h1>App Title!</h1>
 			<div className="app-logo">
-				<img src={appImage} alt="app logo" />
+				<Image src={appImage} alt="app logo" />
 			</div>
 			<p className="app-summary">
-				Summary Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-				Adipisci possimus tempora a quo deleniti dolore.
+				App Title learns your buying habits and helps you remember what you're
+				likely to need to buy on your next shopping trip.
 			</p>
 			<div className="text-center">
 				<Button onClick={createNewToken} className="btn-custom">
