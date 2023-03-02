@@ -6,6 +6,7 @@
 @import './styles/Home.css';
 @import './styles/ListItem.css';
 @import './styles/Layout.css';
+@import './styles/List.css';
 
 :root {
 	--color-black: hsla(220, 13%, 18%, 1);
@@ -97,9 +98,9 @@ a:hover {
 	color: var(--color-dark-blue-hover);
 }
 
-img {
+/* img {
 	width: 100%;
-}
+} */
 
 .btn-custom.disabled,
 .btn-custom:disabled:hover {

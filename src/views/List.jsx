@@ -1,4 +1,4 @@
-import './List.css';
+import '../styles/List.css';
 import { ListItem } from '../components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
