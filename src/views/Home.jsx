@@ -1,17 +1,20 @@
-import './Home.css';
 import toast, { Toaster } from 'react-hot-toast';
 import { generateToken } from '@the-collab-lab/shopping-list-utils';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createNewList, listExists } from '../api/firebase';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Image, InputGroup } from 'react-bootstrap';
+import appImage from '/img/burger-boy1.png';
+import LearnModal from '../components/LearnModal';
 
 /** Home component that redirects a user to the List view if there is already a list created.
  * If the user doesn't already have a list, a user can create a list or join one to be saved to Firestore and be redirected to the List view. */
 
 export function Home({ setListToken }) {
-	//Declare useState variable for user shared token input
+	// Declare useState variable for user shared token input
 	const [joinToken, setJoinToken] = useState('');
+	// Declare state used for showing/hiding the modal
+	const [show, setShow] = useState(false);
 
 	// Declare navigate for view redirection
 	const navigate = useNavigate();
@@ -90,33 +93,56 @@ export function Home({ setListToken }) {
 	};
 
 	return (
-		<div className="Home">
-			<p>
-				Hello from the home (<code>/</code>) page!
+		<div className="home my-4 text-center">
+			<p>Welcome to</p>
+			<h1>App Title!</h1>
+			<div className="app-logo mx-auto mb-3">
+				<Image src={appImage} alt="app logo" />
+			</div>
+			<p className="app-summary px-3 mb-4 fs-6">
+				App Title learns your buying habits and helps you remember what you're
+				likely to need to buy on your next shopping trip.
 			</p>
-			<Button onClick={createNewToken} variant="primary">
-				Create a new list
-			</Button>
-			<p>- or -</p>
-			<p>Join an existing shopping list by entering a three word token.</p>
-			<Form id="join-shopping-list-form" onSubmit={joinExistingToken}>
-				<Form.Group>
-					<Form.Label htmlFor="join-token">Share Token</Form.Label>
-					<Form.Control
-						type="text"
-						name="join-token"
-						id="join-token"
-						value={joinToken}
-						placeholder="three word token"
-						onChange={(e) => setJoinToken(e.target.value)}
-					/>
-				</Form.Group>
-				<Form.Group>
-					<Button type="submit" id="submit-share-token" variant="primary">
-						Join an existing list
-					</Button>
-				</Form.Group>
-			</Form>
+			<div className="text-center">
+				<Button onClick={createNewToken} className="btn-custom mb-3">
+					Create a new list
+				</Button>
+				<p>
+					<strong>- or -</strong>{' '}
+				</p>
+				<Form id="join-shopping-list-form" onSubmit={joinExistingToken}>
+					<Form.Label htmlFor="join-token">List Token</Form.Label>
+					<div className="d-flex flex-row justify-content-center">
+						<InputGroup className="w-75">
+							<Form.Control
+								type="text"
+								name="join-token"
+								id="join-token"
+								value={joinToken}
+								placeholder="three word token"
+								onChange={(e) => setJoinToken(e.target.value)}
+							/>
+							<Button
+								type="submit"
+								id="submit-share-token"
+								className="btn-custom"
+							>
+								Join List
+							</Button>
+						</InputGroup>
+					</div>
+				</Form>
+				{/* When Learn More is clicked the state for `show` is set to true */}
+				<div className="learn-more fw-bold mt-4">
+					<a href="/#" onClick={() => setShow(true)}>
+						Learn More
+					</a>
+				</div>
+			</div>
+			{/** This is the imported modal, to which we pass the state of `show`, which will show the modal.
+			 * The `hide` prop takes a false, which will be used to hide the modal.
+			 */}
+			<LearnModal show={show} hide={() => setShow(false)} />
 			<Toaster />
 		</div>
 	);

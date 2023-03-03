@@ -1,3 +1,12 @@
+/* Google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Lustria&display=swap');
+
+/* Component styles */
+/* All css styles for the individual components and views should be imported here */
+@import './styles/Home.css';
+@import './styles/ListItem.css';
+@import './styles/Layout.css';
+
 :root {
 	--color-black: hsla(220, 13%, 18%, 1);
 	--color-gray-dark: hsla(220, 13%, 25%, 1);
@@ -14,6 +23,15 @@
 	--color-bg-well: var(--color-gray-dark);
 	--color-error: var(--color-red);
 	--color-text: var(--color-white);
+
+	/* new colors */
+	--color-peach: #ecc8af;
+	--color-mid-peach: #e7ad99;
+	--color-coral: #ce796b;
+	--color-caramel: #c18c5d;
+	--color-dusty-blue: #495867; /* button & navbar color */
+	--color-dark-blue-hover: #2e3c49; /* when hovering over a button or link */
+	--color-dark-gray: #2d3237; /* main font color */
 }
 
 @media screen and (prefers-color-scheme: light) {
@@ -49,16 +67,20 @@ body,
 	min-height: 100vh;
 } */
 
+/** AC: I've commented out the code block below for `html` because it's making all the fonts super small.
+ * I'm actually not sure why this code block was here to begin with.
+*/
+/* 
 html {
 	font-size: 62.5%;
-}
+} */
 
 body {
-	background-color: var(--color-bg);
-	color: var(--color-text);
-	font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
-		helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
-	font-size: 1.6rem;
+	background-color: var(--color-peach);
+	color: var(--color-dusty-blue);
+	font-family: 'Lato', -apple-system, BlinkMacSystemFont, avenir next, avenir,
+		segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+	font-size: 1.1rem;
 	line-height: 1.4;
 	margin: 0;
 
@@ -66,6 +88,42 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+a {
+	text-decoration: none;
+	color: var(--color-dusty-blue);
+}
+
+a:hover {
+	color: var(--color-dark-blue-hover);
+}
+
+img {
+	width: 100%;
+}
+
+.btn-custom.disabled,
+.btn-custom:disabled:hover {
+	background: lightgray;
+}
+
+/** These custom button classes are used to override the Bootstrap button colors */
+.btn-custom {
+	background: var(--color-dusty-blue);
+	border: var(--color-dusty-blue);
+	border-radius: 5px;
+	color: #fff;
+	margin: 0 0.3rem;
+}
+
+.btn-custom:hover {
+	background: var(--color-dark-blue-hover);
+}
+
+.btn-custom:active {
+	background: var(--color-dusty-blue) !important;
+}
+
+/* to team: I don't think we need this `code` styling? Might have to delete later */
 code {
 	--color-bg: var(--color-gray-dark);
 	--color-text: var(--color-accent);

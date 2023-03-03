@@ -17,7 +17,7 @@ export function NavbarShoppingList() {
 						<Nav.Link href="/add-item">Add Item</Nav.Link>
 
 						{/* This will make 'Exit List' visible ONLY when route is on /list */}
-						{location.pathname === '/list' ? (
+						{location.pathname === '/list' && (
 							<Nav.Link
 								href="/"
 								onClick={() =>
@@ -26,7 +26,7 @@ export function NavbarShoppingList() {
 							>
 								Exit List
 							</Nav.Link>
-						) : null}
+						)}
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
