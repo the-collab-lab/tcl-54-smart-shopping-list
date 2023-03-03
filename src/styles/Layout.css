@@ -79,13 +79,14 @@
 }
 
 .List-header img {
-	width: 32px;
+	width: 2rem;
 	padding-left: 1%;
 }
 .List-header h1 {
-	font-size: 28px;
+	font-size: 1.75rem;
+	padding-bottom: 3%;
 }
 
 .List-header h4 {
-	font-size: 20px;
+	font-size: 1.25rem;
 }

@@ -195,11 +195,7 @@ export function List({ data, loading }) {
 									value={filterInput}
 									onChange={handleInput}
 								/>
-								{filterInput && (
-									<Button onClick={handleClick} variant="outline-primary mvb">
-										X
-									</Button>
-								)}
+								{filterInput && <Button onClick={handleClick}>X</Button>}
 							</InputGroup>
 						</Form>
 					</div>

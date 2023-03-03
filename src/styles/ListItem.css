@@ -2,7 +2,7 @@
 .filled-list-view .list-group-item {
 	background-color: #ffe2cd;
 	border-color: #495867;
-	border-width: 1.25px;
+	border-width: 0.078rem;
 }
 
 .filled-list-view .flex-wrap-item-name {
@@ -14,7 +14,7 @@
 /* this hides the overflow of an extremely long worded item edge case */
 .filled-list-view form {
 	display: inline-block;
-	width: '225px';
+	width: 14.063rem;
 	overflow: hidden;
 }
 
@@ -24,6 +24,6 @@
 }
 
 .filled-list-view .flex-center-bread-img img {
-	width: 205px;
+	width: 12.813rem;
 	padding-top: 5%;
 }
