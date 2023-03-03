@@ -10,10 +10,6 @@ import {
 	Col,
 	Image,
 } from 'react-bootstrap';
-import soonToast from '/img/soon-toast.png';
-import kindOfSoonToast from '/img/kind-of-soon-toast.png';
-import notSoonToast from '/img/not-soon-toast.png';
-import croissant from '/img/croissant.png';
 
 /**
  * Allows user to add an item to their shopping list,
@@ -169,7 +165,7 @@ export function AddItem({ listToken, data }) {
 									</Col>
 									<Col xs={2}>
 										<div className="urgency-toast">
-											<Image src={soonToast}></Image>
+											<Image src="./img/soon-toast.svg"></Image>
 										</div>
 									</Col>
 								</Row>
@@ -197,7 +193,7 @@ export function AddItem({ listToken, data }) {
 									</Col>
 									<Col xs={2}>
 										<div className="urgency-toast">
-											<Image src={kindOfSoonToast}></Image>
+											<Image src="./img/kind-of-soon-toast.svg"></Image>
 										</div>
 									</Col>
 								</Row>
@@ -222,7 +218,7 @@ export function AddItem({ listToken, data }) {
 									</Col>
 									<Col xs={2}>
 										<div className="urgency-toast">
-											<Image src={notSoonToast}></Image>
+											<Image src="./img/not-soon-toast.svg"></Image>
 										</div>
 									</Col>
 								</Row>
@@ -236,7 +232,7 @@ export function AddItem({ listToken, data }) {
 					</Form>
 				</Container>
 				<div className="mt-5 w-25 mx-auto ">
-					<Image src={croissant} />
+					<Image src="./img/croissant.svg" />
 				</div>
 			</div>
 
