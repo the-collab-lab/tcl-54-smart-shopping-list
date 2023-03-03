@@ -5,7 +5,6 @@ import { AddItem, Home, Layout, List } from './views';
 
 import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
-import { NavbarShoppingList } from './components/NavbarShoppingList';
 
 export function App() {
 	const [data, setData] = useState([]);
@@ -51,7 +50,6 @@ export function App() {
 
 	return (
 		<Router>
-			<NavbarShoppingList />
 			<Routes>
 				<Route path="/" element={<Layout listToken={listToken} />}>
 					<Route index element={<Home setListToken={setListToken} />} />

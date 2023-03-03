@@ -5,7 +5,8 @@ import React, { useState } from 'react';
 import { Image } from 'react-bootstrap';
 import toast, { Toaster } from 'react-hot-toast';
 
-import './Layout.css';
+// import './Layout.css';
+import { NavbarShoppingList } from '../components';
 
 export function Layout({ listToken }) {
 	// useLocation hook will be used to check current route
@@ -43,13 +44,13 @@ export function Layout({ listToken }) {
 	}
 
 	return (
-		<div className="Layout">
-			<header className="Layout-header">
-				<h1>Smart shopping list</h1>
-			</header>
-			<main className="Layout-main">
-				<Outlet />
-			</main>
-		</div>
+		<>
+			{location.pathname !== '/' && <NavbarShoppingList />}
+			<div className="Layout">
+				<main className="Layout-main">
+					<Outlet />
+				</main>
+			</div>
+		</>
 	);
 }
