@@ -169,8 +169,14 @@ export function List({ data, loading }) {
 							<Card.Subtitle>
 								Stop loafing around, and start shopping!
 							</Card.Subtitle>
-							<Button type="button" onClick={handleAddItem} variant="primary">
-								Add items
+
+							<Button
+								type="button"
+								onClick={handleAddItem}
+								variant="primary"
+								aria-label="Add items"
+							>
+								<span class="sr-only">Add items</span>
 							</Button>
 						</div>
 					</Card.ImgOverlay>
