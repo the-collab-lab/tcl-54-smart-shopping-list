@@ -68,7 +68,7 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 						/>
 					</Form>
 					<Image
-						src="../img/bread_styling/trash-icon.svg"
+						src="src/img/icons/trash-icon.svg"
 						type="button"
 						onClick={handleDelete}
 					/>

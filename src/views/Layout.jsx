@@ -28,7 +28,7 @@ export function Layout({ listToken }) {
 							<CopyToClipboard text={listToken}>
 								<Image
 									type="button"
-									src="../img/icons/copy-icon.svg"
+									src="src/img/icons/copy-icon.svg"
 									onClick={notifyCopied}
 								/>
 							</CopyToClipboard>

@@ -67,15 +67,15 @@ export function List({ data, loading }) {
 			// - kind of soon: (between 7 & 30 days until the next purchase)
 			// - soon: (7 days or fewer until the next purchase)
 			if (daysUntilNextPurchase >= 60) {
-				imgUrgency = '../img/bread_styling/inactive-loaf.svg/';
+				imgUrgency = 'src/img/bread_styling/inactive-loaf.svg';
 			} else if (new Date() > item.dateNextPurchased.toDate()) {
-				imgUrgency = '../img/bread_styling/overdue-loaf.svg/';
+				imgUrgency = 'src/img/bread_styling/overdue-loaf.svg';
 			} else if (daysUntilNextPurchase >= 30) {
-				imgUrgency = '../img/bread_styling/not-soon-loaf.svg/';
+				imgUrgency = 'src/img/bread_styling/not-soon-loaf.svg';
 			} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
-				imgUrgency = '../img/bread_styling/kind-of-soon-loaf.svg/';
+				imgUrgency = 'src/img/bread_styling/kind-of-soon-loaf.svg';
 			} else {
-				imgUrgency = '../img/bread_styling/soon-loaf.svg/';
+				imgUrgency = 'src/img/bread_styling/soon-loaf.svg';
 			}
 		}
 
@@ -131,7 +131,7 @@ export function List({ data, loading }) {
 			})
 		) : filterInput && filteredList.length === 0 ? (
 			<div className="item-not-found">
-				<Image src="../img/bread_styling/confused-bread.png" />
+				<Image src="src/img/bread_styling/confused-bread.png" />
 				<h4>no matching item found</h4>
 			</div>
 		) : (
@@ -160,11 +160,11 @@ export function List({ data, loading }) {
 			a welcoming user prompt is displayed to start adding items to the list */
 			<div className="empty-list-view">
 				<Card>
-					<Card.Img src="../img/bread_styling/oven.svg/" alt="Card image" />
+					<Card.Img src="src/img/bread_styling/oven.svg" alt="Card image" />
 					<Card.ImgOverlay>
 						<div className="oven-handle" />
 						<div className="card-overlay-background">
-							<Image src="../img/bread_styling/sad-pastry.png" />
+							<Image src="src/img/bread_styling/sad-pastry.png" />
 							<Card.Title>List is empty.</Card.Title>
 							<Card.Subtitle>
 								Stop loafing around, and start shopping!
@@ -186,7 +186,7 @@ export function List({ data, loading }) {
 						<Form>
 							<InputGroup>
 								<InputGroup.Text>
-									<Image src="/../img/icons/search-icon.svg" />
+									<Image src="src/img/icons/search-icon.svg" />
 								</InputGroup.Text>
 								<Form.Control
 									id="list-filter"
@@ -209,7 +209,7 @@ export function List({ data, loading }) {
 					- filtered shopping list
 					- item not found view */}
 				<Card>
-					<Card.Img src="../img/bread_styling/oven.svg/" alt="Card image" />
+					<Card.Img src="src/img/bread_styling/oven.svg" alt="Card image" />
 					<Card.ImgOverlay>
 						<div className="list-overflow">
 							<ListGroup>{renderList()}</ListGroup>
