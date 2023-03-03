@@ -42,11 +42,6 @@
 	padding: 20px;
 }
 
-.react-confirm-alert-title {
-	font-size: 18px;
-	margin-bottom: 10px;
-}
-
 .react-confirm-alert-message {
 	font-size: 16px;
 	margin-bottom: 20px;
@@ -56,19 +51,4 @@
 .react-confirm-alert-button-group {
 	display: flex;
 	justify-content: space-around;
-}
-
-.react-confirm-alert-button {
-	background-color: #495867;
-	border: none;
-	color: #495867;
-	cursor: pointer;
-	font-size: 16px;
-	padding: 8px 16px;
-	border-radius: 4px;
-	transition: background-color 0.3s;
-}
-
-.react-confirm-alert-button:hover {
-	background-color: #cc001f;
 }

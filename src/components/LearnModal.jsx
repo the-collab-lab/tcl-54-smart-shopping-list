@@ -39,7 +39,7 @@ export default function LearnModal({ show, hide }) {
 	return (
 		<Modal show={show} onHide={hide} centered>
 			<Modal.Header closeButton>
-				<Modal.Title>Get Started</Modal.Title>
+				<Modal.Title aria-label="Modal Title">Get Started</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				{/** The imported text from `modal-instructions.js` file are conditionally rendered
@@ -48,16 +48,22 @@ export default function LearnModal({ show, hide }) {
 				{currentIndex !== 3 && <p>{instructions[currentIndex].text}</p>}
 				{currentIndex === 2 && (
 					<>
-						<p className="mb-2">• {instructions[2].stepOne}</p>
-						<p className="mb-2">• {instructions[2].stepTwo}</p>
-						<p className="mb-2">• {instructions[2].stepThree}</p>
+						<p className="mb-2" aria-label="Step 1">
+							• {instructions[2].stepOne}
+						</p>
+						<p className="mb-2" aria-label="Step 2">
+							• {instructions[2].stepTwo}
+						</p>
+						<p className="mb-2" aria-label="Step 3">
+							• {instructions[2].stepThree}
+						</p>
 					</>
 				)}
 				{currentIndex === 3 && (
 					<>
-						<p>Notes:</p>
-						<p>{instructions[3].noteOne}</p>
-						<p>{instructions[3].noteTwo}</p>
+						<p aria-label="Notes">Notes:</p>
+						<p aria-label="Note 1">{instructions[3].noteOne}</p>
+						<p aria-label="Note 2">{instructions[3].noteTwo}</p>
 					</>
 				)}
 			</Modal.Body>
@@ -71,6 +77,7 @@ export default function LearnModal({ show, hide }) {
 							currentIndex === 0 && 'disabled'
 						}`}
 						disabled={currentIndex === 0}
+						aria-label="Previous Slide"
 					>
 						<i className="fa-solid fa-arrow-left" />
 					</Button>
@@ -81,11 +88,17 @@ export default function LearnModal({ show, hide }) {
 							currentIndex === 3 && 'disabled'
 						}`}
 						disabled={currentIndex === 3}
+						aria-label="Next Slide"
 					>
 						<i className="fa-solid fa-arrow-right" />
 					</Button>
 				</div>
-				<button type="button" className="btn-custom p-2" onClick={hide}>
+				<button
+					type="button"
+					className="btn-custom p-2"
+					onClick={hide}
+					aria-label="CLose Modal"
+				>
 					Close
 				</button>
 			</Modal.Footer>
