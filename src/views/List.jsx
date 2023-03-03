@@ -196,8 +196,12 @@ export function List({ data, loading }) {
 									onChange={handleInput}
 								/>
 								{filterInput && (
-									<Button onClick={handleClick} variant="outline-primary mvb">
-										X
+									<Button
+										onClick={handleClick}
+										variant="outline-primary mvb"
+										aria-label="Close"
+									>
+										X <span className="sr-only">Clear</span>
 									</Button>
 								)}
 							</InputGroup>
