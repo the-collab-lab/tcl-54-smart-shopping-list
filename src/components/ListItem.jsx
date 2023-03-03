@@ -2,6 +2,9 @@ import { updateItem, deleteItem } from '../api/firebase';
 import { useState, useEffect } from 'react';
 import { getDaysBetweenDates } from '../utils/dates';
 import { ListGroup, Form, Image } from 'react-bootstrap';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import { toast } from 'react-hot-toast';
 
 export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	const [check, setCheck] = useState(false);
@@ -42,11 +45,35 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	};
 
 	// When remove button is clicked, a confirm window pops up, and when user confirms, deleteItem() is called
+	// const handleDelete = async () => {
+	// 	// eslint-disable-next-line no-restricted-globals
+	// 	if (confirm(`Do you want to remove ${name}?`)) {
+	// 		await deleteItem(listId, itemId);
+	// 	}
+	// };
+
 	const handleDelete = async () => {
-		// eslint-disable-next-line no-restricted-globals
-		if (confirm(`Do you want to remove ${name}?`)) {
-			await deleteItem(listId, itemId);
-		}
+		confirmAlert({
+			title: 'Confirm',
+			message: `Do you want to remove ${name}?`,
+			buttons: [
+				{
+					label: 'Yes',
+					onClick: async () => {
+						try {
+							await deleteItem(listId, itemId);
+							toast.success('Your item has been removed!');
+						} catch (error) {
+							toast.error('An error occurred while removing your item.');
+						}
+					},
+				},
+				{
+					label: 'No',
+					onClick: () => {},
+				},
+			],
+		});
 	};
 
 	/* Checking for the existence of urgency to avoid `undefined` */
