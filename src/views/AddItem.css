@@ -1,0 +1,46 @@
+.add-item {
+	color: #242a32;
+}
+
+.add-item-form {
+	border: 2px solid #b65c1a;
+}
+
+.item-input {
+	border: 2px solid #c18c5d !important;
+}
+
+.radio-button {
+	margin: 10px 0px 0px 0px !important;
+}
+
+.radio-button-label {
+	margin: 0px 0px 0px 10px !important;
+}
+
+.soon-row {
+	border: 2px solid #b65c1a;
+}
+
+.soon-radio-button {
+	background-color: #b65c1a;
+	margin: -10px 0px -10px -10px !important;
+}
+
+.kind-of-soon-row {
+	border: 2px solid #f99d5a;
+}
+
+.kind-of-soon-radio-button {
+	background-color: #f99d5a;
+	margin: -10px 0px -10px -10px !important;
+}
+
+.not-soon {
+	border: 2px solid #ffda92;
+}
+
+.not-soon-radio-button {
+	background-color: #ffda92;
+	margin: -10px 0px -10px -10px !important;
+}
