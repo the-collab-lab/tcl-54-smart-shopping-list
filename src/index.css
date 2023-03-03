@@ -5,6 +5,7 @@
 /* All css styles for the individual components and views should be imported here */
 @import './styles/Home.css';
 @import './styles/ListItem.css';
+@import './styles/AddItem.css';
 @import './styles/Layout.css';
 
 :root {

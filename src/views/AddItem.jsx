@@ -10,7 +10,10 @@ import {
 	Col,
 	Image,
 } from 'react-bootstrap';
-import './AddItem.css';
+import soonToast from '/img/soon-toast.png';
+import kindOfSoonToast from '/img/kind-of-soon-toast.png';
+import notSoonToast from '/img/not-soon-toast.png';
+import croissant from '/img/croissant.png';
 
 /**
  * Allows user to add an item to their shopping list,
@@ -123,9 +126,9 @@ export function AddItem({ listToken, data }) {
 					<h1>Add Item</h1>
 				</header>
 
-				<Container className="add-item-form shadow rounded-3 p-5 mt-5 bg-white">
+				<Container className="add-item-form shadow rounded-3 py-3 mt-5 bg-white">
 					<Form onSubmit={onFormSubmit}>
-						<div className="pb-4 mx-5">
+						<div className="py-4 mx-5">
 							<Form.Label htmlFor="item">Item Name:</Form.Label>
 							<InputGroup>
 								<Form.Control
@@ -136,17 +139,15 @@ export function AddItem({ listToken, data }) {
 									onChange={(e) => setItemName(e.target.value)}
 									required={true}
 									placeholder="e.g., croissants"
-									className="item-input rounded-4"
+									className="item-input rounded-2"
 								/>
 							</InputGroup>
 						</div>
 						<div className="pb-4 mx-5">
-							<Form.Label className="mb-4">
-								How soon will you buy this again?
-							</Form.Label>
+							<Form.Label>How soon will you buy this again?</Form.Label>
 							<fieldset>
-								<Row className="soon-row rounded-4 my-4 p-3">
-									<Col className="soon-radio-button rounded-start">
+								<Row className="soon-row rounded-2 my-2 p-3">
+									<Col xs={2} className="soon-radio-button rounded-start">
 										<Form.Check
 											defaultChecked
 											aria-labelledby="purchase-date-label"
@@ -159,16 +160,24 @@ export function AddItem({ listToken, data }) {
 										/>
 									</Col>
 									<Col xs={8}>
-										<Form.Label className="radio-button-label" htmlFor="soon">
-											Soon (1-7 days)
+										<Form.Label
+											className="radio-button-label fs-6"
+											htmlFor="soon"
+										>
+											Soon
 										</Form.Label>
 									</Col>
 									<Col xs={2}>
-										<Image src="/img/soon-toast.svg"></Image>
+										<div className="urgency-toast">
+											<Image src={soonToast}></Image>
+										</div>
 									</Col>
 								</Row>
-								<Row className="kind-of-soon-row rounded-4 my-4 p-3">
-									<Col className="kind-of-soon-radio-button rounded-start">
+								<Row className="kind-of-soon-row rounded-2 my-4 p-3">
+									<Col
+										xs={2}
+										className="kind-of-soon-radio-button rounded-start"
+									>
 										<Form.Check
 											type="radio"
 											value="kind-of-soon"
@@ -180,18 +189,20 @@ export function AddItem({ listToken, data }) {
 									</Col>
 									<Col xs={8}>
 										<Form.Label
-											className="radio-button-label"
+											className="radio-button-label fs-6"
 											htmlFor="kind-of-soon"
 										>
-											Kind of Soon (7-14 days)
+											Kind of Soon
 										</Form.Label>
 									</Col>
 									<Col xs={2}>
-										<Image src="/img/kind-of-soon-toast.svg"></Image>
+										<div className="urgency-toast">
+											<Image src={kindOfSoonToast}></Image>
+										</div>
 									</Col>
 								</Row>
-								<Row className="not-soon rounded-4 my-4 p-3">
-									<Col className="not-soon-radio-button rounded-start">
+								<Row className="not-soon rounded-2 my-4 p-3">
+									<Col xs={2} className="not-soon-radio-button rounded-start">
 										<Form.Check
 											type="radio"
 											id="not-soon"
@@ -203,25 +214,29 @@ export function AddItem({ listToken, data }) {
 									</Col>
 									<Col xs={8}>
 										<Form.Label
-											className="radio-button-label"
+											className="radio-button-label fs-6"
 											htmlFor="not-soon"
 										>
-											Not Soon (14+ days)
+											Not Soon
 										</Form.Label>
 									</Col>
 									<Col xs={2}>
-										<Image src="/img/not-soon-toast.svg"></Image>
+										<div className="urgency-toast">
+											<Image src={notSoonToast}></Image>
+										</div>
 									</Col>
 								</Row>
 							</fieldset>
 						</div>
 						<div className="mb-4 text-center">
-							<Button type="submit">Add Item</Button>
+							<Button className="btn-custom" type="submit">
+								Add Item
+							</Button>
 						</div>
 					</Form>
 				</Container>
-				<div className="mt-5 text-center ">
-					<Image src="/img/croissant.svg" />
+				<div className="mt-5 w-25 mx-auto ">
+					<Image src={croissant} />
 				</div>
 			</div>
 
