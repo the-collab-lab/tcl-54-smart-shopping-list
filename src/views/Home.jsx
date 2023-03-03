@@ -134,7 +134,11 @@ export function Home({ setListToken }) {
 				</Form>
 				{/* When Learn More is clicked the state for `show` is set to true */}
 				<div className="learn-more fw-bold mt-4">
-					<a href="/#" onClick={() => setShow(true)}>
+					<a
+						href="/#"
+						onClick={() => setShow(true)}
+						aria-label="Open Learn More Modal"
+					>
 						Learn More
 					</a>
 				</div>
