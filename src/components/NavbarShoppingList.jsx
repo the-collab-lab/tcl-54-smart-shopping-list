@@ -12,9 +12,15 @@ export function NavbarShoppingList() {
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="me-auto">
-						<Nav.Link href="/">Home</Nav.Link>
-						<Nav.Link href="/list">List</Nav.Link>
-						<Nav.Link href="/add-item">Add Item</Nav.Link>
+						<Nav.Link href="/" aria-label="Go to home page">
+							Home
+						</Nav.Link>
+						<Nav.Link href="/list" aria-label="Go to shopping list">
+							List
+						</Nav.Link>
+						<Nav.Link href="/add-item" aria-label="Add item to shopping list">
+							Add Item
+						</Nav.Link>
 
 						{/* This will make 'Exit List' visible ONLY when route is on /list */}
 						{location.pathname === '/list' && (
@@ -23,6 +29,7 @@ export function NavbarShoppingList() {
 								onClick={() =>
 									localStorage.removeItem('tcl-shopping-list-token')
 								}
+								aria-label="Exit shopping list"
 							>
 								Exit List
 							</Nav.Link>
