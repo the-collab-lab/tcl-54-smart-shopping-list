@@ -66,11 +66,13 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 							label={name}
 						/>
 					</Form>
-					<Image
-						src="src/img/icons/trash-icon.svg"
-						type="button"
-						onClick={handleDelete}
-					/>
+					<div>
+						<Image
+							src="src/img/icons/trash-icon.svg"
+							type="button"
+							onClick={handleDelete}
+						/>
+					</div>
 				</div>
 				<div className="flex-center-bread-img">
 					<Image src={imgUrgency} />
