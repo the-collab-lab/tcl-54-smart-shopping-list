@@ -11,11 +11,16 @@
 }
 
 .radio-button {
-	margin: 10px 0px 0px 0px !important;
+	margin: 15px 0px 0px 0px !important;
 }
 
 .radio-button-label {
 	margin: 0px 0px 0px 10px !important;
+}
+
+.urgency-toast {
+	height: 22px;
+	width: 25px;
 }
 
 .soon-row {
@@ -24,7 +29,7 @@
 
 .soon-radio-button {
 	background-color: #b65c1a;
-	margin: -10px 0px -10px -10px !important;
+	margin: -18px 0px -18px -18px !important;
 }
 
 .kind-of-soon-row {
@@ -33,7 +38,7 @@
 
 .kind-of-soon-radio-button {
 	background-color: #f99d5a;
-	margin: -10px 0px -10px -10px !important;
+	margin: -18px 0px -18px -18px !important;
 }
 
 .not-soon {
@@ -42,5 +47,5 @@
 
 .not-soon-radio-button {
 	background-color: #ffda92;
-	margin: -10px 0px -10px -10px !important;
+	margin: -18px 0px -18px -18px !important;
 }
