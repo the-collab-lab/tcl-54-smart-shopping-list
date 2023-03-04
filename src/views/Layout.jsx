@@ -1,9 +1,9 @@
+import '../styles/Layout.css';
+import { ReactComponent as CopyIcon } from '../img/icons/copy-icon.svg';
 import { Outlet } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Image } from 'react-bootstrap';
 import toast, { Toaster } from 'react-hot-toast';
-import '../styles/Layout.css';
 import { NavbarShoppingList } from '../components';
 
 export function Layout({ listToken }) {
@@ -27,11 +27,7 @@ export function Layout({ listToken }) {
 							{listToken}
 							<span>
 								<CopyToClipboard text={listToken}>
-									<Image
-										type="button"
-										src="src/img/icons/copy-icon.svg"
-										onClick={notifyCopied}
-									/>
+									<CopyIcon type="button" onClick={notifyCopied} />
 								</CopyToClipboard>
 							</span>
 						</h1>
