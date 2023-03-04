@@ -1,6 +1,6 @@
-import { Container, Nav, Navbar, Image, Row, Col } from 'react-bootstrap';
+import { Container, Nav, Navbar, Image } from 'react-bootstrap';
 import { useLocation } from 'react-router';
-import appLogo from '../img/bread_styling/burger-boy1.png';
+import appLogo from '../img/bread-styling/burger-boy1.png';
 
 export function NavbarShoppingList() {
 	// useLocation hook is used to access the current route

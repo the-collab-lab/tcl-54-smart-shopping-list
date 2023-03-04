@@ -61,7 +61,8 @@ export default defineConfig({
 	plugins: [
 		eslint({ cache: false, formatter: 'stylish' }),
 		react(),
-		svgr({ exportAsDefault: true }),
+		// svgr({ exportAsDefault: true }),
+		svgr(),
 		VitePWA(PWAConfig),
 	],
 	server: { open: true, port: 3000 },

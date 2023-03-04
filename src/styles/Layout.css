@@ -78,15 +78,9 @@
 	top: 0;
 }
 
-.List-header img {
-	width: 2rem;
+.List-header svg {
 	padding-left: 1%;
 }
 .List-header h1 {
-	font-size: 1.75rem;
 	padding-bottom: 3%;
-}
-
-.List-header h4 {
-	font-size: 1.25rem;
 }

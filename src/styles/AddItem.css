@@ -1,0 +1,51 @@
+.add-item {
+	color: #242a32;
+}
+
+.add-item-form {
+	border: 0.125rem solid #b65c1a;
+}
+
+.item-input {
+	border: 0.125rem solid #c18c5d !important;
+}
+
+.radio-button {
+	margin: 0.938rem 0rem 0rem 0rem !important;
+}
+
+.radio-button-label {
+	margin: 0rem 0rem 0rem 0.625rem !important;
+}
+
+.urgency-toast {
+	height: 2rem;
+	width: 3rem;
+}
+
+.soon-row {
+	border: 0.125rem solid #b65c1a;
+}
+
+.soon-radio-button {
+	background-color: #b65c1a;
+	margin: -1.125rem 0rem -1.125rem -1.125rem !important;
+}
+
+.kind-of-soon-row {
+	border: 0.125rem solid #f99d5a;
+}
+
+.kind-of-soon-radio-button {
+	background-color: #f99d5a;
+	margin: -1.125rem 0rem -1.125rem -1.125rem !important;
+}
+
+.not-soon {
+	border: 0.125rem solid #ffda92;
+}
+
+.not-soon-radio-button {
+	background-color: #ffda92;
+	margin: -1.125rem 0rem -1.125rem -1.125rem !important;
+}

@@ -1,3 +1,5 @@
+import '../styles/ListItem.css';
+import { ReactComponent as TrashIcon } from '../img/icons/trash-icon.svg';
 import { updateItem, deleteItem } from '../api/firebase';
 import { useState, useEffect } from 'react';
 import { getDaysBetweenDates } from '../utils/dates';
@@ -67,16 +69,10 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 						/>
 					</Form>
 					<div>
-						<Image
-							src="src/img/icons/trash-icon.svg"
-							type="button"
-							onClick={handleDelete}
-						/>
+						<TrashIcon type="button" onClick={handleDelete} />
 					</div>
 				</div>
-				<div className="flex-center-bread-img">
-					<Image src={imgUrgency} />
-				</div>
+				<div className="flex-center-bread-img">{imgUrgency}</div>
 			</ListGroup.Item>
 		);
 	}

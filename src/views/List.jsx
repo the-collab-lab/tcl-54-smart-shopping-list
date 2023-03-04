@@ -1,3 +1,14 @@
+// PNG imports
+import confusedBread from '../img/bread-styling/confused-bread.png';
+import sadPastry from '../img/bread-styling/sad-pastry.png';
+// SVG imports
+import { ReactComponent as Oven } from '../img/bread-styling/oven.svg';
+import { ReactComponent as InactiveLoaf } from '../img/bread-styling/inactive-loaf.svg';
+import { ReactComponent as KindOfSoonLoaf } from '../img/bread-styling/kind-of-soon-loaf.svg';
+import { ReactComponent as NotSoonLoaf } from '../img/bread-styling/not-soon-loaf.svg';
+import { ReactComponent as SoonLoaf } from '../img/bread-styling/soon-loaf.svg';
+import { ReactComponent as OverdueLoaf } from '../img/bread-styling/overdue-loaf.svg';
+import { ReactComponent as SearchIcon } from '../img/icons/search-icon.svg';
 import { ListItem } from '../components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -66,19 +77,19 @@ export function List({ data, loading }) {
 			// - kind of soon: (between 7 & 30 days until the next purchase)
 			// - soon: (7 days or fewer until the next purchase)
 			if (daysUntilNextPurchase >= 60) {
-				imgUrgency = 'src/img/bread_styling/inactive-loaf.svg';
+				imgUrgency = <InactiveLoaf />;
 			} else if (new Date() > item.dateNextPurchased.toDate()) {
-				imgUrgency = 'src/img/bread_styling/overdue-loaf.svg';
+				imgUrgency = <OverdueLoaf />;
 			} else if (daysUntilNextPurchase >= 30) {
-				imgUrgency = 'src/img/bread_styling/not-soon-loaf.svg';
+				imgUrgency = <NotSoonLoaf />;
 			} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
-				imgUrgency = 'src/img/bread_styling/kind-of-soon-loaf.svg';
+				imgUrgency = <KindOfSoonLoaf />;
 			} else {
-				imgUrgency = 'src/img/bread_styling/soon-loaf.svg';
+				imgUrgency = <SoonLoaf />;
 			}
 		}
 
-		//To be used as new additions to item properties in the new shopping list dataWithUrgency
+		//To be used as new additions to item property in the new shopping list dataWithUrgency
 		return { imgUrgency };
 	};
 
@@ -98,8 +109,9 @@ export function List({ data, loading }) {
 
 	/* Use handler to change the state of filterInput 
 	and convert all items to lowercase to facilitate a more thorough search */
-	const handleInput = (event) => {
-		const value = event.target.value;
+	const handleSearchInput = (e) => {
+		e.preventDefault();
+		const value = e.target.value;
 		setFilterInput(value);
 		setFilteredList(
 			dataWithUrgency.filter((item) => {
@@ -130,7 +142,7 @@ export function List({ data, loading }) {
 			})
 		) : filterInput && filteredList.length === 0 ? (
 			<div className="item-not-found">
-				<Image src="src/img/bread_styling/confused-bread.png" />
+				<Image src={confusedBread} />
 				<h4>no matching item found</h4>
 			</div>
 		) : (
@@ -159,11 +171,11 @@ export function List({ data, loading }) {
 			a welcoming user prompt is displayed to start adding items to the list */
 			<div className="empty-list-view">
 				<Card>
-					<Card.Img src="src/img/bread_styling/oven.svg" alt="Card image" />
+					<Oven alt="Card image" />
 					<Card.ImgOverlay>
 						<div className="oven-handle" />
 						<div className="card-overlay-background">
-							<Image src="src/img/bread_styling/sad-pastry.png" />
+							<Image src={sadPastry} />
 							<Card.Title>List is empty.</Card.Title>
 							<Card.Subtitle>
 								Stop loafing around, and start shopping!
@@ -182,17 +194,17 @@ export function List({ data, loading }) {
 				{/* if the shopping list has more than one item, the search bar is displayed */}
 				{checkForMoreThanOneItem() ? (
 					<div className="search-bar">
-						<Form>
+						<Form onSubmit={(e) => e.preventDefault()}>
 							<InputGroup>
 								<InputGroup.Text>
-									<Image src="src/img/icons/search-icon.svg" />
+									<SearchIcon />
 								</InputGroup.Text>
 								<Form.Control
 									id="list-filter"
 									type="text"
 									placeholder="Search items"
 									value={filterInput}
-									onChange={handleInput}
+									onChange={handleSearchInput}
 								/>
 								{filterInput && <Button onClick={handleClick}>X</Button>}
 							</InputGroup>
@@ -204,7 +216,7 @@ export function List({ data, loading }) {
 					- filtered shopping list
 					- item not found view */}
 				<Card>
-					<Card.Img src="src/img/bread_styling/oven.svg" alt="Card image" />
+					<Oven alt="Card image" />
 					<Card.ImgOverlay>
 						<div className="list-overflow">
 							<ListGroup>{renderList()}</ListGroup>

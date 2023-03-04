@@ -5,6 +5,7 @@
 /* All css styles for the individual components and views should be imported here */
 @import './styles/Home.css';
 @import './styles/ListItem.css';
+@import './styles/AddItem.css';
 @import './styles/Layout.css';
 @import './styles/List.css';
 @import './styles/NavbarShoppingList.css';
@@ -235,4 +236,89 @@ code {
 
 ul {
 	padding: 0;
+}
+
+/* Media Queries */
+/* small tablets & ipad styles */
+@media screen and (min-width: 600px) {
+	.home-input {
+		width: 65%;
+	}
+
+	.filled-list-view .card {
+		width: 60%;
+	}
+
+	.empty-list-view .card {
+		width: 60%;
+	}
+
+	.filled-list-view .search-bar {
+		margin: auto;
+		width: 45%;
+	}
+
+	.filled-list-view .flex-wrap-item-name form {
+		width: 85%;
+	}
+
+	.filled-list-view .flex-center-bread-img img {
+		width: 65%;
+	}
+}
+
+/* large tablets & laptop styles */
+@media screen and (min-width: 960px) {
+	.home-input {
+		width: 50%;
+	}
+
+	.filled-list-view .card {
+		width: 60%;
+	}
+
+	.empty-list-view .card {
+		width: 60%;
+	}
+
+	.filled-list-view .search-bar {
+		margin: auto;
+		width: 45%;
+	}
+
+	.filled-list-view .flex-wrap-item-name form {
+		width: 85%;
+	}
+
+	.filled-list-view .flex-center-bread-img img {
+		width: 65%;
+	}
+}
+
+/* large desktop styles */
+@media screen and (min-width: 1200px) {
+	.home-input {
+		width: 50%;
+	}
+
+	.filled-list-view .card {
+		width: 60%;
+	}
+
+	.empty-list-view .card {
+		width: 60%;
+	}
+
+	.filled-list-view .search-bar {
+		margin: auto;
+		width: 45%;
+	}
+
+	.filled-list-view .flex-wrap-item-name form {
+		width: 85%;
+	}
+
+	.filled-list-view .flex-center-bread-img img {
+		width: 65%;
+	}
 }
