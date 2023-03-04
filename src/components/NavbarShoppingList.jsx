@@ -8,7 +8,7 @@ export function NavbarShoppingList() {
 
 	return (
 		<Navbar fluid="md" expand="lg" className="navbar-custom">
-			<Container fluid className="m-0">
+			<Container fluid className="m-0  justify-content-center">
 				<Navbar.Brand href="/" className="d-flex align-items-center">
 					<div className="logo-text-container d-flex align-items-center">
 						<Image src={appLogo} className="app-logo-navbar" />

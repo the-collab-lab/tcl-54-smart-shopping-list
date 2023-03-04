@@ -132,6 +132,7 @@ export function List({ data, loading }) {
 						className="p-3"
 						id="plus-item-card"
 						type="button"
+						label="Add Items"
 						onClick={handleAddItem}
 					>
 						<h4 id="plus-item-button">Add items</h4>
