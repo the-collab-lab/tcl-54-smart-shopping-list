@@ -8,7 +8,7 @@ export function NavbarShoppingList() {
 
 	return (
 		<Navbar fluid="md" expand="lg" className="navbar-custom">
-			<Container fluid className="m-0">
+			<Container fluid className="m-0  justify-content-center">
 				<Navbar.Brand href="/" className="d-flex align-items-center">
 					<div className="logo-text-container d-flex align-items-center">
 						<Image src={appLogo} className="app-logo-navbar" />
@@ -20,7 +20,7 @@ export function NavbarShoppingList() {
 					<Nav className="me-auto text-center">
 						<Nav.Link href="/">Home</Nav.Link>
 						<Nav.Link href="/list">List</Nav.Link>
-						<Nav.Link href="/add-item">Add Item</Nav.Link>
+						<Nav.Link href="/add-item">Add Items</Nav.Link>
 
 						{/* This will make 'Exit List' visible ONLY when route is on /list */}
 						{location.pathname !== '/' && (

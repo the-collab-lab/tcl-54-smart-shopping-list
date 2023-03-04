@@ -21,6 +21,7 @@ import {
 	ListGroup,
 	Card,
 	Image,
+	ListGroupItem,
 } from 'react-bootstrap';
 
 /** List component that displays items in a user's shopping cart  */
@@ -125,21 +126,36 @@ export function List({ data, loading }) {
 
 	const renderList = () => {
 		return !filterInput ? (
-			// map over the sorted dataWithUrgency
-			dataWithUrgency.map((item) => {
-				return (
-					<div className="item-card" key={item.id}>
-						<ListItem
-							keyField={item.id}
-							itemId={item.id}
-							name={item.name}
-							dateLastPurchased={item.dateLastPurchased}
-							dateNextPurchased={item.dateNextPurchased}
-							urgency={item.urgency}
-						/>
-					</div>
-				);
-			})
+			<>
+				<div className="item-card">
+					<ListGroupItem
+						className="p-3"
+						id="plus-item-card"
+						type="button"
+						label="Add Items"
+						onClick={handleAddItem}
+					>
+						<h4 id="plus-item-button">Add items</h4>
+					</ListGroupItem>
+				</div>
+				{
+					// map over the sorted dataWithUrgency
+					dataWithUrgency.map((item) => {
+						return (
+							<div className="item-card" key={item.id}>
+								<ListItem
+									keyField={item.id}
+									itemId={item.id}
+									name={item.name}
+									dateLastPurchased={item.dateLastPurchased}
+									dateNextPurchased={item.dateNextPurchased}
+									urgency={item.urgency}
+								/>
+							</div>
+						);
+					})
+				}
+			</>
 		) : filterInput && filteredList.length === 0 ? (
 			<div className="item-not-found">
 				<Image src={confusedBread} />

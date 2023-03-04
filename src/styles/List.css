@@ -79,6 +79,14 @@
 	border-radius: 0.313rem;
 }
 
+.filled-list-view .add-item-card {
+	margin: auto;
+	width: 95%;
+	background-color: transparent;
+	padding-bottom: 0.938rem;
+	border-radius: 0.313rem;
+}
+
 .filled-list-view .item-not-found {
 	background: #ffe2cd;
 	border-color: var(--color-dusty-blue);
