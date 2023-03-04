@@ -12,7 +12,7 @@
 }
 
 /* this hides the overflow of an extremely long worded item edge case */
-.filled-list-view form {
+.filled-list-view .flex-wrap-item-name form {
 	display: inline-block;
 	width: 14.063rem;
 	overflow: hidden;
