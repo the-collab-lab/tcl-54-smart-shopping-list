@@ -126,21 +126,30 @@ export function List({ data, loading }) {
 
 	const renderList = () => {
 		return !filterInput ? (
-			// map over the sorted dataWithUrgency
-			dataWithUrgency.map((item) => {
-				return (
-					<div className="item-card" key={item.id}>
-						<ListItem
-							keyField={item.id}
-							itemId={item.id}
-							name={item.name}
-							dateLastPurchased={item.dateLastPurchased}
-							dateNextPurchased={item.dateNextPurchased}
-							urgency={item.urgency}
-						/>
-					</div>
-				);
-			})
+			<>
+				<div className="item-card">
+					<ListGroup.Item>
+						<Button>Add New Item</Button>
+					</ListGroup.Item>
+				</div>
+				{
+					// map over the sorted dataWithUrgency
+					dataWithUrgency.map((item) => {
+						return (
+							<div className="item-card" key={item.id}>
+								<ListItem
+									keyField={item.id}
+									itemId={item.id}
+									name={item.name}
+									dateLastPurchased={item.dateLastPurchased}
+									dateNextPurchased={item.dateNextPurchased}
+									urgency={item.urgency}
+								/>
+							</div>
+						);
+					})
+				}
+			</>
 		) : filterInput && filteredList.length === 0 ? (
 			<div className="item-not-found">
 				<Image src={confusedBread} />

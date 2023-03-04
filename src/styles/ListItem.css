@@ -21,9 +21,9 @@
 .filled-list-view .flex-center-bread-img {
 	display: flex;
 	justify-content: center;
+	padding-top: 5%;
 }
 
-.filled-list-view .flex-center-bread-img img {
-	width: 12.813rem;
-	padding-top: 5%;
+.filled-list-view .flex-center-bread-img svg {
+	width: 13rem;
 }
