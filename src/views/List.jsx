@@ -1,4 +1,3 @@
-import '../styles/List.css';
 // PNG imports
 import confusedBread from '../img/bread-styling/confused-bread.png';
 import sadPastry from '../img/bread-styling/sad-pastry.png';
@@ -196,7 +195,11 @@ export function List({ data, loading }) {
 							<Card.Subtitle>
 								Stop loafing around, and start shopping!
 							</Card.Subtitle>
-							<Button type="button" onClick={handleAddItem} variant="primary">
+							<Button
+								type="button"
+								onClick={handleAddItem}
+								className="btn-custom"
+							>
 								Add items
 							</Button>
 						</div>
