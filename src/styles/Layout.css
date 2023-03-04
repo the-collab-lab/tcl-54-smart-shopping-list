@@ -85,3 +85,11 @@
 	padding-bottom: 3%;
 	font-family: 'Lustria', serif;
 }
+
+.list-btn,
+.list-btn:hover,
+.list-btn:active,
+.list-btn:focus {
+	background: transparent !important;
+	border: none;
+}

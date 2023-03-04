@@ -2,7 +2,7 @@ import { ReactComponent as TrashIcon } from '../img/icons/trash-icon.svg';
 import { updateItem, deleteItem } from '../api/firebase';
 import { useState, useEffect } from 'react';
 import { getDaysBetweenDates } from '../utils/dates';
-import { ListGroup, Form } from 'react-bootstrap';
+import { ListGroup, Form, Button } from 'react-bootstrap';
 
 export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	const [check, setCheck] = useState(false);
@@ -68,7 +68,9 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 						/>
 					</Form>
 					<div>
-						<TrashIcon type="button" onClick={handleDelete} />
+						<Button className="list-btn">
+							<TrashIcon onClick={handleDelete} />
+						</Button>
 					</div>
 				</div>
 				<div className="flex-center-bread-img">{imgUrgency}</div>

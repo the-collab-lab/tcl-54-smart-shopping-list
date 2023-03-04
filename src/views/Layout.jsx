@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import toast, { Toaster } from 'react-hot-toast';
 import { NavbarShoppingList } from '../components';
+import { Button } from 'react-bootstrap';
 
 export function Layout({ listToken }) {
 	// useLocation hook will be used to check current route
@@ -26,7 +27,9 @@ export function Layout({ listToken }) {
 							{listToken}
 							<span>
 								<CopyToClipboard text={listToken}>
-									<CopyIcon type="button" onClick={notifyCopied} />
+									<Button className="list-btn">
+										<CopyIcon onClick={notifyCopied} />
+									</Button>
 								</CopyToClipboard>
 							</span>
 						</h1>
