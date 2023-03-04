@@ -71,6 +71,7 @@ export default function LearnModal({ show, hide }) {
 							currentIndex === 0 && 'disabled'
 						}`}
 						disabled={currentIndex === 0}
+						aria-label="Previous slide"
 					>
 						<i className="fa-solid fa-arrow-left" />
 					</Button>
@@ -81,11 +82,17 @@ export default function LearnModal({ show, hide }) {
 							currentIndex === 3 && 'disabled'
 						}`}
 						disabled={currentIndex === 3}
+						aria-label="Next slide"
 					>
 						<i className="fa-solid fa-arrow-right" />
 					</Button>
 				</div>
-				<button type="button" className="btn-custom p-2" onClick={hide}>
+				<button
+					type="button"
+					className="btn-custom p-2"
+					onClick={hide}
+					aria-label="Close modal"
+				>
 					Close
 				</button>
 			</Modal.Footer>

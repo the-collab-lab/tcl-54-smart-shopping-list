@@ -50,3 +50,37 @@
 .filled-list-view .flex-center-bread-img svg {
 	width: 13rem;
 }
+
+/* Windows Confirm Styles for handleDelete */
+
+.react-confirm-alert-overlay {
+	background-color: #5d5d5d30;
+}
+.react-confirm-alert {
+	background-color: #495867;
+	border-radius: 0.313rem;
+	box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.3);
+	max-width: 25rem;
+	margin: 0 auto;
+	padding: 0.625rem;
+}
+
+.react-confirm-alert-body {
+	width: 18.75rem;
+	padding: 8%;
+	text-align: left;
+	background: #fff;
+	border-radius: 0.313rem;
+	box-shadow: 0 1.25rem 4.688rem rgb(0 0 0 / 13%);
+	color: #666;
+}
+
+.react-confirm-alert-message {
+	font-size: 0.875rem;
+	margin-bottom: 1.25rem;
+}
+
+.react-confirm-alert-button-group {
+	display: flex;
+	justify-content: space-around;
+}

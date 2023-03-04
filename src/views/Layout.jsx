@@ -28,7 +28,10 @@ export function Layout({ listToken }) {
 							<span>
 								<CopyToClipboard text={listToken}>
 									<Button className="list-btn">
-										<CopyIcon onClick={notifyCopied} />
+										<CopyIcon
+											onClick={notifyCopied}
+											aria-label="Copy list token to clipboard"
+										/>
 									</Button>
 								</CopyToClipboard>
 							</span>

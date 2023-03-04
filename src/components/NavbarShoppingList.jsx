@@ -12,7 +12,7 @@ export function NavbarShoppingList() {
 				<Navbar.Brand href="/" className="d-flex align-items-center">
 					<div className="logo-text-container d-flex align-items-center">
 						<Image src={appLogo} className="app-logo-navbar" />
-						<span className="app-name">Loaf Basket</span>
+						<span className="app-name">Knead to Buy</span>
 					</div>
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
