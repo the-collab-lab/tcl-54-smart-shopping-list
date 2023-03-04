@@ -180,7 +180,11 @@ export function List({ data, loading }) {
 							<Card.Subtitle>
 								Stop loafing around, and start shopping!
 							</Card.Subtitle>
-							<Button type="button" onClick={handleAddItem} variant="primary">
+							<Button
+								type="button"
+								onClick={handleAddItem}
+								className="btn-custom"
+							>
 								Add items
 							</Button>
 						</div>

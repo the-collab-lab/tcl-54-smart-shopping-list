@@ -1,9 +1,8 @@
-import '../styles/ListItem.css';
 import { ReactComponent as TrashIcon } from '../img/icons/trash-icon.svg';
 import { updateItem, deleteItem } from '../api/firebase';
 import { useState, useEffect } from 'react';
 import { getDaysBetweenDates } from '../utils/dates';
-import { ListGroup, Form, Image } from 'react-bootstrap';
+import { ListGroup, Form } from 'react-bootstrap';
 
 export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	const [check, setCheck] = useState(false);

@@ -6,15 +6,7 @@ import { ReactComponent as Croissant } from '../img/bread-styling/croissant.svg'
 import { addItem } from '../api/firebase';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import {
-	Button,
-	Form,
-	InputGroup,
-	Container,
-	Row,
-	Col,
-	Image,
-} from 'react-bootstrap';
+import { Button, Form, InputGroup, Container, Row, Col } from 'react-bootstrap';
 
 /**
  * Allows user to add an item to their shopping list,
