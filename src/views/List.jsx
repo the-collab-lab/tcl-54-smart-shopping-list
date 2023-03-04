@@ -214,7 +214,7 @@ export function List({ data, loading }) {
 					- filtered shopping list
 					- item not found view */}
 				<Card>
-					<Card.Img src="src/img/bread_styling/oven.svg" alt="Card image" />
+					<Card.Img src="./img/bread_styling/oven.svg" alt="Card image" />
 					<Card.ImgOverlay>
 						<div className="list-overflow">
 							<ListGroup>{renderList()}</ListGroup>
