@@ -2,7 +2,7 @@ import { ReactComponent as TrashIcon } from '../img/icons/trash-icon.svg';
 import { updateItem, deleteItem } from '../api/firebase';
 import { useState, useEffect } from 'react';
 import { getDaysBetweenDates } from '../utils/dates';
-import { ListGroup, Form } from 'react-bootstrap';
+import { ListGroup, Form, Button } from 'react-bootstrap';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { toast } from 'react-hot-toast';
 import { confirmAlert } from 'react-confirm-alert';
@@ -89,11 +89,9 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 						/>
 					</Form>
 					<div>
-						<TrashIcon
-							type="button"
-							onClick={handleDelete}
-							aria-label="Delete item"
-						/>
+						<Button className="list-btn">
+							<TrashIcon onClick={handleDelete} aria-label="Delete item" />
+						</Button>
 					</div>
 				</div>
 				<div className="flex-center-bread-img">{imgUrgency}</div>
