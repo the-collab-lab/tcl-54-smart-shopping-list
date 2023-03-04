@@ -1,0 +1,97 @@
+/* Empty list view CSS */
+.empty-list-view .card {
+	width: 23rem;
+	text-align: center;
+	border: 0;
+	background-color: transparent;
+	margin: auto;
+}
+
+.empty-list-view .card-img-overlay {
+	padding-top: 25%;
+	text-align: center;
+}
+
+.empty-list-view .oven-handle {
+	border-color: #495867;
+	border-width: 0.078rem;
+	border-style: solid;
+	border-radius: 0.313rem;
+	padding: 0.625rem;
+	margin-bottom: 5%;
+}
+
+.empty-list-view .card-overlay-background {
+	background: #ffe2cd;
+	border-color: #495867;
+	border-width: 0.078rem;
+	border-style: solid;
+	border-radius: 0.313rem;
+	padding: 5%;
+}
+
+.empty-list-view .card-img-overlay img {
+	width: 10.625rem;
+	margin-bottom: 5%;
+}
+
+.empty-list-view .card-title {
+	margin-bottom: 5%;
+}
+
+.empty-list-view .card-subtitle {
+	margin-bottom: 5%;
+}
+
+.empty-list-view button {
+	margin-bottom: 5%;
+}
+
+/* Filled shopping list view CSS */
+.filled-list-view .search-bar {
+	margin: auto;
+	width: 18rem;
+	padding-top: 0.938rem;
+	padding-bottom: 0.938rem;
+}
+
+.filled-list-view .card {
+	width: 23rem;
+	border: 0;
+	background-color: transparent;
+	margin: auto;
+}
+
+.filled-list-view .card-img-overlay {
+	padding-top: 22%;
+	text-align: center;
+}
+
+.filled-list-view .list-overflow {
+	overflow: auto;
+	max-height: 100%;
+}
+
+.filled-list-view .item-card {
+	margin: auto;
+	padding-bottom: 0.938rem;
+	width: 95%;
+	border-radius: 0.313rem;
+}
+
+.filled-list-view .item-not-found {
+	background: #ffe2cd;
+	border-color: #495867;
+	border-width: 0.078rem;
+	border-style: solid;
+	border-radius: 0.313rem;
+	padding: 5%;
+	margin-top: 15%;
+	height: 22.938rem;
+}
+
+.filled-list-view .item-not-found img {
+	width: 10.625rem;
+	margin-top: 20%;
+	margin-bottom: 5%;
+}

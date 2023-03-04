@@ -1,7 +1,7 @@
 import { updateItem, deleteItem } from '../api/firebase';
 import { useState, useEffect } from 'react';
 import { getDaysBetweenDates } from '../utils/dates';
-import { Button, ListGroup, Form } from 'react-bootstrap';
+import { ListGroup, Form, Image } from 'react-bootstrap';
 
 export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	const [check, setCheck] = useState(false);
@@ -50,27 +50,33 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	};
 
 	/* Checking for the existence of urgency to avoid `undefined` */
-	const buyingUrgency = urgency ? urgency.buyingUrgency : '';
-	const colorUrgency = urgency ? urgency.colorUrgency : '';
+	const imgUrgency = urgency ? urgency.imgUrgency : '';
 
 	if (name) {
 		return (
-			<ListGroup.Item className="ListItem">
-				<Form>
-					<Form.Check
-						value={name}
-						type="checkbox"
-						onChange={handleCheck}
-						checked={check}
-						disabled={check}
-						label={name}
-					/>
-					{/* return buying urgency and temporary color identifiers */}
-					<span style={{ color: colorUrgency }}> {buyingUrgency}</span>
-					<Button type="button" onClick={handleDelete} variant="primary">
-						Remove
-					</Button>
-				</Form>
+			<ListGroup.Item>
+				<div className="flex-wrap-item-name">
+					<Form>
+						<Form.Check
+							value={name}
+							type="checkbox"
+							onChange={handleCheck}
+							checked={check}
+							disabled={check}
+							label={name}
+						/>
+					</Form>
+					<div>
+						<Image
+							src="src/img/icons/trash-icon.svg"
+							type="button"
+							onClick={handleDelete}
+						/>
+					</div>
+				</div>
+				<div className="flex-center-bread-img">
+					<Image src={imgUrgency} />
+				</div>
 			</ListGroup.Item>
 		);
 	}

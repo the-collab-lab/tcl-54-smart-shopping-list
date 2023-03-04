@@ -60,3 +60,33 @@
 	text-decoration-thickness: 0.22em;
 	text-underline-offset: 0.1em;
 }
+
+/* List View Header Layout */
+.List {
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	max-width: 100vw;
+	padding-top: calc(3rem + env(safe-area-inset-top, 1rem));
+	padding-bottom: calc(1rem + env(safe-area-inset-bottom, 1rem));
+	width: 54rem;
+}
+
+.List-header {
+	background-color: transparent;
+	text-align: center;
+	top: 0;
+}
+
+.List-header img {
+	width: 2rem;
+	padding-left: 1%;
+}
+.List-header h1 {
+	font-size: 1.75rem;
+	padding-bottom: 3%;
+}
+
+.List-header h4 {
+	font-size: 1.25rem;
+}
