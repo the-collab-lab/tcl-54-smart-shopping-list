@@ -1,4 +1,3 @@
-import '../styles/Layout.css';
 import { ReactComponent as CopyIcon } from '../img/icons/copy-icon.svg';
 import { Outlet } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
@@ -23,7 +22,7 @@ export function Layout({ listToken }) {
 					<Toaster />
 					<header className="List-header">
 						<h4>Current List:</h4>
-						<h1>
+						<h1 className="fw-bold">
 							{listToken}
 							<span>
 								<CopyToClipboard text={listToken}>

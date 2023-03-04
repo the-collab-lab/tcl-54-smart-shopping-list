@@ -1,9 +1,8 @@
-import '../styles/ListItem.css';
 import { ReactComponent as TrashIcon } from '../img/icons/trash-icon.svg';
 import { updateItem, deleteItem } from '../api/firebase';
 import { useState, useEffect } from 'react';
 import { getDaysBetweenDates } from '../utils/dates';
-import { ListGroup, Form, Image } from 'react-bootstrap';
+import { ListGroup, Form } from 'react-bootstrap';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { toast } from 'react-hot-toast';
 import { confirmAlert } from 'react-confirm-alert';

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createNewList, listExists } from '../api/firebase';
 import { Button, Form, Image, InputGroup } from 'react-bootstrap';
-import appImage from '/img/burger-boy1.png';
+import appImage from '../img/bread-styling/burger-boy1.png';
 import LearnModal from '../components/LearnModal';
 
 /** Home component that redirects a user to the List view if there is already a list created.
@@ -95,13 +95,14 @@ export function Home({ setListToken }) {
 	return (
 		<div className="home my-4 text-center">
 			<p>Welcome to</p>
-			<h1>App Title!</h1>
+			<h1 className="fw-bold">Loaf Basket</h1>
 			<div className="app-logo mx-auto mb-3">
 				<Image src={appImage} alt="app logo" />
 			</div>
 			<p className="app-summary px-3 mb-4 fs-6">
-				App Title learns your buying habits and helps you remember what you're
-				likely to need to buy on your next shopping trip.
+				Get a bread start on your shopping as the app learns your buying habits.
+				When it comes to remembering what you're likely to need to buy next,
+				Loaf Basket is "second to naan"!
 			</p>
 			<div className="text-center">
 				<Button onClick={createNewToken} className="btn-custom mb-3">
@@ -112,7 +113,7 @@ export function Home({ setListToken }) {
 				</p>
 				<Form id="join-shopping-list-form" onSubmit={joinExistingToken}>
 					<Form.Label htmlFor="join-token">List Token</Form.Label>
-					<div className="d-flex flex-row justify-content-center">
+					<div className="d-flex flex-row justify-content-center m-auto home-input ">
 						<InputGroup className="w-75">
 							<Form.Control
 								type="text"

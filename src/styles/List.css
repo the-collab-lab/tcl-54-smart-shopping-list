@@ -13,7 +13,7 @@
 }
 
 .empty-list-view .oven-handle {
-	border-color: #495867;
+	border-color: var(--color-dusty-blue);
 	border-width: 0.078rem;
 	border-style: solid;
 	border-radius: 0.313rem;
@@ -23,7 +23,7 @@
 
 .empty-list-view .card-overlay-background {
 	background: #ffe2cd;
-	border-color: #495867;
+	border-color: var(--color-dusty-blue);
 	border-width: 0.078rem;
 	border-style: solid;
 	border-radius: 0.313rem;
@@ -79,9 +79,17 @@
 	border-radius: 0.313rem;
 }
 
+.filled-list-view .add-item-card {
+	margin: auto;
+	width: 95%;
+	background-color: transparent;
+	padding-bottom: 0.938rem;
+	border-radius: 0.313rem;
+}
+
 .filled-list-view .item-not-found {
 	background: #ffe2cd;
-	border-color: #495867;
+	border-color: var(--color-dusty-blue);
 	border-width: 0.078rem;
 	border-style: solid;
 	border-radius: 0.313rem;

@@ -6,15 +6,7 @@ import { ReactComponent as Croissant } from '../img/bread-styling/croissant.svg'
 import { addItem } from '../api/firebase';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import {
-	Button,
-	Form,
-	InputGroup,
-	Container,
-	Row,
-	Col,
-	Image,
-} from 'react-bootstrap';
+import { Button, Form, InputGroup, Container, Row, Col } from 'react-bootstrap';
 
 /**
  * Allows user to add an item to their shopping list,
@@ -124,7 +116,7 @@ export function AddItem({ listToken, data }) {
 		<>
 			<div className="add-item d-flex flex-column">
 				<header className="text-center mt-3">
-					<h1>Add Item</h1>
+					<h1 className="fw-bold">Add Item</h1>
 				</header>
 
 				<Container className="add-item-form shadow rounded-3 py-3 mt-5 bg-white">

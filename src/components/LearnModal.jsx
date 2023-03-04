@@ -39,7 +39,7 @@ export default function LearnModal({ show, hide }) {
 	return (
 		<Modal show={show} onHide={hide} centered>
 			<Modal.Header closeButton>
-				<Modal.Title>Get Started</Modal.Title>
+				<Modal.Title>What do you plan to buy?</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				{/** The imported text from `modal-instructions.js` file are conditionally rendered
