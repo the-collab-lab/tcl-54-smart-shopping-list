@@ -22,6 +22,7 @@ import {
 	ListGroup,
 	Card,
 	Image,
+	ListGroupItem,
 } from 'react-bootstrap';
 
 /** List component that displays items in a user's shopping cart  */
@@ -128,11 +129,14 @@ export function List({ data, loading }) {
 		return !filterInput ? (
 			<>
 				<div className="item-card">
-					<ListGroup.Item>
-						<Button type="button" onClick={handleAddItem} variant="primary">
-							Add Item
-						</Button>
-					</ListGroup.Item>
+					<ListGroupItem
+						className="p-3"
+						id="plus-item-card"
+						type="button"
+						onClick={handleAddItem}
+					>
+						<h4 id="plus-item-button">Add items</h4>
+					</ListGroupItem>
 				</div>
 				{
 					// map over the sorted dataWithUrgency

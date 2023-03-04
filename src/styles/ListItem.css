@@ -5,6 +5,29 @@
 	border-width: 0.078rem;
 }
 
+.filled-list-view .add-item-card {
+	background-color: #ffe2cd;
+	border-color: #495867;
+	border-width: 0.078rem;
+}
+
+#plus-item-card {
+	/* border: 0.15rem dashed #495867; */
+	border: transparent;
+	/* border-width: 0.078rem; */
+	background-color: #e0e0e0;
+	/* background-color: white; */
+	/* background-color: transparent; */
+}
+
+#plus-item-card h4 {
+	background: transparent;
+	border: transparent;
+	color: #495867;
+	font-weight: bold;
+	margin: auto;
+}
+
 .filled-list-view .flex-wrap-item-name {
 	display: flex;
 	flex-wrap: wrap;

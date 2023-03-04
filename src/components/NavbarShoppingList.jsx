@@ -14,7 +14,7 @@ export function NavbarShoppingList() {
 					<Nav className="me-auto">
 						<Nav.Link href="/">Home</Nav.Link>
 						<Nav.Link href="/list">List</Nav.Link>
-						<Nav.Link href="/add-item">Add Item</Nav.Link>
+						<Nav.Link href="/add-item">Add Items</Nav.Link>
 
 						{/* This will make 'Exit List' visible ONLY when route is on /list */}
 						{location.pathname === '/list' && (
