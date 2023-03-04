@@ -62,17 +62,6 @@
 	margin: auto;
 }
 
-.filled-list-view .card svg {
-	overflow-clip-margin: content-box;
-	overflow: clip;
-	vertical-align: middle;
-	width: 100%;
-	border-top-left-radius: var(--bs-card-inner-border-radius);
-	border-top-right-radius: var(--bs-card-inner-border-radius);
-	border-bottom-right-radius: var(--bs-card-inner-border-radius);
-	border-bottom-left-radius: var(--bs-card-inner-border-radius);
-}
-
 .filled-list-view .card-img-overlay {
 	padding-top: 22%;
 	text-align: center;
