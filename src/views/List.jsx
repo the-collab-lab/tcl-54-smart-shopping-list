@@ -1,4 +1,5 @@
 import '../styles/List.css';
+import { ReactComponent as Oven } from '../img/bread_styling/oven.svg';
 import { ListItem } from '../components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -159,8 +160,9 @@ export function List({ data, loading }) {
 			/* If true that list is empty, 
 			a welcoming user prompt is displayed to start adding items to the list */
 			<div className="empty-list-view">
+				<Oven />
 				<Card>
-					<Card.Img src="src/img/bread_styling/oven.svg" alt="Card image" />
+					<Card.Img src="src/img/bread_styling/oven.svg" alt="Card image" />\
 					<Card.ImgOverlay>
 						<div className="oven-handle" />
 						<div className="card-overlay-background">
