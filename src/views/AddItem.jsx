@@ -116,7 +116,7 @@ export function AddItem({ listToken, data }) {
 		<>
 			<div className="add-item d-flex flex-column">
 				<header className="text-center mt-3">
-					<h1>Add Item</h1>
+					<h1 className="fw-bold">Add Item</h1>
 				</header>
 
 				<Container className="add-item-form shadow rounded-3 py-3 mt-5 bg-white">

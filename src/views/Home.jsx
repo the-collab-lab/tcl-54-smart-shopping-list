@@ -95,12 +95,12 @@ export function Home({ setListToken }) {
 	return (
 		<div className="home my-4 text-center">
 			<p>Welcome to</p>
-			<h1>App Title!</h1>
+			<h1 className="fw-bold">Loaf Basket</h1>
 			<div className="app-logo mx-auto mb-3">
 				<Image src={appImage} alt="app logo" />
 			</div>
 			<p className="app-summary px-3 mb-4 fs-6">
-				App Title learns your buying habits and helps you remember what you're
+				Loaf Basket learns your buying habits and helps you remember what you're
 				likely to need to buy on your next shopping trip.
 			</p>
 			<div className="text-center">

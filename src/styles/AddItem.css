@@ -2,6 +2,11 @@
 	color: #242a32;
 }
 
+.add-item header {
+	font-family: 'Lustria', serif;
+	color: var(--color-dusty-blue);
+}
+
 .add-item-form {
 	border: 0.125rem solid #b65c1a;
 }

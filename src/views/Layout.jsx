@@ -22,7 +22,7 @@ export function Layout({ listToken }) {
 					<Toaster />
 					<header className="List-header">
 						<h4>Current List:</h4>
-						<h1>
+						<h1 className="fw-bold">
 							{listToken}
 							<span>
 								<CopyToClipboard text={listToken}>
