@@ -1,3 +1,8 @@
+// SVG Imports
+import { ReactComponent as SoonToast } from '../img/bread-slices/soon-toast.svg';
+import { ReactComponent as KindOfSoonToast } from '../img/bread-slices/kind-of-soon-toast.svg';
+import { ReactComponent as NotSoonToast } from '../img/bread-slices/not-soon-toast.svg';
+import { ReactComponent as Croissant } from '../img/bread-styling/croissant.svg';
 import { addItem } from '../api/firebase';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -118,7 +123,7 @@ export function AddItem({ listToken, data }) {
 	return (
 		<>
 			<div className="add-item d-flex flex-column">
-				<header className="text-center">
+				<header className="text-center mt-3">
 					<h1>Add Item</h1>
 				</header>
 
@@ -165,7 +170,7 @@ export function AddItem({ listToken, data }) {
 									</Col>
 									<Col xs={2}>
 										<div className="urgency-toast">
-											<Image src="./img/soon-toast.svg"></Image>
+											<SoonToast />
 										</div>
 									</Col>
 								</Row>
@@ -193,7 +198,7 @@ export function AddItem({ listToken, data }) {
 									</Col>
 									<Col xs={2}>
 										<div className="urgency-toast">
-											<Image src="./img/kind-of-soon-toast.svg"></Image>
+											<KindOfSoonToast />
 										</div>
 									</Col>
 								</Row>
@@ -218,7 +223,7 @@ export function AddItem({ listToken, data }) {
 									</Col>
 									<Col xs={2}>
 										<div className="urgency-toast">
-											<Image src="./img/not-soon-toast.svg"></Image>
+											<NotSoonToast />
 										</div>
 									</Col>
 								</Row>
@@ -232,7 +237,7 @@ export function AddItem({ listToken, data }) {
 					</Form>
 				</Container>
 				<div className="mt-5 w-25 mx-auto ">
-					<Image src="./img/croissant.svg" />
+					<Croissant />
 				</div>
 			</div>
 

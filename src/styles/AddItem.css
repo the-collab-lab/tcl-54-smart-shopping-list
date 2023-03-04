@@ -3,49 +3,49 @@
 }
 
 .add-item-form {
-	border: 2px solid #b65c1a;
+	border: 0.125rem solid #b65c1a;
 }
 
 .item-input {
-	border: 2px solid #c18c5d !important;
+	border: 0.125rem solid #c18c5d !important;
 }
 
 .radio-button {
-	margin: 15px 0px 0px 0px !important;
+	margin: 0.938rem 0rem 0rem 0rem !important;
 }
 
 .radio-button-label {
-	margin: 0px 0px 0px 10px !important;
+	margin: 0rem 0rem 0rem 0.625rem !important;
 }
 
 .urgency-toast {
-	height: 22px;
-	width: 25px;
+	height: 2rem;
+	width: 3rem;
 }
 
 .soon-row {
-	border: 2px solid #b65c1a;
+	border: 0.125rem solid #b65c1a;
 }
 
 .soon-radio-button {
 	background-color: #b65c1a;
-	margin: -18px 0px -18px -18px !important;
+	margin: -1.125rem 0rem -1.125rem -1.125rem !important;
 }
 
 .kind-of-soon-row {
-	border: 2px solid #f99d5a;
+	border: 0.125rem solid #f99d5a;
 }
 
 .kind-of-soon-radio-button {
 	background-color: #f99d5a;
-	margin: -18px 0px -18px -18px !important;
+	margin: -1.125rem 0rem -1.125rem -1.125rem !important;
 }
 
 .not-soon {
-	border: 2px solid #ffda92;
+	border: 0.125rem solid #ffda92;
 }
 
 .not-soon-radio-button {
 	background-color: #ffda92;
-	margin: -18px 0px -18px -18px !important;
+	margin: -1.125rem 0rem -1.125rem -1.125rem !important;
 }
