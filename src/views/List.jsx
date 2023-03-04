@@ -1,5 +1,13 @@
 import '../styles/List.css';
+import confusedBread from '../img/bread_styling/confused-bread.png';
+import sadPastry from '../img/bread_styling/sad-pastry.png';
 import { ReactComponent as Oven } from '../img/bread_styling/oven.svg';
+import { ReactComponent as InactiveLoaf } from '../img/bread_styling/inactive-loaf.svg';
+import { ReactComponent as KindOfSoonLoaf } from '../img/bread_styling/kind-of-soon-loaf.svg';
+import { ReactComponent as NotSoonLoaf } from '../img/bread_styling/not-soon-loaf.svg';
+import { ReactComponent as SoonLoaf } from '../img/bread_styling/soon-loaf.svg';
+import { ReactComponent as OverdueLoaf } from '../img/bread_styling/overdue-loaf.svg';
+import { ReactComponent as SearchIcon } from '../img/icons/search-icon.svg';
 import { ListItem } from '../components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -68,19 +76,19 @@ export function List({ data, loading }) {
 			// - kind of soon: (between 7 & 30 days until the next purchase)
 			// - soon: (7 days or fewer until the next purchase)
 			if (daysUntilNextPurchase >= 60) {
-				imgUrgency = 'src/img/bread_styling/inactive-loaf.svg';
+				imgUrgency = <InactiveLoaf />;
 			} else if (new Date() > item.dateNextPurchased.toDate()) {
-				imgUrgency = 'src/img/bread_styling/overdue-loaf.svg';
+				imgUrgency = <OverdueLoaf />;
 			} else if (daysUntilNextPurchase >= 30) {
-				imgUrgency = 'src/img/bread_styling/not-soon-loaf.svg';
+				imgUrgency = <NotSoonLoaf />;
 			} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
-				imgUrgency = 'src/img/bread_styling/kind-of-soon-loaf.svg';
+				imgUrgency = <KindOfSoonLoaf />;
 			} else {
-				imgUrgency = 'src/img/bread_styling/soon-loaf.svg';
+				imgUrgency = <SoonLoaf />;
 			}
 		}
 
-		//To be used as new additions to item properties in the new shopping list dataWithUrgency
+		//To be used as new additions to item property in the new shopping list dataWithUrgency
 		return { imgUrgency };
 	};
 
@@ -132,7 +140,7 @@ export function List({ data, loading }) {
 			})
 		) : filterInput && filteredList.length === 0 ? (
 			<div className="item-not-found">
-				<Image src="src/img/bread_styling/confused-bread.png" />
+				<Image src={confusedBread} />
 				<h4>no matching item found</h4>
 			</div>
 		) : (
@@ -166,7 +174,7 @@ export function List({ data, loading }) {
 					<Card.ImgOverlay>
 						<div className="oven-handle" />
 						<div className="card-overlay-background">
-							<Image src="src/img/bread_styling/sad-pastry.png" />
+							<Image src={sadPastry} />
 							<Card.Title>List is empty.</Card.Title>
 							<Card.Subtitle>
 								Stop loafing around, and start shopping!
@@ -188,7 +196,7 @@ export function List({ data, loading }) {
 						<Form>
 							<InputGroup>
 								<InputGroup.Text>
-									<Image src="src/img/icons/search-icon.svg" />
+									<SearchIcon />
 								</InputGroup.Text>
 								<Form.Control
 									id="list-filter"
