@@ -169,7 +169,7 @@ export function List({ data, loading }) {
 			a welcoming user prompt is displayed to start adding items to the list */
 			<div className="empty-list-view">
 				<Card>
-					<Card.Img src="src/img/bread_styling/oven.svg" alt="Card image" />
+					<Oven alt="Card image" />
 					<Card.ImgOverlay>
 						<div className="oven-handle" />
 						<div className="card-overlay-background">
@@ -214,7 +214,7 @@ export function List({ data, loading }) {
 					- filtered shopping list
 					- item not found view */}
 				<Card>
-					<Card.Img src="./img/bread_styling/oven.svg" alt="Card image" />
+					<Oven alt="Card image" />
 					<Card.ImgOverlay>
 						<div className="list-overflow">
 							<ListGroup>{renderList()}</ListGroup>
