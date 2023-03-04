@@ -162,7 +162,7 @@ export function List({ data, loading }) {
 			<div className="empty-list-view">
 				<Oven />
 				<Card>
-					<Card.Img src="src/img/bread_styling/oven.svg" alt="Card image" />\
+					<Card.Img src="src/img/bread_styling/oven.svg" alt="Card image" />
 					<Card.ImgOverlay>
 						<div className="oven-handle" />
 						<div className="card-overlay-background">
