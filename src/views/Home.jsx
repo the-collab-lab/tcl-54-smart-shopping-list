@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createNewList, listExists } from '../api/firebase';
 import { Button, Form, Image, InputGroup } from 'react-bootstrap';
-import appImage from '/img/burger-boy1.png';
+import appImage from '../img/bread-styling/burger-boy1.png';
 import LearnModal from '../components/LearnModal';
 
 /** Home component that redirects a user to the List view if there is already a list created.

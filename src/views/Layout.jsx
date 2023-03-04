@@ -1,4 +1,3 @@
-import '../styles/Layout.css';
 import { ReactComponent as CopyIcon } from '../img/icons/copy-icon.svg';
 import { Outlet } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';

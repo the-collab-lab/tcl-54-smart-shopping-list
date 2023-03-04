@@ -11,22 +11,6 @@
 @import './styles/NavbarShoppingList.css';
 
 :root {
-	--color-black: hsla(220, 13%, 18%, 1);
-	--color-gray-dark: hsla(220, 13%, 25%, 1);
-	--color-white: hsla(220, 13%, 98%, 1);
-	--color-gray-light: hsla(220, 13%, 94%, 1);
-	--color-emerald-green: hsla(168, 92%, 25%, 1);
-	--color-vermillion-green: hsla(168, 92%, 43%, 1);
-	--color-cobalt-blue: hsla(215, 100%, 34%, 1);
-	--color-pastel-blue: hsla(215, 100%, 73%, 1);
-	--color-red: hsl(0, 68%, 42%);
-
-	--color-accent: var(--color-pastel-blue);
-	--color-bg: var(--color-black);
-	--color-bg-well: var(--color-gray-dark);
-	--color-error: var(--color-red);
-	--color-text: var(--color-white);
-
 	/* new colors */
 	--color-peach: #ecc8af;
 	--color-mid-peach: #e7ad99;
@@ -37,45 +21,17 @@
 	--color-dark-gray: #2d3237; /* main font color */
 }
 
-@media screen and (prefers-color-scheme: light) {
-	:root {
-		--color-accent: var(--color-cobalt-blue);
-		--color-bg: var(--color-white);
-		--color-bg-well: var(--color-gray-light);
-		--color-text: var(--color-black);
-	}
-}
-
-:root.theme-light {
-	--color-accent: var(--color-cobalt-blue);
-	--color-bg: var(--color-white);
-	--color-bg-well: var(--color-gray-light);
-	--color-text: var(--color-black);
-}
-
 *,
 *::after,
 *::before {
 	box-sizing: border-box;
 }
 
-/**
- * Make sure the app fills the height of the viewport
- * This causes issues with the navbar, so we commented it out but may need to revisit
- */
 /* html,
 body,
 #root,
 #root > * {
 	min-height: 100vh;
-} */
-
-/** AC: I've commented out the code block below for `html` because it's making all the fonts super small.
- * I'm actually not sure why this code block was here to begin with.
-*/
-/* 
-html {
-	font-size: 62.5%;
 } */
 
 body {
@@ -124,21 +80,6 @@ img {
 
 .btn-custom:active {
 	background: var(--color-dusty-blue) !important;
-}
-
-/* to team: I don't think we need this `code` styling? Might have to delete later */
-code {
-	--color-bg: var(--color-gray-dark);
-	--color-text: var(--color-accent);
-
-	background-color: var(--color-bg);
-	border-radius: 4px;
-	color: var(--color-text);
-	display: inline-block;
-	font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
-		monospace;
-	font-size: 0.9em;
-	padding: 0.15em 0.15em;
 }
 
 /* Media Queries */
@@ -224,101 +165,6 @@ code {
 	}
 }
 
-@media screen and (prefers-color-scheme: light) {
-	code {
-		--color-bg: var(--color-gray-light);
-	}
-}
-
-:root.theme-light code {
-	--color-bg: var(--color-gray-light);
-}
-
 ul {
 	padding: 0;
-}
-
-/* Media Queries */
-/* small tablets & ipad styles */
-@media screen and (min-width: 600px) {
-	.home-input {
-		width: 65%;
-	}
-
-	.filled-list-view .card {
-		width: 60%;
-	}
-
-	.empty-list-view .card {
-		width: 60%;
-	}
-
-	.filled-list-view .search-bar {
-		margin: auto;
-		width: 45%;
-	}
-
-	.filled-list-view .flex-wrap-item-name form {
-		width: 85%;
-	}
-
-	.filled-list-view .flex-center-bread-img img {
-		width: 65%;
-	}
-}
-
-/* large tablets & laptop styles */
-@media screen and (min-width: 960px) {
-	.home-input {
-		width: 50%;
-	}
-
-	.filled-list-view .card {
-		width: 60%;
-	}
-
-	.empty-list-view .card {
-		width: 60%;
-	}
-
-	.filled-list-view .search-bar {
-		margin: auto;
-		width: 45%;
-	}
-
-	.filled-list-view .flex-wrap-item-name form {
-		width: 85%;
-	}
-
-	.filled-list-view .flex-center-bread-img img {
-		width: 65%;
-	}
-}
-
-/* large desktop styles */
-@media screen and (min-width: 1200px) {
-	.home-input {
-		width: 50%;
-	}
-
-	.filled-list-view .card {
-		width: 60%;
-	}
-
-	.empty-list-view .card {
-		width: 60%;
-	}
-
-	.filled-list-view .search-bar {
-		margin: auto;
-		width: 45%;
-	}
-
-	.filled-list-view .flex-wrap-item-name form {
-		width: 85%;
-	}
-
-	.filled-list-view .flex-center-bread-img img {
-		width: 65%;
-	}
 }
