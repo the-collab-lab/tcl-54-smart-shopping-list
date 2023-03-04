@@ -32,6 +32,7 @@
 
 .react-confirm-alert-overlay {
 	background-color: #e8bc9c;
+	opacity: 0.1;
 }
 
 .react-confirm-alert {
