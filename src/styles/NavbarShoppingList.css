@@ -1,0 +1,15 @@
+.navbar-custom {
+	background: var(--color-dusty-blue);
+}
+
+/* bootstrap built-in classes */
+.navbar-brand,
+.navbar-text,
+.nav-link,
+.navbar-toggler-icon {
+	color: #fff;
+}
+
+.app-logo-navbar {
+	width: 22%;
+}
