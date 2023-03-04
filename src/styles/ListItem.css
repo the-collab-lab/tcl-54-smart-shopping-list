@@ -1,14 +1,29 @@
-.ListItem {
-	align-items: baseline;
+/* List item styling */
+.filled-list-view .list-group-item {
+	background-color: #ffe2cd;
+	border-color: #495867;
+	border-width: 0.078rem;
+}
+
+.filled-list-view .flex-wrap-item-name {
 	display: flex;
-	flex-direction: row;
-	font-size: 1.2em;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
-.ListItem-checkbox {
-	accent-color: var(--color-accent);
+/* this hides the overflow of an extremely long worded item edge case */
+.filled-list-view .flex-wrap-item-name form {
+	display: inline-block;
+	width: 14.063rem;
+	overflow: hidden;
 }
 
-.ListItem-label {
-	margin-left: 0.2em;
+.filled-list-view .flex-center-bread-img {
+	display: flex;
+	justify-content: center;
+}
+
+.filled-list-view .flex-center-bread-img img {
+	width: 12.813rem;
+	padding-top: 5%;
 }

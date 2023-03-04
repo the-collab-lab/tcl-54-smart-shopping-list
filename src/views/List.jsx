@@ -1,9 +1,17 @@
+import '../styles/List.css';
 import { ListItem } from '../components';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { comparePurchaseUrgency } from '../api/firebase';
 import { getDaysBetweenDates } from '../utils/dates';
-import { Button, InputGroup, Form, ListGroup } from 'react-bootstrap';
+import {
+	Button,
+	InputGroup,
+	Form,
+	ListGroup,
+	Card,
+	Image,
+} from 'react-bootstrap';
 
 /** List component that displays items in a user's shopping cart  */
 export function List({ data, loading }) {
@@ -23,40 +31,16 @@ export function List({ data, loading }) {
 		return shoppingListArr.length === 0 ? true : false;
 	};
 
+	/* This function will return:
+	- True if the updated urgency list has more than one item
+	- False if the list has one item or less*/
+	const checkForMoreThanOneItem = () => {
+		return dataWithUrgency.length > 1 ? true : false;
+	};
+
 	const handleClick = (e) => {
 		e.preventDefault();
 		setFilterInput('');
-	};
-
-	const renderList = () => {
-		return !filterInput
-			? // map over the sorted dataWithUrgency
-			  dataWithUrgency.map((item) => {
-					return (
-						<ListItem
-							key={item.id}
-							itemId={item.id}
-							name={item.name}
-							dateLastPurchased={item.dateLastPurchased}
-							dateNextPurchased={item.dateNextPurchased}
-							urgency={item.urgency}
-						/>
-					);
-			  })
-			: filterInput && filteredList.length === 0
-			? 'no matching item found'
-			: filteredList.map((item) => {
-					return (
-						<ListItem
-							key={item.id}
-							itemId={item.id}
-							name={item.name}
-							dateLastPurchased={item.dateLastPurchased}
-							dateNextPurchased={item.dateNextPurchased}
-							urgency={item.urgency}
-						/>
-					);
-			  });
 	};
 
 	/*Handles navigation to Add Item view */
@@ -66,8 +50,7 @@ export function List({ data, loading }) {
 
 	//Function to assign string value to buyingUrgency and color value to colorUrgency
 	const getBuyingUrgency = (item) => {
-		let buyingUrgency;
-		let colorUrgency;
+		let imgUrgency;
 
 		//To filter for non-empty items, if an item exists in the data and has a
 		//dateNextPurchased value, that item will be assigned a daysUntilNextPurchase value.
@@ -84,25 +67,20 @@ export function List({ data, loading }) {
 			// - kind of soon: (between 7 & 30 days until the next purchase)
 			// - soon: (7 days or fewer until the next purchase)
 			if (daysUntilNextPurchase >= 60) {
-				buyingUrgency = 'inactive';
-				colorUrgency = '#878E88';
+				imgUrgency = 'src/img/bread_styling/inactive-loaf.svg';
 			} else if (new Date() > item.dateNextPurchased.toDate()) {
-				buyingUrgency = 'overdue';
-				colorUrgency = '#CD001A';
+				imgUrgency = 'src/img/bread_styling/overdue-loaf.svg';
 			} else if (daysUntilNextPurchase >= 30) {
-				buyingUrgency = 'not soon';
-				colorUrgency = '#00AFB5';
+				imgUrgency = 'src/img/bread_styling/not-soon-loaf.svg';
 			} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
-				buyingUrgency = 'kind of soon';
-				colorUrgency = '#FFB81C';
+				imgUrgency = 'src/img/bread_styling/kind-of-soon-loaf.svg';
 			} else {
-				buyingUrgency = 'soon';
-				colorUrgency = '#FF7700';
+				imgUrgency = 'src/img/bread_styling/soon-loaf.svg';
 			}
 		}
 
 		//To be used as new additions to item properties in the new shopping list dataWithUrgency
-		return { buyingUrgency, colorUrgency };
+		return { imgUrgency };
 	};
 
 	/* Sorting the shopping list items by urgency using the following steps:
@@ -134,51 +112,107 @@ export function List({ data, loading }) {
 		);
 	};
 
+	const renderList = () => {
+		return !filterInput ? (
+			// map over the sorted dataWithUrgency
+			dataWithUrgency.map((item) => {
+				return (
+					<div className="item-card" key={item.id}>
+						<ListItem
+							keyField={item.id}
+							itemId={item.id}
+							name={item.name}
+							dateLastPurchased={item.dateLastPurchased}
+							dateNextPurchased={item.dateNextPurchased}
+							urgency={item.urgency}
+						/>
+					</div>
+				);
+			})
+		) : filterInput && filteredList.length === 0 ? (
+			<div className="item-not-found">
+				<Image src="src/img/bread_styling/confused-bread.png" />
+				<h4>no matching item found</h4>
+			</div>
+		) : (
+			filteredList.map((item) => {
+				return (
+					<div className="item-card" key={item.id}>
+						<ListItem
+							keyField={item.id}
+							itemId={item.id}
+							name={item.name}
+							dateLastPurchased={item.dateLastPurchased}
+							dateNextPurchased={item.dateNextPurchased}
+							urgency={item.urgency}
+						/>
+					</div>
+				);
+			})
+		);
+	};
+
 	if (loading) {
 		return;
 	} else {
 		return checkForEmptyList() ? (
 			/* If true that list is empty, 
 			a welcoming user prompt is displayed to start adding items to the list */
-			<>
-				<p>
-					<strong>Add items to start your shopping list</strong>
-				</p>
-				<p>Once you add an item, your shopping list will appear here.</p>
-				<Button onClick={handleAddItem} variant="primary">
-					Add items
-				</Button>
-			</>
+			<div className="empty-list-view">
+				<Card>
+					<Card.Img src="src/img/bread_styling/oven.svg" alt="Card image" />
+					<Card.ImgOverlay>
+						<div className="oven-handle" />
+						<div className="card-overlay-background">
+							<Image src="src/img/bread_styling/sad-pastry.png" />
+							<Card.Title>List is empty.</Card.Title>
+							<Card.Subtitle>
+								Stop loafing around, and start shopping!
+							</Card.Subtitle>
+							<Button type="button" onClick={handleAddItem} variant="primary">
+								Add items
+							</Button>
+						</div>
+					</Card.ImgOverlay>
+				</Card>
+			</div>
 		) : (
 			/* If false that list contains items,
 			 the shopping list is displayed including the item filtering feature */
-
-			<>
-				<p>
-					Hello from the <code>/list</code> page!
-				</p>
-
-				<Form>
-					{/* <Form.Label htmlFor="list-filter">Filter items</Form.Label>
-					<br /> */}
-					<InputGroup>
-						<Form.Control
-							id="list-filter"
-							type="text"
-							placeholder="Search items"
-							value={filterInput}
-							onChange={handleInput}
-						/>
-						{filterInput && (
-							<Button onClick={handleClick} variant="outline-primary">
-								X
-							</Button>
-						)}
-					</InputGroup>
-				</Form>
-				{/* Uses data or state of filteredList depending on state of filterInput */}
-				<ListGroup>{renderList()}</ListGroup>
-			</>
+			<div className="filled-list-view">
+				{/* if the shopping list has more than one item, the search bar is displayed */}
+				{checkForMoreThanOneItem() ? (
+					<div className="search-bar">
+						<Form>
+							<InputGroup>
+								<InputGroup.Text>
+									<Image src="src/img/icons/search-icon.svg" />
+								</InputGroup.Text>
+								<Form.Control
+									id="list-filter"
+									type="text"
+									placeholder="Search items"
+									value={filterInput}
+									onChange={handleInput}
+								/>
+								{filterInput && <Button onClick={handleClick}>X</Button>}
+							</InputGroup>
+						</Form>
+					</div>
+				) : null}
+				{/* conditional will display three options within ListGroup through renderList():
+					- unfiltered shopping list
+					- filtered shopping list
+					- item not found view */}
+				<Card>
+					<Card.Img src="src/img/bread_styling/oven.svg" alt="Card image" />
+					<Card.ImgOverlay>
+						<div className="list-overflow">
+							<ListGroup>{renderList()}</ListGroup>
+						</div>
+					</Card.ImgOverlay>
+				</Card>
+			</div>
 		);
 	}
 }
