@@ -112,7 +112,7 @@ export function Home({ setListToken }) {
 				</p>
 				<Form id="join-shopping-list-form" onSubmit={joinExistingToken}>
 					<Form.Label htmlFor="join-token">List Token</Form.Label>
-					<div className="d-flex flex-row justify-content-center">
+					<div className="d-flex flex-row justify-content-center m-auto home-input ">
 						<InputGroup className="w-75">
 							<Form.Control
 								type="text"

@@ -138,6 +138,27 @@ code {
 	padding: 0.15em 0.15em;
 }
 
+/* small tablets & ipad styles */
+@media screen and (min-width: 767px) {
+	.home-input {
+		width: 65%;
+	}
+}
+
+/* large tablets & laptop styles */
+@media screen and (min-width: 960px) {
+	.home-input {
+		width: 50%;
+	}
+}
+
+/* large desktop styles */
+@media screen and (min-width: 1200px) {
+	.home-input {
+		width: 50%;
+	}
+}
+
 @media screen and (prefers-color-scheme: light) {
 	code {
 		--color-bg: var(--color-gray-light);

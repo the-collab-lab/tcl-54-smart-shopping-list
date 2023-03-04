@@ -7,7 +7,7 @@ export function NavbarShoppingList() {
 
 	return (
 		<Navbar fluid="md" bg="light" expand="lg">
-			<Container>
+			<Container className="text-center">
 				<Navbar.Brand href="/">Smart Shopping List</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
@@ -17,7 +17,7 @@ export function NavbarShoppingList() {
 						<Nav.Link href="/add-item">Add Item</Nav.Link>
 
 						{/* This will make 'Exit List' visible ONLY when route is on /list */}
-						{location.pathname === '/list' && (
+						{location.pathname !== '/' && (
 							<Nav.Link
 								href="/"
 								onClick={() =>
