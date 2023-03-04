@@ -129,7 +129,9 @@ export function List({ data, loading }) {
 			<>
 				<div className="item-card">
 					<ListGroup.Item>
-						<Button>Add New Item</Button>
+						<Button type="button" onClick={handleAddItem} variant="primary">
+							Add Item
+						</Button>
 					</ListGroup.Item>
 				</div>
 				{
