@@ -100,8 +100,9 @@ export function Home({ setListToken }) {
 				<Image src={appImage} alt="app logo" />
 			</div>
 			<p className="app-summary px-3 mb-4 fs-6">
-				Loaf Basket learns your buying habits and helps you remember what you're
-				likely to need to buy on your next shopping trip.
+				Get a bread start on your shopping as the app learns your buying habits.
+				When it comes to remembering what you're likely to need to buy next,
+				Loaf Basket is "second to naan"!
 			</p>
 			<div className="text-center">
 				<Button onClick={createNewToken} className="btn-custom mb-3">

@@ -90,7 +90,7 @@ img {
 	}
 
 	.navbar-custom .logo-text-container {
-		flex-direction: column;
+		justify-content: center;
 	}
 }
 
