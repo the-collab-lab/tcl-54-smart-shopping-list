@@ -1,3 +1,8 @@
 .home .app-logo {
-	width: 35%;
+	width: 20%;
+}
+
+.home h1 {
+	font-family: 'Lustria', serif;
+	word-spacing: 5px;
 }
