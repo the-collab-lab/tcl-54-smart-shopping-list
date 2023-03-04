@@ -38,13 +38,24 @@
 	background-color: #495867;
 	border-radius: 3px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-	max-width: 500px;
+	max-width: 400px;
 	margin: 0 auto;
 	padding: 20px;
 }
 
+.react-confirm-alert-body {
+	font-family: Arial, Helvetica, sans-serif;
+	width: 300px;
+	padding: 30px;
+	text-align: left;
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 20px 75px rgb(0 0 0 / 13%);
+	color: #666;
+}
+
 .react-confirm-alert-message {
-	font-size: 16px;
+	font-size: 14px;
 	margin-bottom: 20px;
 }
 

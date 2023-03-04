@@ -47,17 +47,11 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	};
 
 	// // When remove button is clicked, a confirm window pops up, and when user confirms, deleteItem() is called
-	// const handleDelete = async () => {
-	// 	// eslint-disable-next-line no-restricted-globals
-	// 	if (confirm(`Do you want to remove ${name}?`)) {
-	// 		await deleteItem(listId, itemId);
-	// 	}
-	// };
 
 	const handleDelete = async () => {
 		confirmAlert({
 			title: 'Confirm',
-			message: `Do you want to remove ${name}`,
+			message: `Do you want to remove ${name}?`,
 			buttons: [
 				{
 					label: 'Yes',
@@ -96,7 +90,11 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 						/>
 					</Form>
 					<div>
-						<TrashIcon type="button" onClick={handleDelete} />
+						<TrashIcon
+							type="button"
+							onClick={handleDelete}
+							aria-label="Delete item"
+						/>
 					</div>
 				</div>
 				<div className="flex-center-bread-img">{imgUrgency}</div>
