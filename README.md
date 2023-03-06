@@ -1,37 +1,60 @@
-## Overview
+# Knead To Buy
 
-This README file explains The Collab Lab’s smart shopping list project and provides instructions for developing it locally.
+A full stack React app for shoppers who want to keep track of things they buy and remember how soon they need to buy them again.
 
-If you’re a Collab Lab developer, WELCOME! We’re so excited to work with you and collaborate on something amazing. Be sure to read [the setup instructions](#set-up-the-project) and then [make your first contribution](#make-your-first-contribution)! For additional details on how your cohort will operate, please check out the [project brief](PROJECT-BRIEF.md).
+## Why We Built This
 
-## What is this project?
+This project is the culmination of the collaborative efforts of four highly-skilled developers as part of [The Collab Lab](https://the-collab-lab.codes) program under the guidance of mentors. It serves as a milestone in our ability to work together and acquire new technical skills and adopt the Agile methodology.
 
-The goal of this project is to collaborate with your Collab Lab team to create a “smart” shopping list app that learns your buying habits and helps you remember what you’re likely to need to buy on your next trip to the store.
+### Developers:
 
-### How does it work?
+- Alex D'Antonio
+- Ashelle Cancio
+- Randall Bustamante
+- Sarah Jenkins
 
-As a user, you will enter items (e.g., “Greek yogurt” or “Paper towels”) into your list. Each time you buy the item, you mark it as purchased in the list. Over time, the app comes to understand the intervals at which you buy different items. If an item is likely to be due to be bought soon, it rises to the top of the shopping list.
+## Techologies/Tools Used
 
-### Check out an example
+- React.js
+- Vite
+- React Boostrap
+- HTML5/CSS3
+- Firebase/Firestore
 
-The app will work in many of the same ways as [iNeedToBuy.xyz](https://app.ineedtobuy.xyz/) (on which our project is based) with the exception that we will not be implementing barcode scanning (that feature would add a lot of scope to the project and wasn’t all that useful).
+## Live Demo
 
-📺&nbsp; Check out a video demo of the example app here:
-[![](https://cdn.zappy.app/33815167c45d74c3ae5af232de633add.png)](https://www.youtube.com/watch?v=mwj74mE9s64&t)
+Try the app live at https://tcl-54-smart-shopping-list.web.app/
 
-<hr>
+## Features
 
-## Set up the project
+- User can create a new shopping list
+- User can join an existing list
+- User can exit their list to join/create a new one
+- User can view an onboarding modal to learn more about the app
+- User can add items to their list
+- User can delete items from their list
+- User can choose how urgent they want to buy the items
+- User can mark items as purchased
+- User can see the app learn the intervals at which the items are bought and predict how soon these items need to be bought again
 
-### Install Node and NPM
+## Stretch Features
 
-`npm` is distributed with Node.js, which means that when you download Node.js, you automatically get `npm` installed on your computer. You can install Node by [downloading it from the Node.js website](https://nodejs.org/en/) or using a Node version manager like [nvm](https://github.com/nvm-sh/nvm) on a macOS or Linux device or [nvm-windows](https://github.com/coreybutler/nvm-windows) on a Windows device.
+TBD
 
-💡 **Note:** This project requires the latest Long Term Support (LTS) version of Node. If you have an earlier version of Node, now would be a great time to upgrade!
+## Preview
 
-### Clone the project locally
+(In progress...)
 
-On GitHub, navigate to the repo for your cohort’s project (you’re probably there right now), then:
+## Testing
+
+### System Requirements
+
+To run this build and its dependencides, you'll need these in your local machine:
+
+- Node.js v18 or higher
+- NPM 8 or higher
+
+### Getting Started (cloning repo)
 
 1. Click on the "Code" tab. It may already be selected.
 2. Click the green "Code" button to reveal a "Clone" popup.
@@ -54,15 +77,5 @@ Once you’ve cloned the project locally and you’re in the project directory, 
 ### Access the project in your browser
 
 After you’ve cloned the project locally and updated the dependencies, run the project by typing the following into your terminal: `npm start`. You should be able to see the project at `localhost:3000`.
-![screenshot of the react project](_resources/images/04_local_dev_landing_page.jpg)
 
-🎉 You did it! You’re ready to start contributing!
-
-## Make your first contribution
-
-You’ll want to make your first contribution to this repo before your kick-off call! This will help make sure you’re ready to go on day one.
-
-1. Get this project set up locally by following [the setup instructions](#set-up-the-project).
-2. Add your name to the [CONTRIBUTORS.md](CONTRIBUTORS.md) file.
-   - Do this from your local environment and not from GitHub in your browser. The purpose (aside from highlighting our amazing team) is to make sure your local environment is set up properly!
-   - Commit to the `main` branch and push it up to the remote repo. (Over the next 8 weeks, we will rely on feature branches as we collaborate on the project, but for this task committing to main will do just fine.)
+![screenshot of app home page](./src/img/knead-to-buy-home.jpg)
