@@ -1,3 +1,7 @@
+.home {
+	padding-top: calc(3rem + env(safe-area-inset-top, 1rem));
+}
+
 .home .app-logo {
 	width: 20%;
 }
@@ -5,4 +9,19 @@
 .home h1 {
 	font-family: 'Lustria', serif;
 	word-spacing: 5px;
+}
+
+.home h5 {
+	font-size: calc(0.635rem + 1.5625vw);
+}
+
+.home .app-summary {
+	max-width: 80%;
+}
+
+.home hr {
+	border: 0.031rem solid var(--color-dusty-blue);
+	border-radius: 0.313rem;
+	opacity: 40%;
+	max-width: 55%;
 }
