@@ -84,6 +84,18 @@ img {
 
 /* Media Queries */
 
+/* small devices, non-iPhone PRO */
+@media screen and (max-width: 400px) {
+	.home {
+		padding-top: calc(1rem + env(safe-area-inset-top, 1rem));
+		margin: 1rem auto !important; /* !important keyword to overwrite bootstrap utility class */
+	}
+	.home .app-summary {
+		max-width: 100%;
+	}
+}
+
+/* small tablets & ipad styles - NAVBAR SPECIFIC */
 @media screen and (max-width: 600px) {
 	.navbar-custom .container-fluid {
 		flex-direction: column;
