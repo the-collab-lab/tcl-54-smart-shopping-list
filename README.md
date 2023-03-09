@@ -43,7 +43,7 @@ TBD
 
 ## Preview
 
-(In progress...)
+![knead-to-buy](https://user-images.githubusercontent.com/102492480/224170601-3d641f35-e0a1-4a1a-84b4-83253b93452c.png)
 
 ## Testing
 
