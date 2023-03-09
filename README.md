@@ -8,10 +8,10 @@ This project is the culmination of the collaborative efforts of four highly-skil
 
 ### Developers:
 
-- Alex D'Antonio
-- Ashelle Cancio
-- Randall Bustamante
-- Sarah Jenkins
+- [Ashelle Cancio](https://github.com/arcan9) 🙌
+- [Randall Bustamante](https://github.com/Bustamor) 😝
+- [Alexandria D'Antonio](https://github.com/alex-andria) 🥭
+- [Sarah Jenkins](https://github.com/sarahmjenkins) 🤩
 
 ## Techologies/Tools Used
 
