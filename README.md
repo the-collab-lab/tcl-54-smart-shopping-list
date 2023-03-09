@@ -13,7 +13,7 @@ This project is the culmination of the collaborative efforts of four highly-skil
 - [Alexandria D'Antonio](https://github.com/alex-andria) 🥭
 - [Sarah Jenkins](https://github.com/sarahmjenkins) 🤩
 
-## Techologies/Tools Used
+## Technologies/Tools Used
 
 - React.js
 - Vite
@@ -49,7 +49,7 @@ TBD
 
 ### System Requirements
 
-To run this project and its dependencides, you'll need these in your local machine:
+To run this project and its dependencies, you'll need these in your local machine:
 
 - Node.js v18 or higher
 - NPM 8 or higher
