@@ -16,9 +16,12 @@
 	--color-mid-peach: #e7ad99;
 	--color-coral: #ce796b;
 	--color-caramel: #c18c5d;
-	--color-dusty-blue: #495867; /* button & navbar color */
-	--color-dark-blue-hover: #2e3c49; /* when hovering over a button or link */
-	--color-dark-gray: #2d3237; /* main font color */
+	--color-dusty-blue: #495867;
+	/* button & navbar color */
+	--color-dark-blue-hover: #2e3c49;
+	/* when hovering over a button or link */
+	--color-dark-gray: #2d3237;
+	/* main font color */
 }
 
 *,
@@ -86,10 +89,6 @@ img {
 
 /* small devices, non-iPhone PRO */
 @media screen and (max-width: 400px) {
-	.home {
-		padding-top: calc(1rem + env(safe-area-inset-top, 1rem));
-		margin: 2rem auto !important; /* !important keyword to overwrite bootstrap utility class */
-	}
 	.home .app-summary {
 		max-width: 100%;
 	}
@@ -108,50 +107,55 @@ img {
 
 /* small tablets & ipad styles */
 @media screen and (min-width: 600px) {
-	.home {
-		padding-top: calc(7rem + env(safe-area-inset-top, 1rem));
-	}
 	.home-input {
 		width: 65%;
 	}
+
 	.filled-list-view .card {
 		width: 60%;
 	}
+
 	.empty-list-view .card {
 		width: 60%;
 	}
+
 	.filled-list-view .search-bar {
 		margin: auto;
 		width: 45%;
 	}
+
 	.filled-list-view .flex-wrap-item-name form {
 		width: 85%;
 	}
+
 	.filled-list-view .flex-center-bread-img img {
 		width: 65%;
 	}
 }
+
 /* large tablets & laptop styles */
 @media screen and (min-width: 960px) {
-	.home {
-		padding-top: calc(7rem + env(safe-area-inset-top, 1rem));
-	}
 	.home-input {
 		width: 50%;
 	}
+
 	.filled-list-view .card {
 		width: 60%;
 	}
+
 	.empty-list-view .card {
 		width: 60%;
 	}
+
 	.filled-list-view .search-bar {
 		margin: auto;
 		width: 45%;
 	}
+
 	.filled-list-view .flex-wrap-item-name form {
 		width: 85%;
 	}
+
 	.filled-list-view .flex-center-bread-img img {
 		width: 65%;
 	}
@@ -160,11 +164,9 @@ img {
 		flex-grow: 0;
 	}
 }
+
 /* large desktop styles */
 @media screen and (min-width: 1200px) {
-	.home {
-		padding-top: calc(0rem + env(safe-area-inset-top, 1rem));
-	}
 	.home-input {
 		width: 50%;
 	}
@@ -176,26 +178,23 @@ img {
 	.filled-list-view .card {
 		width: 60%;
 	}
+
 	.empty-list-view .card {
 		width: 60%;
 	}
+
 	.filled-list-view .search-bar {
 		margin: auto;
 		width: 45%;
 	}
+
 	.filled-list-view .flex-wrap-item-name form {
 		width: 85%;
 	}
+
 	.filled-list-view .flex-center-bread-img img {
 		width: 65%;
 	}
-}
-
-/* extra large desktop styles */
-@media screen and (min-width: 1382px) {
-	/* .home {
-		padding-top: calc(7rem + env(safe-area-inset-top, 1rem));
-	} */
 }
 
 ul {
