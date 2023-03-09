@@ -77,5 +77,3 @@ Once you’ve cloned the project locally and you’re in the project directory, 
 ### Access the project in your browser
 
 After you’ve cloned the project locally and updated the dependencies, run the project by typing the following into your terminal: `npm start`. You should be able to see the project at `localhost:3000`.
-
-![screenshot of app home page](./src/img/knead-to-buy-home.jpg)
