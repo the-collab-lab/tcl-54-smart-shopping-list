@@ -88,7 +88,7 @@ img {
 @media screen and (max-width: 400px) {
 	.home {
 		padding-top: calc(1rem + env(safe-area-inset-top, 1rem));
-		margin: 1rem auto !important; /* !important keyword to overwrite bootstrap utility class */
+		margin: 2rem auto !important; /* !important keyword to overwrite bootstrap utility class */
 	}
 	.home .app-summary {
 		max-width: 100%;
@@ -193,9 +193,9 @@ img {
 
 /* extra large desktop styles */
 @media screen and (min-width: 1382px) {
-	.home {
+	/* .home {
 		padding-top: calc(7rem + env(safe-area-inset-top, 1rem));
-	}
+	} */
 }
 
 ul {

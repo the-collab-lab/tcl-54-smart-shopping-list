@@ -93,7 +93,7 @@ export function Home({ setListToken }) {
 	};
 
 	return (
-		<div className="home my-5 text-center">
+		<div className="home my-5 text-center d-flex flex-column justify-content-center">
 			<h5 className="mb-2">Welcome to</h5>
 			<h1 className="fw-bold mb-4">Knead to Buy</h1>
 			<div className="app-logo mx-auto mb-4">

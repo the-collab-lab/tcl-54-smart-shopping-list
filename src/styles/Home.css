@@ -1,5 +1,6 @@
 .home {
 	padding-top: calc(3rem + env(safe-area-inset-top, 1rem));
+	height: 80vh;
 }
 
 .home .app-logo {
