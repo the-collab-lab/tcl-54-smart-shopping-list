@@ -93,16 +93,17 @@ export function Home({ setListToken }) {
 	};
 
 	return (
-		<div className="home my-4 text-center">
-			<p>Welcome to</p>
-			<h1 className="fw-bold">Knead to Buy</h1>
-			<div className="app-logo mx-auto mb-3">
+		<div className="home my-5 text-center d-flex flex-column justify-content-center">
+			<h5 className="mb-2">Welcome to</h5>
+			<h1 className="fw-bold mb-4">Knead to Buy</h1>
+			<div className="app-logo mx-auto mb-4">
 				<Image src={appImage} alt="app logo" />
 			</div>
-			<p className="app-summary px-3 mb-4 fs-6">
+			<p className="app-summary mb-5 px-3 fs-6 mx-auto">
 				Get a bread start on your shopping as the app learns your buying habits.
-				When it comes to remembering what you're likely to need to buy next,
-				Knead to Buy is "second to naan"!
+				<br />
+				When it comes to remembering what to buy next, Knead to Buy is "second
+				to naan"!
 			</p>
 			<div className="text-center">
 				<Button onClick={createNewToken} className="btn-custom mb-3">
@@ -112,9 +113,11 @@ export function Home({ setListToken }) {
 					<strong>- or -</strong>{' '}
 				</p>
 				<Form id="join-shopping-list-form" onSubmit={joinExistingToken}>
-					<Form.Label htmlFor="join-token">List Token</Form.Label>
+					<Form.Label htmlFor="join-token" className="mb-1">
+						List Token
+					</Form.Label>
 					<div className="d-flex flex-row justify-content-center m-auto home-input ">
-						<InputGroup className="w-75">
+						<InputGroup className="w-75 mb-5">
 							<Form.Control
 								type="text"
 								name="join-token"
@@ -133,8 +136,9 @@ export function Home({ setListToken }) {
 						</InputGroup>
 					</div>
 				</Form>
+				<hr className="mb-5 m-auto" />
 				{/* When Learn More is clicked the state for `show` is set to true */}
-				<div className="learn-more fw-bold mt-4">
+				<div className="learn-more fw-bold">
 					<a href="/#" onClick={() => setShow(true)} aria-label="Open modal">
 						Learn More
 					</a>
