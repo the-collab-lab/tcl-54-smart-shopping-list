@@ -4,7 +4,7 @@ A full stack React app for shoppers who want to keep track of things they buy an
 
 ## Why We Built This
 
-This project is the culmination of the collaborative efforts of four highly-skilled developers as part of [The Collab Lab](https://the-collab-lab.codes) program under the guidance of mentors. It serves as a milestone in our ability to work together and acquire new technical skills and adopt the Agile methodology.
+This project is the culmination of the collaborative efforts of four highly-skilled developers as part of [The Collab Lab](https://the-collab-lab.codes) program under the guidance of mentors. It serves as a milestone in our ability to work together, acquire new technical skills and adopt the Agile methodology.
 
 ### Developers:
 
@@ -35,7 +35,7 @@ Try the app live at https://tcl-54-smart-shopping-list.web.app/
 - User can delete items from their list
 - User can choose how urgent they want to buy the items
 - User can mark items as purchased
-- User can see the app learn the intervals at which the items are bought and predict how soon these items need to be bought again
+- User can see that the app learns the intervals at which the items are bought and predict how soon these items need to be bought again
 
 ## Stretch Features
 
@@ -49,7 +49,7 @@ TBD
 
 ### System Requirements
 
-To run this build and its dependencides, you'll need these in your local machine:
+To run this project and its dependencides, you'll need these in your local machine:
 
 - Node.js v18 or higher
 - NPM 8 or higher
