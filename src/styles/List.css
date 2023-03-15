@@ -50,13 +50,13 @@
 /* Filled shopping list view CSS */
 .filled-list-view .search-bar {
 	margin: auto;
-	width: 18rem;
+	width: calc(17rem + 1.5vw);
 	padding-top: 0.938rem;
 	padding-bottom: 0.938rem;
 }
 
 .filled-list-view .card {
-	width: 9;
+	width: 99%;
 	border: 0;
 	background-color: transparent;
 	margin: auto;
@@ -75,7 +75,7 @@
 .filled-list-view .item-card {
 	margin: auto;
 	padding-bottom: 0.938rem;
-	width: 95%;
+	width: 100%;
 	border-radius: 0.313rem;
 }
 

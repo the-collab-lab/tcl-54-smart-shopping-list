@@ -12,12 +12,8 @@
 }
 
 #plus-item-card {
-	/* border: 0.15rem dashed #495867; */
 	border: transparent;
-	/* border-width: 0.078rem; */
 	background-color: #e0e0e0;
-	/* background-color: white; */
-	/* background-color: transparent; */
 }
 
 #plus-item-card h4 {

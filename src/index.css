@@ -99,6 +99,10 @@ img {
 	.app-logo-navbar {
 		max-width: 2.375rem;
 	}
+
+	.navbar-custom {
+		position: sticky;
+	}
 }
 
 /* small tablets & ipad styles */
