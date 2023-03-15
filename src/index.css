@@ -96,12 +96,8 @@ img {
 
 /* small tablets & ipad styles - NAVBAR SPECIFIC */
 @media screen and (max-width: 600px) {
-	.navbar-custom .container-fluid {
-		flex-direction: column;
-	}
-
-	.navbar-custom .logo-text-container {
-		justify-content: center;
+	.app-logo-navbar {
+		max-width: 2.375rem;
 	}
 }
 

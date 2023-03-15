@@ -56,7 +56,7 @@
 }
 
 .filled-list-view .card {
-	width: 100%;
+	width: 9;
 	border: 0;
 	background-color: transparent;
 	margin: auto;
@@ -76,14 +76,6 @@
 	margin: auto;
 	padding-bottom: 0.938rem;
 	width: 95%;
-	border-radius: 0.313rem;
-}
-
-.filled-list-view .add-item-card {
-	margin: auto;
-	width: 95%;
-	background-color: transparent;
-	padding-bottom: 0.938rem;
 	border-radius: 0.313rem;
 }
 

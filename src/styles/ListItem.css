@@ -30,7 +30,6 @@
 
 .filled-list-view .flex-wrap-item-name {
 	display: flex;
-	flex-wrap: wrap;
 	justify-content: space-between;
 }
 
