@@ -96,12 +96,12 @@ img {
 
 /* small tablets & ipad styles - NAVBAR SPECIFIC */
 @media screen and (max-width: 600px) {
-	.navbar-custom .container-fluid {
-		flex-direction: column;
+	.app-logo-navbar {
+		max-width: 2.375rem;
 	}
 
-	.navbar-custom .logo-text-container {
-		justify-content: center;
+	.navbar-custom {
+		position: sticky;
 	}
 }
 
@@ -112,11 +112,11 @@ img {
 	}
 
 	.filled-list-view .card {
-		width: 60%;
+		width: 65%;
 	}
 
 	.empty-list-view .card {
-		width: 60%;
+		width: 65%;
 	}
 
 	.filled-list-view .search-bar {

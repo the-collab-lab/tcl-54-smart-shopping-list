@@ -12,15 +12,11 @@
 }
 
 #plus-item-card {
-	/* border: 0.15rem dashed #495867; */
 	border: transparent;
-	/* border-width: 0.078rem; */
 	background-color: #e0e0e0;
-	/* background-color: white; */
-	/* background-color: transparent; */
 }
 
-#plus-item-card h4 {
+#plus-item-card p {
 	background: transparent;
 	border: transparent;
 	color: #495867;
@@ -30,7 +26,6 @@
 
 .filled-list-view .flex-wrap-item-name {
 	display: flex;
-	flex-wrap: wrap;
 	justify-content: space-between;
 }
 
@@ -39,12 +34,17 @@
 	display: inline-block;
 	width: 14.063rem;
 	overflow: hidden;
+	text-align: center;
+}
+
+.filled-list-view .flex-wrap-item-name label {
+	color: #404d5a;
 }
 
 .filled-list-view .flex-center-bread-img {
 	display: flex;
 	justify-content: center;
-	padding-top: 5%;
+	padding-top: 2%;
 }
 
 .filled-list-view .flex-center-bread-img svg {

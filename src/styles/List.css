@@ -50,13 +50,13 @@
 /* Filled shopping list view CSS */
 .filled-list-view .search-bar {
 	margin: auto;
-	width: 18rem;
+	width: calc(17rem + 1.5vw);
 	padding-top: 0.938rem;
 	padding-bottom: 0.938rem;
 }
 
 .filled-list-view .card {
-	width: 100%;
+	width: 99%;
 	border: 0;
 	background-color: transparent;
 	margin: auto;
@@ -74,16 +74,8 @@
 
 .filled-list-view .item-card {
 	margin: auto;
-	padding-bottom: 0.938rem;
+	padding-bottom: calc(0.2rem + 1.5625vw);
 	width: 95%;
-	border-radius: 0.313rem;
-}
-
-.filled-list-view .add-item-card {
-	margin: auto;
-	width: 95%;
-	background-color: transparent;
-	padding-bottom: 0.938rem;
 	border-radius: 0.313rem;
 }
 
@@ -102,4 +94,13 @@
 	width: 10.625rem;
 	margin-top: 20%;
 	margin-bottom: 5%;
+}
+
+.filled-list-view .item-not-found p {
+	font-weight: 600;
+}
+
+.form-check-input:disabled ~ .form-check-label,
+.form-check-input[disabled] ~ .form-check-label {
+	opacity: 1;
 }

@@ -129,13 +129,13 @@ export function List({ data, loading }) {
 			<>
 				<div className="item-card">
 					<ListGroupItem
-						className="p-3"
+						className="p-2 mb-2"
 						id="plus-item-card"
 						type="button"
 						label="Add Items"
 						onClick={handleAddItem}
 					>
-						<h4 id="plus-item-button">Add items</h4>
+						<p id="plus-item-button">Add items</p>
 					</ListGroupItem>
 				</div>
 				{
@@ -158,8 +158,11 @@ export function List({ data, loading }) {
 			</>
 		) : filterInput && filteredList.length === 0 ? (
 			<div className="item-not-found">
-				<Image src={confusedBread} />
-				<h4>no matching item found</h4>
+				<Image
+					src={confusedBread}
+					alt="Bread slice character with confused look surrounded by question marks"
+				/>
+				<p>no matching item found</p>
 			</div>
 		) : (
 			filteredList.map((item) => {
@@ -191,7 +194,10 @@ export function List({ data, loading }) {
 					<Card.ImgOverlay>
 						<div className="oven-handle" />
 						<div className="card-overlay-background">
-							<Image src={sadPastry} />
+							<Image
+								src={sadPastry}
+								alt="Pastry character with a sad expression"
+							/>
 							<Card.Title>List is empty.</Card.Title>
 							<Card.Subtitle>
 								Stop loafing around, and start shopping!
@@ -231,7 +237,7 @@ export function List({ data, loading }) {
 						</Form>
 					</div>
 				) : null}
-				{/* conditional will display three options within ListGroup through renderList():
+				{/* conditional in calling `renderList()` will display three options within ListGroup through renderList():
 					- unfiltered shopping list
 					- filtered shopping list
 					- item not found view */}

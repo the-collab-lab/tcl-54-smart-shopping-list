@@ -114,12 +114,12 @@ export function AddItem({ listToken, data }) {
 
 	return (
 		<>
-			<div className="add-item d-flex flex-column">
+			<div className="add-item d-flex flex-column justify-content-center">
 				<header className="text-center mt-3">
 					<h1 className="fw-bold">Add Item</h1>
 				</header>
 
-				<Container className="add-item-form shadow rounded-3 py-3 mt-5 bg-white">
+				<Container className="add-item-form shadow rounded-3 py-3 mt-2 bg-white">
 					<Form onSubmit={onFormSubmit}>
 						<div className="py-4 mx-5">
 							<Form.Label htmlFor="item">Item Name:</Form.Label>
@@ -228,7 +228,7 @@ export function AddItem({ listToken, data }) {
 						</div>
 					</Form>
 				</Container>
-				<div className="mt-5 w-25 mx-auto ">
+				<div className="mt-4 w-25 mx-auto ">
 					<Croissant />
 				</div>
 			</div>
