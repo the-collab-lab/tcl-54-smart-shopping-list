@@ -10,7 +10,11 @@ export function NavbarShoppingList() {
 		<Navbar expand="lg" className="navbar-custom">
 			<Container className="justify-content-center">
 				<Navbar.Brand href="/list">
-					<Image src={appLogo} className="app-logo-navbar" />
+					<Image
+						src={appLogo}
+						className="app-logo-navbar"
+						alt="Knead to Buy app logo that is a characterized bread bun waving happily"
+					/>
 					Knead to Buy
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0" />

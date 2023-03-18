@@ -74,8 +74,8 @@
 
 .filled-list-view .item-card {
 	margin: auto;
-	padding-bottom: 0.938rem;
-	width: 100%;
+	padding-bottom: calc(0.2rem + 1.5625vw);
+	width: 95%;
 	border-radius: 0.313rem;
 }
 
@@ -94,4 +94,8 @@
 	width: 10.625rem;
 	margin-top: 20%;
 	margin-bottom: 5%;
+}
+
+.filled-list-view .item-not-found p {
+	font-weight: 600;
 }

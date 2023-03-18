@@ -82,10 +82,11 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 						<Form.Check
 							value={name}
 							type="checkbox"
+							label={name}
 							onChange={handleCheck}
 							checked={check}
 							disabled={check}
-							label={name}
+							aria-label="Checkbox for following shopping item"
 						/>
 					</Form>
 					<div>

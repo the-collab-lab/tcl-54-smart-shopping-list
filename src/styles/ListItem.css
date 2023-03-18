@@ -16,7 +16,7 @@
 	background-color: #e0e0e0;
 }
 
-#plus-item-card h4 {
+#plus-item-card p {
 	background: transparent;
 	border: transparent;
 	color: #495867;
@@ -34,12 +34,18 @@
 	display: inline-block;
 	width: 14.063rem;
 	overflow: hidden;
+	text-align: center;
+}
+
+.filled-list-view .flex-wrap-item-name label {
+	font-weight: 600;
+	color: #495867;
 }
 
 .filled-list-view .flex-center-bread-img {
 	display: flex;
 	justify-content: center;
-	padding-top: 5%;
+	padding-top: 2%;
 }
 
 .filled-list-view .flex-center-bread-img svg {
