@@ -13,5 +13,5 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TCL_54_SMART_SHOPPING_LIST }}'
-          projectId: tcl-54-smart-shopping-list
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TCL_54_KNEAD_TO_BUY }}'
+          projectId: tcl-54-knead-to-buy
