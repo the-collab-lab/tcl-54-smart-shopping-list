@@ -6,7 +6,7 @@
 		"npm": ">=8.19.0"
 	},
 	"dependencies": {
-		"@the-collab-lab/shopping-list-utils": "^2.0.0",
+		"@the-collab-lab/shopping-list-utils": "^2.2.0",
 		"bootstrap": "^5.2.3",
 		"firebase": "^9.15.0",
 		"node": "^19.6.1",

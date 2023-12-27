@@ -6,6 +6,7 @@ import { createNewList, listExists } from '../api/firebase';
 import { Button, Form, Image, InputGroup } from 'react-bootstrap';
 import appImage from '../img/bread-styling/burger-boy1.png';
 import LearnModal from '../components/LearnModal';
+import { ArchivalNoticeModal } from '@the-collab-lab/shopping-list-utils';
 
 /** Home component that redirects a user to the List view if there is already a list created.
  * If the user doesn't already have a list, a user can create a list or join one to be saved to Firestore and be redirected to the List view. */
@@ -106,7 +107,10 @@ export function Home({ setListToken }) {
 				to naan"!
 			</p>
 			<div className="text-center">
-				<Button onClick={createNewToken} className="btn-custom mb-3">
+				<Button
+					onClick={() => console.log('Creating new lists is disabled')}
+					className="btn-custom mb-3"
+				>
 					Create a new list
 				</Button>
 				<p>
@@ -149,6 +153,7 @@ export function Home({ setListToken }) {
 			 */}
 			<LearnModal show={show} hide={() => setShow(false)} />
 			<Toaster />
+			<ArchivalNoticeModal />
 		</div>
 	);
 }
